@@ -28,8 +28,8 @@ var questions = [
 
 inquirer.prompt(questions).then(answers => {
   if (answers.bump) {
-    shell.echo('npm version ' + answers.version);
-    // shell.exec('npm version ' + answers.version);
+    shell.echo('Bumping the ' + answers.version + ' version ');
+    shell.exec('npm version ' + answers.version);
   } else {
     console.log('Okay, carry on...');
   }
