@@ -13,6 +13,9 @@ module.exports = {
   ],
 
   scopes: [
+    { name: 'build' },
+    { name: 'tests' },
+    { name: 'redux' },
     { name: 'auth' },
     { name: 'navigation' },
     { name: 'home' },

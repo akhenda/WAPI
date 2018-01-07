@@ -6,4 +6,5 @@ git fetch --tags
 git checkout -b release/temp_$(git rev-parse --short HEAD)
 
 # Add changelog
+auto-changelog -p
 git add CHANGELOG.md

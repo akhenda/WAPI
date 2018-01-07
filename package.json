@@ -30,7 +30,7 @@
     "test:ios": "npm-run-all --parallel validate e2e:ios",
     "test:android": "npm-run-all --parallel validate e2e:android",
     "preversion": "./bin/pre-version.sh",
-    "version": "./bin/version-ios.sh && auto-changelog -p && git add CHANGELOG.md",
+    "version": "./bin/version-ios.sh",
     "postversion": "./bin/post-version.sh"
   },
   "dependencies": {
@@ -81,6 +81,24 @@
   },
   "commitlint": {
     "extends": ["@commitlint/config-conventional"]
+  },
+  "release": {
+    "branch": "next",
+    "verifyConditions": [
+      "@semantic-release/changelog",
+      "@semantic-release/git",
+      "@semantic-release/github"
+    ],
+    "getLastRelease": "@semantic-release/git",
+    "publish": [
+      "@semantic-release/changelog",
+      {
+        "path": "@semantic-release/git",
+        "assets": ["package.json", "ios/WAPI", "docs"],
+        "message": "chore(release): ${nextRelease.version} - ${new Date().toLocaleDateString('en-US', {year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' })} [skip ci]\n\n${nextRelease.notes}"
+      },
+      "@semantic-release/github"
+    ]
   },
   "jest": {
     "preset": "react-native",
