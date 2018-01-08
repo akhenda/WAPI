@@ -111,6 +111,16 @@ android {
         missingDimensionStrategy "minReactNative", "minReactNative46"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs {
+        release {
+            if (project.hasProperty('WAPI_STORE_FILE')) {
+                storeFile file(String.valueOf(System.getenv("WAPI_STORE_FILE")))
+                storePassword System.getenv("WAPI_STORE_PASSWORD")
+                keyAlias System.getenv("WAPI_KEY_ALIAS")
+                keyPassword System.getenv("WAPI_KEY_PASSWORD")
+            }
+        }
+    }
     splits {
         abi {
             reset()
@@ -123,6 +133,7 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
     // applicationVariants are e.g. debug, release
