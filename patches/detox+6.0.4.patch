@@ -1,0 +1,271 @@
+patch-package
+new file mode 100644
+Binary files /dev/null and b/node_modules/detox/.DS_Store differ
+new file mode 100644
+Binary files /dev/null and b/node_modules/detox/android/.DS_Store differ
+old mode 100644
+new mode 100755
+--- a/node_modules/detox/android/build.gradle
++++ b/node_modules/detox/android/build.gradle
+@@ -1,10 +1,10 @@
+ buildscript {
+     repositories {
+         jcenter()
++        google()
+     }
+     dependencies {
+-        classpath 'com.android.tools.build:gradle:2.3.3'
+-        classpath 'com.palantir:jacoco-coverage:0.4.0'
++        classpath 'com.android.tools.build:gradle:3.0.1'
+     }
+ }
+ 
+@@ -12,8 +12,6 @@ allprojects {
+     repositories {
+         mavenLocal()
+         jcenter()
+-        maven {
+-            url "https://maven.google.com"
+-        }
++        google()
+     }
+ }
+new file mode 100644
+Binary files /dev/null and b/node_modules/detox/android/detox/.DS_Store differ
+old mode 100644
+new mode 100755
+--- a/node_modules/detox/android/detox/build.gradle
++++ b/node_modules/detox/android/detox/build.gradle
+@@ -1,10 +1,8 @@
+ apply plugin: 'com.android.library'
+-apply plugin: 'com.palantir.jacoco-coverage'
+-apply plugin: 'com.palantir.jacoco-full-report'
+ 
+ android {
+     compileSdkVersion 25
+-    buildToolsVersion '25.0.3'
++    buildToolsVersion '26.0.2'
+     defaultConfig {
+         minSdkVersion 18
+         targetSdkVersion 25
+@@ -12,25 +10,19 @@ android {
+         versionName "1.0"
+     }
+ 
+-    publishNonDefault true
+-
+     productFlavors {
+-        oldOkhttp {
++        flavorDimensions "minReactNative"
++        minReactNative44 {
++            dimension "minReactNative"
+ 
+         }
+-        newOkhttp {
+-
++        minReactNative46 {
++            dimension "minReactNative"
+         }
+     }
+ 
+     testOptions {
+         unitTests.returnDefaultValues = true
+-        unitTests.all {
+-            jacoco {
+-                includeNoLocationClasses = true
+-            }
+-        }
+-
+ 
+         unitTests.all { t ->
+             reports {
+@@ -65,27 +57,21 @@ android {
+ }
+ 
+ dependencies {
+-    compile fileTree(dir: 'libs', include: ['*.jar'])
+-
++    minReactNative44Implementation 'com.squareup.okhttp3:okhttp:3.4.1'
++    minReactNative44Implementation 'com.squareup.okhttp3:okhttp-ws:3.4.1'
+ 
+-    oldOkhttpCompile 'com.squareup.okhttp3:okhttp:3.4.1'
+-    oldOkhttpCompile 'com.squareup.okhttp3:okhttp-ws:3.4.1'
++    minReactNative46Implementation 'com.squareup.okhttp3:okhttp:3.6.0'
++    minReactNative46Implementation 'com.squareup.okio:okio:1.13.0'
+ 
+-    newOkhttpCompile 'com.squareup.okhttp3:okhttp:3.6.0'
+-    newOkhttpCompile 'com.squareup.okio:okio:1.13.0'
+-
+-    compile('com.android.support.test.espresso:espresso-core:3.0.0', {
++    implementation('com.android.support.test.espresso:espresso-core:3.0.0', {
+         exclude group: 'com.google.code.findbugs'
+     })
+ 
+-    compile 'org.apache.commons:commons-lang3:3.4'
+-
+-    compile 'com.android.support.test:runner:1.0'
+-    compile 'com.android.support.test:rules:1.0'
+-    compile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
++    implementation 'org.apache.commons:commons-lang3:3.4'
++    implementation 'com.android.support.test.uiautomator:uiautomator-v18:2.1.3'
+ 
+-    testCompile 'org.json:json:20140107'
+-    testCompile 'junit:junit:4.12'
+-    testCompile 'org.assertj:assertj-core:3.5.2'
+-    testCompile 'org.apache.commons:commons-io:1.3.2'
++    testImplementation 'org.json:json:20140107'
++    testImplementation 'junit:junit:4.12'
++    testImplementation 'org.assertj:assertj-core:3.5.2'
++    testImplementation 'org.apache.commons:commons-io:1.3.2'
+ }
+new file mode 100644
+Binary files /dev/null and b/node_modules/detox/android/detox/src/.DS_Store differ
+new file mode 100644
+Binary files /dev/null and b/node_modules/detox/android/detox/src/main/.DS_Store differ
+new file mode 100644
+Binary files /dev/null and b/node_modules/detox/android/detox/src/main/java/.DS_Store differ
+new file mode 100644
+Binary files /dev/null and b/node_modules/detox/android/detox/src/main/java/com/.DS_Store differ
+new file mode 100644
+Binary files /dev/null and b/node_modules/detox/android/detox/src/main/java/com/wix/.DS_Store differ
+new file mode 100644
+Binary files /dev/null and b/node_modules/detox/android/detox/src/main/java/com/wix/detox/.DS_Store differ
+old mode 100644
+new mode 100755
+--- a/node_modules/detox/android/detox/src/main/java/com/wix/detox/espresso/UiAutomatorHelper.java
++++ b/node_modules/detox/android/detox/src/main/java/com/wix/detox/espresso/UiAutomatorHelper.java
+@@ -1,12 +1,10 @@
+ package com.wix.detox.espresso;
+ 
+-import android.app.UiAutomation;
+ import android.content.Context;
+ import android.os.Handler;
+ import android.support.test.InstrumentationRegistry;
+ import android.support.test.espresso.Espresso;
+ import android.support.test.espresso.ViewInteraction;
+-import android.support.test.uiautomator.InstrumentationUiAutomatorBridge;
+ import android.util.DisplayMetrics;
+ import android.util.Log;
+ import android.view.Choreographer;
+@@ -26,9 +24,6 @@ import java.util.concurrent.TimeUnit;
+ public class UiAutomatorHelper {
+     private static final String LOG_TAG = "detox";
+ 
+-    private static final String CLASS_INTERACTION_CONTROLLER =
+-            "android.support.test.uiautomator.InteractionController";
+-
+     private static final String FIELD_UI_CONTROLLER = "uiController";
+ 
+     private static final String METHOD_LOOP_UNTIL_IDLE = "loopMainThreadUntilIdle";
+@@ -76,31 +71,6 @@ public class UiAutomatorHelper {
+         });
+     }
+ 
+-    private static Object interactionController = null;
+-
+-    public static Object getInteractionController() {
+-        if (interactionController != null) {
+-            return interactionController;
+-        }
+-        UiAutomation uiAutomation;
+-        if (android.os.Build.VERSION.SDK_INT >= 24) {
+-            uiAutomation = InstrumentationRegistry.getInstrumentation().getUiAutomation(UiAutomation.FLAG_DONT_SUPPRESS_ACCESSIBILITY_SERVICES);
+-        } else {
+-            uiAutomation = InstrumentationRegistry.getInstrumentation().getUiAutomation();
+-        }
+-        Context ctx = InstrumentationRegistry.getContext();
+-        InstrumentationUiAutomatorBridge bridge = new InstrumentationUiAutomatorBridge(ctx, uiAutomation);
+-        Class<?> interActionControllerClass;
+-        try {
+-            interActionControllerClass = Class.forName(CLASS_INTERACTION_CONTROLLER);
+-        } catch (ClassNotFoundException e) {
+-            Log.e(LOG_TAG, "Can't find InteractionController class. UiAutomator is not on classpath?", e);
+-            throw new RuntimeException(e);
+-        }
+-        interactionController = Reflect.on(interActionControllerClass).create(bridge).get();
+-        return interactionController;
+-    }
+-
+     public static float getDensity() {
+         Context context = InstrumentationRegistry.getTargetContext().getApplicationContext();
+         return context.getResources().getDisplayMetrics().density;
+similarity index 100%
+rename from node_modules/detox/android/detox/src/oldOkhttp/java/com/wix/detox/WebSocketClient.java
+rename to node_modules/detox/android/detox/src/minReactNative44/java/com/wix/detox/WebSocketClient.java
+new file mode 100644
+Binary files /dev/null and b/node_modules/detox/android/detox/src/minReactNative46/.DS_Store differ
+new file mode 100644
+Binary files /dev/null and b/node_modules/detox/android/detox/src/minReactNative46/java/.DS_Store differ
+new file mode 100644
+Binary files /dev/null and b/node_modules/detox/android/detox/src/minReactNative46/java/com/.DS_Store differ
+new file mode 100644
+Binary files /dev/null and b/node_modules/detox/android/detox/src/minReactNative46/java/com/wix/.DS_Store differ
+similarity index 100%
+rename from node_modules/detox/android/detox/src/newOkhttp/java/com/wix/detox/WebSocketClient.java
+rename to node_modules/detox/android/detox/src/minReactNative46/java/com/wix/detox/WebSocketClient.java
+new file mode 100644
+Binary files /dev/null and b/node_modules/detox/android/gradle/.DS_Store differ
+old mode 100644
+new mode 100755
+--- a/node_modules/detox/android/gradle/wrapper/gradle-wrapper.properties
++++ b/node_modules/detox/android/gradle/wrapper/gradle-wrapper.properties
+@@ -1,6 +1,6 @@
+-#Sun Jun 25 19:58:35 IDT 2017
++#Wed Dec 20 14:09:27 IST 2017
+ distributionBase=GRADLE_USER_HOME
+ distributionPath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-3.3-all.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-4.1-all.zip
+new file mode 100644
+Binary files /dev/null and b/node_modules/detox/src/.DS_Store differ
+new file mode 100644
+Binary files /dev/null and b/node_modules/detox/src/devices/.DS_Store differ
+old mode 100644
+new mode 100755
+--- a/node_modules/detox/src/devices/AndroidDriver.js
++++ b/node_modules/detox/src/devices/AndroidDriver.js
+@@ -1,4 +1,6 @@
+ const {spawn} = require('child_process');
++const path = require('path');
++const fs = require('fs');
+ const _ = require('lodash');
+ const log = require('npmlog');
+ const invoke = require('../invoke');
+@@ -27,8 +29,20 @@ class AndroidDriver extends DeviceDriverBase {
+ 
+   async installApp(deviceId, binaryPath) {
+     await this.adb.install(deviceId, binaryPath);
+-    const testApkPath = binaryPath.split('.apk')[0] + '-androidTest.apk';
+-    await this.adb.install(deviceId, testApkPath);
++    await this.adb.install(deviceId, this.getTestApkPath(binaryPath));
++  }
++
++  getTestApkPath(originalApkPath) {
++    const originalApkPathObj = path.parse(originalApkPath);
++    let splitPath = originalApkPathObj.dir.split(path.sep);
++    splitPath.splice(splitPath.length-1 , 0, 'androidTest');
++    const testApkPath = path.join(splitPath.join(path.sep), `${originalApkPathObj.name}-androidTest${originalApkPathObj.ext}`);
++
++    if (!fs.existsSync(testApkPath)) {
++      throw new Error(`'${testApkPath}' could not be found, did you run './gradlew assembleAndroidTest' ?`);
++    }
++
++    return testApkPath;
+   }
+ 
+   async uninstallApp(deviceId, bundleId) {
+old mode 100644
+new mode 100755
+--- a/node_modules/detox/src/devices/android/Emulator.js
++++ b/node_modules/detox/src/devices/android/Emulator.js
+@@ -56,7 +56,7 @@ class Emulator {
+       tail.unwatch();
+       fs.closeSync(stdout);
+       fs.closeSync(stderr);
+-      fs.unlink(tempLog);
++      fs.unlink(tempLog, () => {});
+       promise._cpResolve();
+     }
+ 
