@@ -42,6 +42,8 @@ def getNpmVersionArray() { // major [0], minor [1], patch [2]
 /* calculated from git commits to give sequential integers */
 def getGitVersion() {
     def process = "git rev-list master --first-parent --count".execute()
+    println "[$process]"
+    println "[$process.text]"
     return process.text.toInteger()
 }
 
