@@ -29,7 +29,8 @@ allprojects {
 }
 
 def getNpmVersion() {
-    def inputFile = new File("../package.json")
+    def inputFile = file("../package.json")
+    // println "[$inputFile]"
     def packageJson = new JsonSlurper().parseText(inputFile.text)
     return packageJson["version"]
 }
@@ -42,9 +43,9 @@ def getNpmVersionArray() { // major [0], minor [1], patch [2]
 /* calculated from git commits to give sequential integers */
 def getGitVersion() {
     def process = "git rev-list master --first-parent --count".execute()
-    println "[$process]"
-    println "[$process.text]"
-    return process.text.toInteger()
+    // def num = process.text as int
+    // println "[$num]"
+    return process.text
 }
 
 /* It’s important that versionCode is an integer – so we can’t use semantic versioning here. This is used on the play store to tell which versions come after others – that’s why it’s tied to git commits in getGitVersion */
