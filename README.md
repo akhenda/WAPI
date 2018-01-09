@@ -1,0 +1,2 @@
+# WAPI
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/142436ba7c4a444dad2df2a6049c3a55)](https://www.codacy.com/app/joseph-akhenda/WAPI?utm_source=github.com&utm_medium=referral&utm_content=akhenda/WAPI&utm_campaign=badger)
