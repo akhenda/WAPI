@@ -92,7 +92,7 @@
     ]
   },
   "release": {
-    "branch": "HEAD",
+    "branch": "develop",
     "verifyConditions": [
       "@semantic-release/changelog",
       "@semantic-release/git",
