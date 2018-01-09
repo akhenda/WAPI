@@ -16,7 +16,6 @@ workflows:
     before_run:
     - _init_install
     - _unit_tests
-    - _integration_and_e2e_debug_tests
     - _integration_and_e2e_release_tests
   primary:
     after_run: 
@@ -54,11 +53,26 @@ workflows:
             else
               envman add --key PROCEED_WITH_DEPLOYMENT --value 1
             fi
+    - script@1.1.5:
+        title: Install Detox Utils
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+
+            # fail if any commands fails
+            set -e
+
+            # debug log
+            set -x
+
+            brew tap wix/brew
+            brew install applesimutils --HEAD
     - npm@0.9.0:
         title: Install npm-cache
         inputs:
         - command: install -g npm-cache
-    - cache-pull@2.0.1: {}
+    - script@1.1.5:
+        title: Pull the cahce here
     - script@1.1.5:
         title: npm-cache install
         inputs:
@@ -72,37 +86,23 @@ workflows:
             set -x
 
             npm-cache install --cacheDirectory .
-    - cache-push@2.0.3:
-        inputs:
-        - cache_paths: "./npm"
     - install-react-native@0.9.1: {}
-    - npm@0.9.0:
-        title: Install Detox CLI
-        inputs:
-        - command: install -g detox-cli
     - npm@0.9.0:
         title: Install Semantic Release
         inputs:
         - command: install -g semantic-release@12
-    - script@1.1.5:
-        title: Install Detox Utils
+    - npm@0.9.0:
+        title: Install Detox CLI
         inputs:
-        - content: |-
-            #!/usr/bin/env bash
-
-            # fail if any commands fails
-            set -e
-
-            # debug log
-            set -x
-
-            brew tap facebook/fb
-            export CODE_SIGNING_REQUIRED=NO
-            brew install fbsimctl --HEAD
-
-            brew tap wix/brew
-            brew install applesimutils --HEAD
+        - command: install -g detox-cli
     - install-missing-android-tools@2.0.6: {}
+    - cache-push@2.0.3:
+        inputs:
+        - cache_paths: "./npm"
+    - file-downloader@0.9.1:
+        inputs:
+        - destination: "$HOME/keystores/app.keystore"
+        - source: "$BITRISEIO_ANDROID_KEYSTORE_URL"
   _unit_tests:
     description: Run all unit tests
     steps:
@@ -205,6 +205,24 @@ workflows:
 
             detox build --configuration ios.sim.release
     - script@1.1.5:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            touch ~/.android/repositories.cfg
+        title: Fix Missing repositories.cfg Error
+    - create-android-emulator@1.1.5:
+        inputs:
+        - platform: android-24
+        - name: Nexus_5X_API_26
+    - start-android-emulator@1.3.2: {}
+    - wait-for-android-emulator@1.0.3: {}
+    - android-screenrecord-start@0.9.0: {}
+    - script@1.1.5:
         title: Detox - Run Android E2E Release Tests
         inputs:
         - content: |-
@@ -217,6 +235,7 @@ workflows:
             set -x
 
             detox test --configuration android.emu.release --cleanup
+    - android-screenrecord-stop@0.9.0: {}
     - script@1.1.5:
         title: Detox - Run iOS E2E Release Tests
         inputs:
@@ -310,7 +329,7 @@ workflows:
         is_always_run: false
         run_if: '{{enveq "PROCEED_WITH_DEPLOYMENT" "1"}}'
         inputs:
-        - notify_email_list: akhenda@gmail.com
+        - notify_email_list: ''
     - testfairy-deploy@2.0.1:
         run_if: '{{enveq "PROCEED_WITH_DEPLOYMENT" "1"}}'
         inputs:
@@ -336,7 +355,7 @@ app:
     GRADLEW_PATH: android/gradlew
   - opts:
       is_expand: false
-    BITRISE_PROJECT_PATH: ios/ShoppingCart.xcodeproj
+    BITRISE_PROJECT_PATH: ios/WAPI.xcodeproj
   - opts:
       is_expand: false
     BITRISE_SCHEME: WAPI
