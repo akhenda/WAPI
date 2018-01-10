@@ -101,7 +101,7 @@ android {
         applicationId "com.wapi"
         minSdkVersion 18
         targetSdkVersion 26
-        versionCode googleVer
+        versionCode googleVer.toInteger()
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
         ndk {
             abiFilters "armeabi-v7a", "x86"
