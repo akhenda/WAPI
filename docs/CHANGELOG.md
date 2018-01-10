@@ -1,3 +1,12 @@
+<a name="0.1.1"></a>
+## [0.1.1](https://github.com/akhenda/WAPI/compare/v0.1.0...v0.1.1) (2018-01-10)
+
+
+### Bug Fixes
+
+* **build:** fix calculation of versionCode from git commits ([eaa1c23](https://github.com/akhenda/WAPI/commit/eaa1c23))
+* **build:** update versionCode in build.gradle ([f3a4268](https://github.com/akhenda/WAPI/commit/f3a4268))
+
 <a name="0.1.0"></a>
 # [0.1.0](https://github.com/akhenda/WAPI/compare/v0.0.1...v0.1.0) (2018-01-09)
 
