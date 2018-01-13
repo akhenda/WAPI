@@ -3,18 +3,19 @@ import { StyleSheet } from 'react-native';
 import { colors } from 'src/theme';
 
 const styles = StyleSheet.create({
-  activityIndicator: {
+  container: {
     flex: 1,
+    backgroundColor: colors.loadingBackground,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  container: {
-    flex: 1,
+  image: {
+    width: '60%',
+    resizeMode: 'contain',
+    marginTop: -30,
   },
-  header: {
-    backgroundColor: colors.secondary.main,
-  },
-  headerTitle: {
+  loadingText: {
+    fontSize: 22,
     color: colors.primary.text,
   },
 });

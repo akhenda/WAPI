@@ -10,6 +10,8 @@ const lightBlue = '#F6F7F9';
 const cadetBlue1 = '#6783AE';
 const cadetBlue2 = '#8398BD';
 
+const olive = '#78a300';
+
 // create specific brand theme colors here. use https://material.io/color/
 const colors = {
   primary: {
@@ -27,6 +29,8 @@ const colors = {
     dark: crimson,
     text: '#000000',
   },
+  loadingBackground: olive,
+  statusBarTranslucent: 'rgba(0, 0, 0, 0.2)',
 };
 
 export default colors;

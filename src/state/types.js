@@ -1,9 +1,13 @@
-export const EMAIL_CHANGED = 'EMAIL_CHANGED';
-export const PASSWORD_CHANGED = 'PASSWORD_CHANGED';
+/* ------------- Auth Types ------------- */
+export const AUTH_FIELD_CHANGED = 'AUTH_FIELD_CHANGED';
 export const AUTH_LOADING = 'AUTH_LOADING';
 export const LOGIN_USER_SUCCESSFUL = 'LOGIN_USER_SUCCESSFUL';
 export const LOGIN_USER_FAILED = 'LOGIN_USER_FAILED';
+export const FETCH_USER_SUCCESSFUL = 'FETCH_USER_SUCCESSFUL';
+export const FETCH_USER_FAILED = 'FETCH_USER_FAILED';
 export const SIGNUP_USER_SUCCESSFUL = 'SIGNUP_USER_SUCCESSFUL';
 export const SIGNUP_USER_FAILED = 'SIGNUP_USER_FAILED';
-export const AUTH_STATE_CHECK = 'AUTH_STATE_CHECK';
+export const CLEAR_INPUT_DATA = 'CLEAR_INPUT_DATA';
 export const SIGN_OUT_USER_SUCCESS = 'SIGN_OUT_USER_SUCCESS';
+
+/* ------------- Other Types ------------- */

@@ -1,0 +1,33 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import { View, Image, StatusBar } from 'react-native';
+import * as Animatable from 'react-native-animatable';
+
+import { colors, images } from '../theme';
+import styles from './styles/LoadingIndicatorStyles';
+
+
+const LoadingIndicator = () => {
+  return (
+    <View style={styles.container}>
+      <StatusBar translucent backgroundColor={colors.statusBarTranslucent} />
+      <Image source={images.loading2} style={styles.image} />
+      <Animatable.Text
+        duration={4000}
+        animation="flash"
+        easing="ease-in-out"
+        iterationCount="infinite"
+        style={styles.loadingText}
+      >
+        LOADING
+      </Animatable.Text>
+    </View>
+  );
+};
+
+LoadingIndicator.propTypes = {
+  size: PropTypes.number,
+  color: PropTypes.string,
+};
+
+export default LoadingIndicator;
