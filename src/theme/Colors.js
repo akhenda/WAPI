@@ -29,8 +29,13 @@ const colors = {
     dark: crimson,
     text: '#000000',
   },
+  lighterText: '#333333',
+  lightestText: '#575757',
   loadingBackground: olive,
   statusBarTranslucent: 'rgba(0, 0, 0, 0.2)',
+  statusBarTranslucentDark: 'rgba(0, 0, 0, 0.4)',
+  statusBarTranslucentDarker: 'rgba(0, 0, 0, 0.6)',
+  statusBarTranslucentDarkest: 'rgba(0, 0, 0, 0.8)',
 };
 
 export default colors;

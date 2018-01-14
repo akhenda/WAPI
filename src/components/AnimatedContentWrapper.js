@@ -21,7 +21,9 @@ class AnimatedContentWrapper extends Component {
   }
 
   render() {
-    const { children, bannerSource, headerTitle } = this.props;
+    const {
+      children, bannerSource, headerTitle, showLogo, showExtraButton, extraButtonIcon,
+    } = this.props;
 
     const headerTranslate = this.state.scrollY.interpolate({
       inputRange: [0, HEADER_SCROLL_DISTANCE + 50],
@@ -92,7 +94,12 @@ class AnimatedContentWrapper extends Component {
           <Button rounded transparent style={styles.menuButton}>
             <Icon name="menu" style={styles.headerIcon} />
           </Button>
-          <Image source={images.logoWhite} style={styles.logo} />
+          {showExtraButton
+            ? <Button rounded transparent style={styles.extraButton}>
+                <Icon name={extraButtonIcon} style={styles.headerIcon} />
+              </Button>
+            : null}
+          {showLogo ? <Image source={images.logoWhite} style={styles.logo} /> : null}
         </Animated.View>
         <Animated.ScrollView
           style={{ flex: 1 }}
@@ -110,7 +117,7 @@ class AnimatedContentWrapper extends Component {
           </Button>
           <Text style={styles.headerTitle}>{headerTitle}</Text>
           <Button rounded transparent style={styles.headerButton}>
-            <Icon name="ios-search" style={styles.headerIcon} />
+            <Icon name={extraButtonIcon || 'ios-search'} style={styles.headerIcon} />
           </Button>
         </Animated.View>
       </Container>
@@ -119,12 +126,20 @@ class AnimatedContentWrapper extends Component {
 }
 
 AnimatedContentWrapper.propTypes = {
+  showLogo: PropTypes.bool,
+  extraButtonIcon: PropTypes.string,
+  showExtraButton: PropTypes.bool,
   bannerSource: PropTypes.number,
   headerTitle: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
+};
+
+AnimatedContentWrapper.defaultProps = {
+  showLogo: true,
+  showExtraButton: false,
 };
 
 export default AnimatedContentWrapper;

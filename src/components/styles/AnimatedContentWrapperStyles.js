@@ -59,6 +59,11 @@ const styles = StyleSheet.create({
     top: metrics.animatedHeaderPaddingTop + 5,
     left: 5,
   },
+  extraButton: {
+    position: 'absolute',
+    top: metrics.animatedHeaderPaddingTop + 5,
+    right: 5,
+  },
   logo: {
     position: 'absolute',
     top: metrics.animatedHeaderPaddingTop,
