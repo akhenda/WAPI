@@ -25,7 +25,6 @@ class App extends Component {
           persistor={persistor}>
           <View style={styles.mainContainer}>
             <StatusBar translucent barStyle="light-content" backgroundColor={colors.statusBarTranslucent} />
-            <Image source={images.background} style={styles.backgroundImage} />
             <RootContainer />
           </View>
         </PersistGate>

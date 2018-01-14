@@ -11,10 +11,10 @@ import CategoriesList from 'src/components/CategoriesList';
 import LoadingIndicator from 'src/components/LoadingIndicator';
 import AnimatedContentWrapper from 'src/components/AnimatedContentWrapper';
 
-import styles from './styles/HomeScreenStyles';
+import styles from './styles/CompactListingStyles';
 
 
-class HomeScreen extends Component {  
+class CompactListing extends Component {  
   constructor(props) {
     super(props);
 
@@ -41,7 +41,7 @@ class HomeScreen extends Component {
   }
 }
 
-HomeScreen.propTypes = {
+CompactListing.propTypes = {
   user: PropTypes.object,
   token: PropTypes.string,
   getUserInfo: PropTypes.func,
@@ -54,4 +54,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getUserInfo })(HomeScreen);
+export default connect(mapStateToProps, { getUserInfo })(CompactListing);
