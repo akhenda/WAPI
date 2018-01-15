@@ -10,6 +10,7 @@ const images = {
   background75: require('src/images/backgrounds/backround-75-opacity.jpg'),
   background85: require('src/images/backgrounds/backround-85-opacity.jpg'),
   background90: require('src/images/backgrounds/backround-90-opacity.jpg'),
+  wapiBackround: require('src/images/backgrounds/wapi-back-1.jpg'),
 
   defaultDay1: require('src/images/backgrounds/default-day-1.jpg'),
   defaultDay2: require('src/images/backgrounds/default-day-2.jpg'),
@@ -46,6 +47,8 @@ const images = {
   services: require('src/images/categories/services.jpg'),
   shopping: require('src/images/categories/shopping.jpg'),
   volunteering: require('src/images/categories/volunteering.jpg'),
+  
+  avatar: require('src/images/default-avatar.png'),
 };
 
 export default images;

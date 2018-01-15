@@ -13,10 +13,10 @@ import { getUserInfo } from 'src/state/actions/auth';
 import LoadingIndicator from 'src/components/LoadingIndicator';
 import AnimatedContentWrapper from 'src/components/AnimatedContentWrapper';
 
-import styles from './styles/ListingDetailsStyles';
+import styles from './styles/ListingDetailsScreenStyles';
 
 
-class ListingDetails extends Component {  
+class ListingDetailsScreen extends Component {  
   constructor(props) {
     super(props);
 
@@ -167,7 +167,7 @@ class ListingDetails extends Component {
   }
 }
 
-ListingDetails.propTypes = {
+ListingDetailsScreen.propTypes = {
   user: PropTypes.object,
   token: PropTypes.string,
   getUserInfo: PropTypes.func,
@@ -180,4 +180,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getUserInfo })(ListingDetails);
+export default connect(mapStateToProps, { getUserInfo })(ListingDetailsScreen);

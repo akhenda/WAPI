@@ -9,10 +9,10 @@ import { getUserInfo } from 'src/state/actions/auth';
 import LoadingIndicator from 'src/components/LoadingIndicator';
 import AnimatedContentWrapper from 'src/components/AnimatedContentWrapper';
 
-import styles from './styles/ListingsStyles';
+import styles from './styles/ListingsScreenStyles';
 
 
-class Listing extends Component {  
+class ListingsScreen extends Component {  
   constructor(props) {
     super(props);
 
@@ -139,7 +139,7 @@ class Listing extends Component {
                   ItemSeparatorComponent={this.renderSeparator}
                   ListHeaderComponent={this.renderHeader}
                   ListFooterComponent={this.renderFooter}
-                  style={[styles.listing]}
+                  style={styles.listing}
                 />
               : <View style={styles.emptyContainer}>
                   <Text style={styles.empty}>
@@ -154,7 +154,7 @@ class Listing extends Component {
   }
 }
 
-Listing.propTypes = {
+ListingsScreen.propTypes = {
   user: PropTypes.object,
   token: PropTypes.string,
   getUserInfo: PropTypes.func,
@@ -167,4 +167,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getUserInfo })(Listing);
+export default connect(mapStateToProps, { getUserInfo })(ListingsScreen);
