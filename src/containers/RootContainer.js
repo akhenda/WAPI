@@ -7,7 +7,7 @@ import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/Car
 
 import LoginScreen from 'src/containers/LoginScreen';
 import SignUpScreen from 'src/containers/SignUpScreen';
-import HomeScreen from 'src/containers/Listing';
+import HomeScreen from 'src/containers/ListingDetails';
 
 import LoadingIndicator from 'src/components/LoadingIndicator';
 import { isUserSignedIn } from 'src/state/actions/auth';

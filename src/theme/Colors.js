@@ -29,6 +29,7 @@ const colors = {
     dark: crimson,
     text: '#000000',
   },
+  separator: '#DEDEDE',
   lighterText: '#333333',
   lightestText: '#575757',
   loadingBackground: olive,

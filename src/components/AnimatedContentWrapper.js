@@ -22,7 +22,13 @@ class AnimatedContentWrapper extends Component {
 
   render() {
     const {
-      children, bannerSource, headerTitle, showLogo, showExtraButton, extraButtonIcon,
+      showLogo,
+      children,
+      headerTitle,
+      bannerSource,
+      linearGradient,
+      showExtraButton,
+      extraButtonIcon,
     } = this.props;
 
     const headerTranslate = this.state.scrollY.interpolate({
@@ -81,16 +87,18 @@ class AnimatedContentWrapper extends Component {
               },
             ]}
           />
-          <LinearGradient
-            style={styles.linearGradient}
-            colors={[
-              'transparent',
-              'transparent',
-              'transparent',
-              colors.primary.lightest,
-              colors.primary.lightest,
-            ]}
-          />
+        {linearGradient
+          ? <LinearGradient
+              style={styles.linearGradient}
+              colors={[
+                'transparent',
+                'transparent',
+                'transparent',
+                colors.primary.lightest,
+                colors.primary.lightest,
+              ]}
+            />
+          : null}
           <Button rounded transparent style={styles.menuButton}>
             <Icon name="menu" style={styles.headerIcon} />
           </Button>
@@ -127,6 +135,7 @@ class AnimatedContentWrapper extends Component {
 
 AnimatedContentWrapper.propTypes = {
   showLogo: PropTypes.bool,
+  linearGradient: PropTypes.bool,
   extraButtonIcon: PropTypes.string,
   showExtraButton: PropTypes.bool,
   bannerSource: PropTypes.number,
@@ -139,6 +148,7 @@ AnimatedContentWrapper.propTypes = {
 
 AnimatedContentWrapper.defaultProps = {
   showLogo: true,
+  linearGradient: true,
   showExtraButton: false,
 };
 

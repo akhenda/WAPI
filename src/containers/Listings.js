@@ -9,7 +9,7 @@ import { getUserInfo } from 'src/state/actions/auth';
 import LoadingIndicator from 'src/components/LoadingIndicator';
 import AnimatedContentWrapper from 'src/components/AnimatedContentWrapper';
 
-import styles from './styles/ListingStyles';
+import styles from './styles/ListingsStyles';
 
 
 class Listing extends Component {  
