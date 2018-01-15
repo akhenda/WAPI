@@ -65,7 +65,7 @@ export const fetchUserInfo = (dispatch, token) => {
     .then((res) => {
       if (res.status === 200) {
         dispatch({ type: LOGIN_USER_SUCCESSFUL, payload: { token, user: res.data } });
-        Actions.main({ type: 'reset' });
+        Actions.drawer({ type: 'reset' });
       } else {
         dispatch({ type: FETCH_USER_FAILED, payload: res.data });
       }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Animated, Image } from 'react-native';
 import { Container, Text, Icon, Button } from 'native-base';
-// import { Actions } from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 import LinearGradient from 'react-native-linear-gradient';
 
 import { metrics, colors, images } from 'src/theme';
@@ -99,7 +99,7 @@ class AnimatedContentWrapper extends Component {
               ]}
             />
           : null}
-          <Button rounded transparent style={styles.menuButton}>
+          <Button rounded transparent style={styles.menuButton} onPress={Actions.drawerOpen}>
             <Icon name="menu" style={styles.headerIcon} />
           </Button>
           {showExtraButton
@@ -120,7 +120,7 @@ class AnimatedContentWrapper extends Component {
           {children}
         </Animated.ScrollView>
         <Animated.View style={[styles.header, { opacity: headerOpacity }]}>
-          <Button rounded transparent style={styles.headerButton}>
+          <Button rounded transparent style={styles.headerButton} onPress={Actions.drawerOpen}>
             <Icon name="menu" style={styles.headerIcon} />
           </Button>
           <Text style={styles.headerTitle}>{headerTitle}</Text>

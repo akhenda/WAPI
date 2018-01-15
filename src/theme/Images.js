@@ -11,6 +11,7 @@ const images = {
   background85: require('src/images/backgrounds/backround-85-opacity.jpg'),
   background90: require('src/images/backgrounds/backround-90-opacity.jpg'),
   wapiBackround: require('src/images/backgrounds/wapi-back-1.jpg'),
+  wapiBackround2: require('src/images/backgrounds/wapi-back-2.jpg'),
 
   defaultDay1: require('src/images/backgrounds/default-day-1.jpg'),
   defaultDay2: require('src/images/backgrounds/default-day-2.jpg'),
