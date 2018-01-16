@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { View, Image, StatusBar } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
@@ -23,11 +22,6 @@ const LoadingIndicator = () => {
       </Animatable.Text>
     </View>
   );
-};
-
-LoadingIndicator.propTypes = {
-  size: PropTypes.number,
-  color: PropTypes.string,
 };
 
 export default LoadingIndicator;

@@ -5,6 +5,7 @@ const images = {
 
   loading: require('src/images/loaders/loading.gif'),
   loading2: require('src/images/loaders/hands.gif'),
+  noInternet: require('src/images/loaders/no-internet.gif'),
   
   backgroundPlain: require('src/images/backgrounds/backround-plain.jpg'),
   background75: require('src/images/backgrounds/backround-75-opacity.jpg'),
