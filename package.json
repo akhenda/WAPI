@@ -47,6 +47,7 @@
     "react-native-datepicker": "^1.6.0",
     "react-native-google-static-map": "^0.1.11",
     "react-native-linear-gradient": "^2.4.0",
+    "react-native-permissions": "^1.0.6",
     "react-native-router-flux": "^4.0.0-beta.27",
     "react-native-select-input-ios": "^1.1.4",
     "react-native-star-rating": "^1.0.8",
