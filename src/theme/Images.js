@@ -7,6 +7,10 @@ const images = {
   loading2: require('src/images/loaders/hands.gif'),
   noInternet: require('src/images/loaders/no-internet.gif'),
   
+  discover: require('src/images/discover.png'),
+  connect: require('src/images/connect.png'),
+  support: require('src/images/support.png'),
+  
   backgroundPlain: require('src/images/backgrounds/backround-plain.jpg'),
   background75: require('src/images/backgrounds/backround-75-opacity.jpg'),
   background85: require('src/images/backgrounds/backround-85-opacity.jpg'),

@@ -15,7 +15,7 @@ const Offline = () => {
       <Text style={styles.description}>
         No internet connection found.{'\n'}Please check your connection.
       </Text>
-      <Button rounded bordered style={styles.button}>
+      <Button rounded bordered style={styles.button} onPress={() => alert('Retrying...')}>
         <Text style={styles.buttonText}>Try Again</Text>
       </Button>
     </View>
