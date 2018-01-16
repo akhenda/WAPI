@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { Container } from 'native-base';
 
 import ListingItem from 'src/components/ListingItem';
-import { getUserInfo } from 'src/state/actions/auth';
 import LoadingIndicator from 'src/components/LoadingIndicator';
 import AnimatedContentWrapper from 'src/components/AnimatedContentWrapper';
 
@@ -112,7 +111,6 @@ class ListingsScreen extends Component {
       empty: false,
       loading: false,
     };
-    this.data = 0;
   }
 
   render() {
@@ -156,15 +154,12 @@ class ListingsScreen extends Component {
 
 ListingsScreen.propTypes = {
   user: PropTypes.object,
-  token: PropTypes.string,
-  getUserInfo: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {
   return {
     user: state.auth.user,
-    token: state.auth.token,
   };
 };
 
-export default connect(mapStateToProps, { getUserInfo })(ListingsScreen);
+export default connect(mapStateToProps, null)(ListingsScreen);

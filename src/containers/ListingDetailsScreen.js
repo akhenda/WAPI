@@ -9,7 +9,6 @@ import StarRating from 'react-native-star-rating';
 import GoogleStaticMap from 'react-native-google-static-map';
 
 import { colors, images } from 'src/theme';
-import { getUserInfo } from 'src/state/actions/auth';
 import LoadingIndicator from 'src/components/LoadingIndicator';
 import AnimatedContentWrapper from 'src/components/AnimatedContentWrapper';
 
@@ -33,7 +32,6 @@ class ListingDetailsScreen extends Component {
       empty: false,
       loading: false,
     };
-    this.data = 0;
   }
 
   render() {
@@ -169,15 +167,12 @@ class ListingDetailsScreen extends Component {
 
 ListingDetailsScreen.propTypes = {
   user: PropTypes.object,
-  token: PropTypes.string,
-  getUserInfo: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {
   return {
     user: state.auth.user,
-    token: state.auth.token,
   };
 };
 
-export default connect(mapStateToProps, { getUserInfo })(ListingDetailsScreen);
+export default connect(mapStateToProps, null)(ListingDetailsScreen);

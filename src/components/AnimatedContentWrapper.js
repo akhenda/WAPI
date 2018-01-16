@@ -27,6 +27,7 @@ class AnimatedContentWrapper extends Component {
       headerTitle,
       bannerSource,
       linearGradient,
+      showMenuButton,
       showExtraButton,
       extraButtonIcon,
     } = this.props;
@@ -99,9 +100,11 @@ class AnimatedContentWrapper extends Component {
               ]}
             />
           : null}
-          <Button rounded transparent style={styles.menuButton} onPress={Actions.drawerOpen}>
-            <Icon name="menu" style={styles.headerIcon} />
-          </Button>
+          {showMenuButton
+            ? <Button rounded transparent style={styles.menuButton} onPress={Actions.drawerOpen}>
+                <Icon name="menu" style={styles.headerIcon} />
+              </Button>
+            : null}
           {showExtraButton
             ? <Button rounded transparent style={styles.extraButton}>
                 <Icon name={extraButtonIcon} style={styles.headerIcon} />
@@ -124,9 +127,11 @@ class AnimatedContentWrapper extends Component {
             <Icon name="menu" style={styles.headerIcon} />
           </Button>
           <Text style={styles.headerTitle}>{headerTitle}</Text>
-          <Button rounded transparent style={styles.headerButton}>
-            <Icon name={extraButtonIcon || 'ios-search'} style={styles.headerIcon} />
-          </Button>
+          {showExtraButton
+            ? <Button rounded transparent style={styles.headerButton}>
+                <Icon name={extraButtonIcon || 'ios-search'} style={styles.headerIcon} />
+              </Button>
+            : null}
         </Animated.View>
       </Container>
     );
@@ -136,6 +141,7 @@ class AnimatedContentWrapper extends Component {
 AnimatedContentWrapper.propTypes = {
   showLogo: PropTypes.bool,
   linearGradient: PropTypes.bool,
+  showMenuButton: PropTypes.bool,
   extraButtonIcon: PropTypes.string,
   showExtraButton: PropTypes.bool,
   bannerSource: PropTypes.number,
@@ -148,6 +154,7 @@ AnimatedContentWrapper.propTypes = {
 
 AnimatedContentWrapper.defaultProps = {
   showLogo: true,
+  showMenuButton: true,
   linearGradient: true,
   showExtraButton: false,
 };

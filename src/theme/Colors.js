@@ -22,6 +22,7 @@ const colors = {
     dark: midnightBlue,
     darker: '#001A4C',
     text: '#FFFFFF',
+    steel: '#F8F9F9',
   },
   secondary: {
     main: sandyBrown,
