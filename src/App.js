@@ -1,12 +1,12 @@
 import 'src/config';
 import React, { Component } from 'react';
-import { View, Text, StatusBar } from 'react-native';
+import { View, StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
 import RequiresConnection from 'react-native-offline-mode';
 import { PersistGate } from 'redux-persist/es/integration/react';
 
 import { store, persistor } from 'src/state';
-import { images, colors } from './theme';
+import { colors } from './theme';
 import styles from './theme/styles';
 import Offline from './components/Offline';
 import RootContainer from './containers/RootContainer';

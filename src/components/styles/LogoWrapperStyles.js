@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     fontSize: 17,
+    textAlign: 'center',
     marginHorizontal: 15,
     color: colors.secondary.main,
     backgroundColor: 'transparent',

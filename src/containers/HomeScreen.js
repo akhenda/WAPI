@@ -6,7 +6,6 @@ import { Container } from 'native-base';
 
 import SearchBar from 'src/components/SearchBar';
 import Salutation from 'src/components/Salutation';
-import { getUserInfo } from 'src/state/actions/auth';
 import CategoriesList from 'src/components/CategoriesList';
 import LoadingIndicator from 'src/components/LoadingIndicator';
 import AnimatedContentWrapper from 'src/components/AnimatedContentWrapper';
@@ -44,7 +43,6 @@ class HomeScreen extends Component {
 HomeScreen.propTypes = {
   user: PropTypes.object,
   token: PropTypes.string,
-  getUserInfo: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {
@@ -54,4 +52,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getUserInfo })(HomeScreen);
+export default connect(mapStateToProps, null)(HomeScreen);

@@ -4,15 +4,30 @@ import DebugConfig from 'src/config/debug';
 import FixtureAPI from 'src/services/fixtureApi';
 
 import {
-  LOGIN_USER_SUCCESSFUL,
-  LOGIN_USER_FAILED,
-  FETCH_USER_FAILED,
-  SIGNUP_USER_FAILED,
-  SIGN_OUT_USER_SUCCESS,
+  LOGIN_USER_SUCCESS,
+  LOGIN_USER_FAILURE,
+  FETCH_USER_FAILURE,
+  SIGNUP_USER_FAILURE,
+  SIGNOUT_USER_SUCCESS,
 } from 'src/state/types';
 
 
 const api = DebugConfig.useFixtures ? FixtureAPI : API.create();
+
+const responseFailure = (dispatch, type, response) => {
+  let message = 'An error occured! Please try again.';
+  if (response.problem === 'TIMEOUT_ERROR') {
+    message = 'A timeout error occured! Check your internet connection and then try again.';
+  } else if (response.problem === 'NETWORK_ERROR') {
+    message = 'A network error occured! Check your internet connection and then try again.';
+  } else if (response.problem === 'CONNECTION_ERROR') {
+    message = 'A connection error occured! Service is currently unavailable. Please try again later.';
+  } else if (response.data) {
+    dispatch({ type, payload: response.data });
+  }
+
+  dispatch({ type, payload: { message } });
+};
 
 export const isUserAuthenticated = (dispatch, token) => {  
   api
@@ -22,8 +37,9 @@ export const isUserAuthenticated = (dispatch, token) => {
       if (res.ok) {
         fetchUserInfo(dispatch, token);
       } else {
-        dispatch({ type: FETCH_USER_FAILED, payload: res.data });
-      }
+        const payload = {};
+        dispatch({ type: FETCH_USER_FAILURE, payload });
+      } 
     });
 };
 
@@ -38,11 +54,11 @@ export const signUpUser = (dispatch, data) => {
       if (res.status === 201) {
         signInUser(dispatch, email, password);
       } else {
-        dispatch({ type: SIGNUP_USER_FAILED, payload: res.data });
+        responseFailure(dispatch, SIGNUP_USER_FAILURE, res);
       }
     })
     .catch((error) => {
-      dispatch({ type: SIGNUP_USER_FAILED, payload: error });
+      dispatch({ type: SIGNUP_USER_FAILURE, payload: error });
     });
 };
 
@@ -53,7 +69,7 @@ export const signInUser = (dispatch, email, password) => {
       if (res.status === 200) {
         fetchUserInfo(dispatch, res.data.token);
       } else {
-        dispatch({ type: LOGIN_USER_FAILED, payload: res.data });
+        responseFailure(dispatch, LOGIN_USER_FAILURE, res);
       }
     });
 };
@@ -64,10 +80,10 @@ export const fetchUserInfo = (dispatch, token) => {
     .getUserInfo('edit')
     .then((res) => {
       if (res.status === 200) {
-        dispatch({ type: LOGIN_USER_SUCCESSFUL, payload: { token, user: res.data } });
+        dispatch({ type: LOGIN_USER_SUCCESS, payload: { token, user: res.data } });
         Actions.drawer({ type: 'reset' });
       } else {
-        dispatch({ type: FETCH_USER_FAILED, payload: res.data });
+        responseFailure(dispatch, FETCH_USER_FAILURE, res);
       }
     });
 };
@@ -75,6 +91,6 @@ export const fetchUserInfo = (dispatch, token) => {
 export const signOutUser = (dispatch) => {
   // delete the token
 
-  dispatch({ type: SIGN_OUT_USER_SUCCESS });
+  dispatch({ type: SIGNOUT_USER_SUCCESS });
   Actions.auth({ type: 'reset' });
 };
