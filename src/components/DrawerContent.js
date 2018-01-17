@@ -20,7 +20,9 @@ class DrawerContent extends Component {
 
   render() {
     const { user } = this.props;
-
+    
+    // TODO: render the user details after we get the user object because
+    // when the RootContainer loads at first the user object is null
     return (
       <Content
         bounces={false}

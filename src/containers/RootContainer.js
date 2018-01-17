@@ -7,7 +7,7 @@ import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/Car
 
 import LoginScreen from 'src/containers/LoginScreen';
 import SignUpScreen from 'src/containers/SignUpScreen';
-import HomeScreen from 'src/containers/WalkthroughScreen';
+import HomeScreen from 'src/containers/HomeScreen';
 import ProfileScreen from 'src/containers/ProfileScreen';
 // import ListingsScreen from 'src/containers/ListingsScreen';
 

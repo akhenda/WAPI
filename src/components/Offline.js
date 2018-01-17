@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, StatusBar } from 'react-native';
+import { View, Image, StatusBar, Alert } from 'react-native';
 import { Button, Text } from 'native-base';
 
 import { colors, images } from '../theme';
@@ -15,7 +15,7 @@ const Offline = () => {
       <Text style={styles.description}>
         No internet connection found.{'\n'}Please check your connection.
       </Text>
-      <Button rounded bordered style={styles.button} onPress={() => alert('Retrying...')}>
+      <Button rounded bordered style={styles.button} onPress={() => Alert.alert('Retrying...')}>
         <Text style={styles.buttonText}>Try Again</Text>
       </Button>
     </View>
