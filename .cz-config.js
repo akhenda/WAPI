@@ -16,11 +16,16 @@ module.exports = {
     { name: 'build' },
     { name: 'tests' },
     { name: 'redux' },
+    { name: 'intro' },
     { name: 'auth' },
     { name: 'navigation' },
     { name: 'home' },
     { name: 'listings' },
     { name: 'listing' },
+    { name: 'offline' },
+    { name: 'structure' },
+    { name: 'android' },
+    { name: 'permissions' },
   ],
 
   // override the messages, defaults are as follows
