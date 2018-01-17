@@ -13,7 +13,8 @@ const Offline = () => {
       <Text style={styles.title}>No Internet Connection</Text>
       <Image source={images.noInternet} style={styles.image} />
       <Text style={styles.description}>
-        No internet connection found.{'\n'}Please check your connection.
+        We&apos;re sorry, there seems to be a problem with your internet connection.
+        The application will resume as soon as it is able to reconnect to the internet.
       </Text>
       <Button rounded bordered style={styles.button} onPress={() => Alert.alert('Retrying...')}>
         <Text style={styles.buttonText}>Try Again</Text>
