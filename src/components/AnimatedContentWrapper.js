@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Animated, Image } from 'react-native';
 import { Container, Text, Icon, Button } from 'native-base';
-import { Actions } from 'react-native-router-flux';
 import LinearGradient from 'react-native-linear-gradient';
 
 import { metrics, colors, images } from 'src/theme';
@@ -19,18 +18,71 @@ class AnimatedContentWrapper extends Component {
 
     this.state = { scrollY: new Animated.Value(0) };
   }
+  
+  renderMenuButton(style, action, icon, iconStyle) {
+    return (
+      <Button rounded transparent style={style} onPress={action}>
+        <Icon name={icon} style={iconStyle} />
+      </Button>
+    );
+  }
 
-  render() {
-    const {
-      showLogo,
-      children,
-      headerTitle,
-      bannerSource,
-      linearGradient,
-      showMenuButton,
-      showExtraButton,
-      extraButtonIcon,
-    } = this.props;
+  renderToolbarLeftButton() {
+    const { headerButton, headerIcon, emptyButton } = styles;
+    const { showToolbarLeftButton, menuLeftIcon, onLeftButton } = this.props;
+  
+    if (!showToolbarLeftButton) return <Button transparent style={emptyButton} />;
+
+    return this.renderMenuButton(headerButton, onLeftButton, menuLeftIcon, headerIcon);
+  }
+  
+  renderToolbarRightButton() {
+    const { headerButton, headerIcon, emptyButton } = styles;
+    const { showToolbarRightButton, menuRightIcon, onRightButton } = this.props;
+  
+    if (!showToolbarRightButton) return <Button transparent style={emptyButton} />;
+
+    return this.renderMenuButton(headerButton, onRightButton, menuRightIcon, headerIcon);
+  }
+  
+  renderBannerLeftButton() {
+    const { menuButton, headerIcon } = styles;
+    const { showBannerLeftButton, menuLeftIcon, onLeftButton } = this.props;
+  
+    if (!showBannerLeftButton) {
+      return this.renderMenuButton(menuButton, onLeftButton, menuLeftIcon, headerIcon);
+    }
+  }
+  
+  renderBannerRightButton() {
+    const { headerButton, headerIcon } = styles;
+    const { showBannerRightButton, menuRightIcon, onRightButton } = this.props;
+  
+    if (!showBannerRightButton) {
+      return this.renderMenuButton(headerButton, onRightButton, menuRightIcon, headerIcon);
+    }
+  }
+  
+  renderHeader() {
+    const { headerTitle } = this.props;
+
+    const headerOpacity = this.state.scrollY.interpolate({
+      inputRange: [0, HEADER_SCROLL_DISTANCE * 0.9, HEADER_SCROLL_DISTANCE],
+      outputRange: [0, 0.1, 1],
+      extrapolate: 'clamp',
+    });
+
+    return (
+      <Animated.View style={[styles.header, { opacity: headerOpacity }]}>
+        {this.renderToolbarLeftButton()}
+        <Text style={styles.headerTitle}>{headerTitle}</Text>
+        {this.renderToolbarRightButton()}
+      </Animated.View>
+    );
+  }
+  
+  renderBanner() {
+    const { showLogo, bannerSource, linearGradient } = this.props;
 
     const headerTranslate = this.state.scrollY.interpolate({
       inputRange: [0, HEADER_SCROLL_DISTANCE + 50],
@@ -56,62 +108,57 @@ class AnimatedContentWrapper extends Component {
       extrapolate: 'clamp',
     });
 
-    const headerOpacity = this.state.scrollY.interpolate({
-      inputRange: [0, HEADER_SCROLL_DISTANCE * 0.9, HEADER_SCROLL_DISTANCE],
-      outputRange: [0, 0.1, 1],
-      extrapolate: 'clamp',
-    });
-
     return (
-      <Container style={styles.container}>
-        <Animated.View
+      <Animated.View
+        style={[
+          styles.banner,
+          {
+            transform: [
+              { translateY: headerTranslate },
+              { scale: imageScale },
+            ],
+          },
+        ]}
+      >
+        <Animated.Image
+          source={bannerSource || getBackground()}
           style={[
-            styles.banner,
+            styles.bannerImage,
             {
+              opacity: imageOpacity,
               transform: [
-                { translateY: headerTranslate },
+                { translateY: imageTranslate },
                 { scale: imageScale },
               ],
             },
           ]}
-        >
-          <Animated.Image
-            source={bannerSource || getBackground()}
-            style={[
-              styles.bannerImage,
-              {
-                opacity: imageOpacity,
-                transform: [
-                  { translateY: imageTranslate },
-                  { scale: imageScale },
-                ],
-              },
+        />
+      {linearGradient
+        ? <LinearGradient
+            style={styles.linearGradient}
+            colors={[
+              'transparent',
+              'transparent',
+              'transparent',
+              colors.primary.lightest,
+              colors.primary.lightest,
             ]}
           />
-        {linearGradient
-          ? <LinearGradient
-              style={styles.linearGradient}
-              colors={[
-                'transparent',
-                'transparent',
-                'transparent',
-                colors.primary.lightest,
-                colors.primary.lightest,
-              ]}
-            />
-          : null}
-          {showMenuButton
-            ? <Button rounded transparent style={styles.menuButton} onPress={Actions.drawerOpen}>
-                <Icon name="menu" style={styles.headerIcon} />
-              </Button>
-            : null}
-          {showExtraButton
-            ? <Button rounded transparent style={styles.extraButton}>
-                <Icon name={extraButtonIcon} style={styles.headerIcon} />
-              </Button>
-            : null}
-          {showLogo ? <Image source={images.logoWhite} style={styles.logo} /> : null}
-        </Animated.View>
+        : null}
+        {this.renderBannerLeftButton()}
+        {this.renderBannerRightButton()}
+        {showLogo ? <Image source={images.logoWhite} style={styles.logo} /> : null}
+      </Animated.View>
+    );
+  }
+
+  render() {
+    const { children } = this.props;
+
+    return (
+      <Container style={styles.container}>
+        {this.renderBanner()}
+
         <Animated.ScrollView
           style={{ flex: 1 }}
           scrollEventThrottle={5}
@@ -122,17 +169,8 @@ class AnimatedContentWrapper extends Component {
         >
           {children}
         </Animated.ScrollView>
-        <Animated.View style={[styles.header, { opacity: headerOpacity }]}>
-          <Button rounded transparent style={styles.headerButton} onPress={Actions.drawerOpen}>
-            <Icon name="menu" style={styles.headerIcon} />
-          </Button>
-          <Text style={styles.headerTitle}>{headerTitle}</Text>
-          {showExtraButton
-            ? <Button rounded transparent style={styles.headerButton}>
-                <Icon name={extraButtonIcon || 'ios-search'} style={styles.headerIcon} />
-              </Button>
-            : null}
-        </Animated.View>
+
+        {this.renderHeader()}
       </Container>
     );
   }
@@ -140,11 +178,16 @@ class AnimatedContentWrapper extends Component {
 
 AnimatedContentWrapper.propTypes = {
   showLogo: PropTypes.bool,
-  linearGradient: PropTypes.bool,
-  showMenuButton: PropTypes.bool,
-  extraButtonIcon: PropTypes.string,
-  showExtraButton: PropTypes.bool,
+  onLeftButton: PropTypes.func,
+  onRightButton: PropTypes.func,
   bannerSource: PropTypes.number,
+  linearGradient: PropTypes.bool,
+  menuLeftIcon: PropTypes.string,
+  menuRightIcon: PropTypes.string,
+  showBannerLeftButton: PropTypes.bool,
+  showBannerRightButton: PropTypes.bool,
+  showToolbarLeftButton: PropTypes.bool,
+  showToolbarRightButton: PropTypes.bool,
   headerTitle: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
@@ -154,9 +197,13 @@ AnimatedContentWrapper.propTypes = {
 
 AnimatedContentWrapper.defaultProps = {
   showLogo: true,
-  showMenuButton: true,
   linearGradient: true,
-  showExtraButton: false,
+  menuLeftIcon: 'menu',
+  menuRightIcon: 'search',
+  showBannerLeftButton: true,
+  showBannerRightButton: false,
+  showToolbarLeftButton: true,
+  showToolbarRightButton: true,
 };
 
 export default AnimatedContentWrapper;

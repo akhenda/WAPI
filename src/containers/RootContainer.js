@@ -8,6 +8,7 @@ import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/Car
 import WalkthroughScreen from 'src/containers/WalkthroughScreen';
 import LoginScreen from 'src/containers/LoginScreen';
 import SignUpScreen from 'src/containers/SignUpScreen';
+import SurveyScreen from 'src/containers/SurveyScreen';
 import HomeScreen from 'src/containers/HomeScreen';
 import ProfileScreen from 'src/containers/ProfileScreen';
 // import ListingsScreen from 'src/containers/ListingsScreen';
@@ -26,7 +27,13 @@ class RootContainer extends Component {
   }
 
   render() {
-    const { introduced, user, authenticated } = this.props;
+    const {
+      user,
+      surveyed,
+      introduced,
+      authenticated,
+    } = this.props;
+
     if (user && !authenticated) return <LoadingIndicator />;
 
     return (
@@ -44,7 +51,7 @@ class RootContainer extends Component {
             >
               <Scene key="login" title="Log In" component={LoginScreen} />
               <Scene key="signup" title="Sign Up" component={SignUpScreen} />
-              <Scene initial={!introduced} key="intro" title="Sign Up" component={WalkthroughScreen} />
+              <Scene initial={!introduced} key="intro" title="App Intro" component={WalkthroughScreen} />
             </Scene>
             <Drawer
               hideNavBar
@@ -53,8 +60,9 @@ class RootContainer extends Component {
               initial={authenticated}
               contentComponent={DrawerContent}
             >
-              <Scene key="home" initial hideNavBar title="Home" component={HomeScreen} />
+              <Scene key="home" hideNavBar title="Home" component={HomeScreen} />
               <Scene key="profile" hideNavBar title="Profile" component={ProfileScreen} />
+              <Scene key="survey" hideNavBar initial={!surveyed} title="Survey" component={SurveyScreen} />
             </Drawer>
           </Scene>
         </Router>
@@ -66,6 +74,7 @@ class RootContainer extends Component {
 RootContainer.propTypes = {
   user: PropTypes.object,
   token: PropTypes.string,
+  surveyed: PropTypes.bool,
   introduced: PropTypes.bool,
   authenticated: PropTypes.bool,
   isUserSignedIn: PropTypes.func,
@@ -75,6 +84,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.auth.user,
     token: state.auth.token,
+    surveyed: state.app.surveyed,
     introduced: state.app.introduced,
     authenticated: state.auth.authenticated,
   };

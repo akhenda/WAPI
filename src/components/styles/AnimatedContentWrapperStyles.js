@@ -44,6 +44,12 @@ const styles = StyleSheet.create({
   headerButton: {
     alignSelf: 'center',
   },
+  emptyButton: {
+    width: 30,
+    marginLeft: 16,
+    marginRight: 16,
+    alignSelf: 'center',
+  },
   headerIcon: {
     color: 'white',
     fontSize: 30,

@@ -11,6 +11,8 @@ export const SIGNUP_USER_FAILURE = 'SIGNUP_USER_FAILURE';
 export const SIGNOUT_USER_SUCCESS = 'SIGNOUT_USER_SUCCESS';
 
 /* ------------- App Types ------------- */
+export const DONE_SURVEY = 'DONE_SURVEY';
 export const DONE_APP_INTRO = 'DONE_APP_INTRO';
+export const APP_FIELD_CHANGED = 'APP_FIELD_CHANGED';
 
 /* ------------- Other Types ------------- */

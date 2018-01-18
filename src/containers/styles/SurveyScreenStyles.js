@@ -1,6 +1,6 @@
 import { StyleSheet, Platform } from 'react-native';
 
-import { colors, metrics } from 'src/theme';
+import { colors } from 'src/theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
   formContainer: {
     padding: 15,
     borderRadius: 5,
-    height: metrics.screenHeight - 75,
     backgroundColor: colors.primary.text,
   },
   title: {
@@ -40,6 +39,11 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     borderColor: colors.primary.main,
     backgroundColor: colors.primary.lightest,
+  },
+  label: {
+    fontSize: 11,
+    marginBottom: 6,
+    color: colors.lightestText,
   },
   dateInputStyle: {
     width: '100%',
@@ -81,12 +85,12 @@ const styles = StyleSheet.create({
   },
   done: {
     flex: 1,
+    marginVertical: 40,
     alignItems: 'center',
     justifyContent: 'center',
   },
   doneIcon: {
     fontSize: 100,
-    marginTop: -40,
     marginBottom: 20,
     color: colors.secondary.light,
   },
