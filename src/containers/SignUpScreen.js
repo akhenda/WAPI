@@ -7,7 +7,7 @@ import { Actions } from 'react-native-router-flux';
 
 import Form from 'src/components/Form';
 import LogoWrapper from 'src/components/LogoWrapper';
-import { fieldChanged, registerUser, clearInputData } from 'src/state/actions/auth';
+import { authFieldChanged, registerUser, clearInputData } from 'src/state/actions/auth';
 
 import { images, colors } from 'src/theme';
 import styles from './styles/LoginScreenStyles';
@@ -25,19 +25,19 @@ class SignUpScreen extends Component {
   }
 
   onChangeFullName(value) {
-    this.props.fieldChanged({ prop: 'fullName', value });
+    this.props.authFieldChanged({ prop: 'fullName', value });
   }
 
   onChangeUsername(value) {
-    this.props.fieldChanged({ prop: 'username', value });
+    this.props.authFieldChanged({ prop: 'username', value });
   }
 
   onChangeEmail(value) {
-    this.props.fieldChanged({ prop: 'email', value });
+    this.props.authFieldChanged({ prop: 'email', value });
   }
 
   onChangePassowrd(value) {
-    this.props.fieldChanged({ prop: 'password', value });
+    this.props.authFieldChanged({ prop: 'password', value });
   }
 
   signUpUser() {
@@ -121,7 +121,7 @@ SignUpScreen.propTypes = {
   username: PropTypes.string,
   loading: PropTypes.bool,
   error: PropTypes.object,
-  fieldChanged: PropTypes.func,
+  authFieldChanged: PropTypes.func,
   registerUser: PropTypes.func,
   clearInputData: PropTypes.func,
 };
@@ -142,5 +142,5 @@ const mapStateToProps = ({ auth }) => {
 };
 
 export default connect(mapStateToProps, {
-  fieldChanged, registerUser, clearInputData,
+  authFieldChanged, registerUser, clearInputData,
 })(SignUpScreen);

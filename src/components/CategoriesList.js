@@ -7,51 +7,47 @@ import Category from 'src/components/Category';
 
 import styles from './styles/CategoriesListStyles';
 
-const CategoriesList = () => {
+
+const calculateTitleSize = (name) => {
+  let size = 21;
+  
+  if (name.toLowerCase().indexOf('restaurants') >= 0) size = 16;
+  if (name.toLowerCase().indexOf('volunteering') >= 0) size = 14;
+  
+  return size;
+};
+
+const getFallbackImageName = (name) => {
+  let imageName = name.toLowerCase();
+
+  if (imageName.indexOf('restaurants') >= 0) imageName = 'restaurants';
+  if (imageName.indexOf('volunteering') >= 0) imageName = 'volunteering';
+  
+  return imageName;
+};
+
+const CategoriesList = ({ categories }) => {
   return (
     <View style={styles.container}>
-      <Category
-        titleSize={21}
-        title="Activities"
-        image={images.activities}
-        descritption="Looking for things to do? Place you’ve never been to?"
-      />
-      <Category
-        titleSize={16}
-        title="Restaurants"
-        image={images.restaurants}
-        descritption="Discover local flavours and places."
-      />
-      <Category
-        titleSize={21}
-        title="Medical"
-        image={images.medical}
-        descritption="From blood donations to first aid training."
-      />
-      <Category
-        titleSize={21}
-        title="Services"
-        image={images.services}
-        descritption="You have a unique requirement? You want something done?"
-      />
-      <Category
-        titleSize={21}
-        title="Shopping"
-        image={images.shopping}
-        descritption="From organic to designer, local trade to fair trade..."
-      />
-      <Category
-        titleSize={14}
-        title="Volunteering"
-        image={images.volunteering}
-        descritption="You have time to give? Possessions to part with?"
-      />
+      {categories.map((category) => {
+        return (
+          <Category
+            key={category.id}
+            title={category.name.split(' ')[0]}
+            descritption={category.description}
+            image={category.banner_image_url[0]}
+            fallbackImage={images[getFallbackImageName]}
+            titleSize={calculateTitleSize(category.name)}
+          />
+        );
+      })}
     </View>
   );
 };
 
 CategoriesList.propTypes = {
   name: PropTypes.string,
+  categories: PropTypes.array,
 };
 
 export default CategoriesList;

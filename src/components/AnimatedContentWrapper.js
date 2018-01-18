@@ -46,11 +46,11 @@ class AnimatedContentWrapper extends Component {
   }
   
   renderBannerLeftButton() {
-    const { menuButton, headerIcon } = styles;
+    const { leftButton, headerIcon } = styles;
     const { showBannerLeftButton, menuLeftIcon, onLeftButton } = this.props;
   
-    if (!showBannerLeftButton) {
-      return this.renderMenuButton(menuButton, onLeftButton, menuLeftIcon, headerIcon);
+    if (showBannerLeftButton) {
+      return this.renderMenuButton(leftButton, onLeftButton, menuLeftIcon, headerIcon);
     }
   }
   
@@ -58,7 +58,7 @@ class AnimatedContentWrapper extends Component {
     const { headerButton, headerIcon } = styles;
     const { showBannerRightButton, menuRightIcon, onRightButton } = this.props;
   
-    if (!showBannerRightButton) {
+    if (showBannerRightButton) {
       return this.renderMenuButton(headerButton, onRightButton, menuRightIcon, headerIcon);
     }
   }

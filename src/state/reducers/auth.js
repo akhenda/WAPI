@@ -1,6 +1,7 @@
 import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
 
+import { stripHTML } from 'src/utils/strip';
 import {
   AUTH_LOADING,
   CLEAR_INPUT_DATA,
@@ -45,7 +46,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
         ...state,
         token: 'dummy',
         loading: false,
-        error: { message: action.payload.message.split(' ').slice(1).join(' ') },
+        error: { message: stripHTML(action.payload.message) },
       };
     case FETCH_USER_SUCCESS:
       return { ...state, user: action.payload, authenticated: true };

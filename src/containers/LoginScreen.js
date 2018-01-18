@@ -8,7 +8,7 @@ import { Actions } from 'react-native-router-flux';
 import { images, colors } from 'src/theme';
 import Form from 'src/components/Form';
 import LogoWrapper from 'src/components/LogoWrapper';
-import { fieldChanged, loginUser } from 'src/state/actions/auth';
+import { authFieldChanged, loginUser } from 'src/state/actions/auth';
 
 import styles from './styles/LoginScreenStyles';
 
@@ -23,11 +23,11 @@ class LoginScreen extends Component {
   }
 
   onChangeEmail(value) {
-    this.props.fieldChanged({ prop: 'email', value });
+    this.props.authFieldChanged({ prop: 'email', value });
   }
 
   onChangePassowrd(value) {
-    this.props.fieldChanged({ prop: 'password', value });
+    this.props.authFieldChanged({ prop: 'password', value });
   }
   
   backAndroid() {
@@ -96,9 +96,9 @@ LoginScreen.propTypes = {
   message: PropTypes.string,
   loading: PropTypes.bool,
   error: PropTypes.object,
-  fieldChanged: PropTypes.func,
+  authFieldChanged: PropTypes.func,
   loginUser: PropTypes.func,
   authenticated: PropTypes.bool,
 };
 
-export default connect(mapStateToProps, { fieldChanged, loginUser })(LoginScreen);
+export default connect(mapStateToProps, { authFieldChanged, loginUser })(LoginScreen);

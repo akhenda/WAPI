@@ -10,7 +10,7 @@ import { Actions } from 'react-native-router-flux';
 import StepIndicator from 'react-native-step-indicator';
 import SelectInput from 'react-native-select-input-ios';
 
-import { fieldChanged, doneSurvey } from 'src/state/actions/app';
+import { appFieldChanged, doneSurvey } from 'src/state/actions/app';
 import { capitalizeWord } from 'src/utils/capitalize';
 import LoadingIndicator from 'src/components/LoadingIndicator';
 import AnimatedContentWrapper from 'src/components/AnimatedContentWrapper';
@@ -30,11 +30,11 @@ class SurveyScreen extends Component {
   }
   
   onSubmitEditingValue = (key, value) => {
-    this.props.fieldChanged({ prop: key, value });
+    this.props.appFieldChanged({ prop: key, value });
   };
   
   onInterestValueChange = (key, value) => {
-    this.props.fieldChanged({
+    this.props.appFieldChanged({
       prop: 'interests',
       value: { ...this.props.interests, [key]: value },
     });
@@ -276,7 +276,7 @@ SurveyScreen.propTypes = {
   doneSurvey: PropTypes.func,
   interests: PropTypes.object,
   occupation: PropTypes.string,
-  fieldChanged: PropTypes.func,
+  appFieldChanged: PropTypes.func,
   nationality: PropTypes.string,
 };
 
@@ -294,4 +294,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fieldChanged, doneSurvey })(SurveyScreen);
+export default connect(mapStateToProps, { appFieldChanged, doneSurvey })(SurveyScreen);

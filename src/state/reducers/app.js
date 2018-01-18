@@ -1,7 +1,11 @@
 import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
 
-import { DONE_APP_INTRO, APP_FIELD_CHANGED, DONE_SURVEY } from 'src/state/types';
+import {
+  DONE_APP_INTRO,
+  APP_FIELD_CHANGED,
+  DONE_SURVEY,
+} from 'src/state/types';
 
 const INITIAL_STATE = {
   introduced: false,
@@ -36,7 +40,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
 const persistConfig = {
   storage,
   key: 'app',
-  blacklist: [],
+  blacklist: ['categories'],
 };
 
 export default persistReducer(persistConfig, authReducer);

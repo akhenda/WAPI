@@ -8,7 +8,7 @@ import {
 } from 'src/models/user';
 
 
-export const fieldChanged = ({ prop, value }) => {
+export const authFieldChanged = ({ prop, value }) => {
   return {
     type: AUTH_FIELD_CHANGED,
     payload: { prop, value },

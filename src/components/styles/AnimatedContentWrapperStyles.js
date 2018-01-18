@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
-  menuButton: {
+  leftButton: {
     position: 'absolute',
     top: metrics.animatedHeaderPaddingTop + 5,
     left: 5,

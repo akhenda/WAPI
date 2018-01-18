@@ -1,18 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Image } from 'react-native';
 import { View, Text } from 'native-base';
+import CacheableImage from 'react-native-cacheable-image';
 
 import styles from './styles/CategoryStyles';
 
 
 const Category = ({
-  image, title, descritption, titleSize,
+  image, title, descritption, titleSize, fallbackImage,
 }) => {
   return (
     <View style={styles.category}>
       <View style={styles.categoryImageContainer}>
-        <Image source={image} style={styles.categoryImage} />
+        <CacheableImage
+          style={styles.categoryImage}
+          source={{ uri: image }}
+          defaultSource={fallbackImage}
+        />
       </View>
       <View style={styles.textContainer}>
         <Text style={[styles.title, { fontSize: titleSize }]}>{title.toUpperCase()}</Text>
@@ -25,9 +29,10 @@ const Category = ({
 
 Category.propTypes = {
   title: PropTypes.string,
-  image: PropTypes.number,
+  image: PropTypes.string,
   titleSize: PropTypes.number,
   descritption: PropTypes.string,
+  fallbackImage: PropTypes.number,
 };
 
 export default Category;

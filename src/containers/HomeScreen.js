@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { Container } from 'native-base';
+import { Actions } from 'react-native-router-flux';
 
+import { getCategories } from 'src/state/actions/listings';
 import SearchBar from 'src/components/SearchBar';
 import Salutation from 'src/components/Salutation';
 import CategoriesList from 'src/components/CategoriesList';
@@ -19,20 +21,26 @@ class HomeScreen extends Component {
 
     this.state = {};
   }
+  
+  componentWillMount() {
+    this.props.getCategories(this.props.token);
+  }
 
   render() {
-    const { user } = this.props;
+    const { user, categories } = this.props;
 
-    if (user === null) return <LoadingIndicator />;
+    if (user === null || categories.length === 0) return <LoadingIndicator />;
 
     return (
       <Container style={styles.container}>
-        <AnimatedContentWrapper headerTitle="Discover">
+        <AnimatedContentWrapper
+          headerTitle="Discover"
+          onLeftButton={Actions.drawerOpen}
+        >
           <View style={styles.content}>
             <Salutation name={user.first_name || 'Stranger 😃'} />
             <SearchBar />
-            { /* TODO: Fetch this category list from an API */ }
-            <CategoriesList />
+            <CategoriesList categories={categories} />
           </View>
         </AnimatedContentWrapper>
       </Container>
@@ -43,13 +51,16 @@ class HomeScreen extends Component {
 HomeScreen.propTypes = {
   user: PropTypes.object,
   token: PropTypes.string,
+  categories: PropTypes.array,
+  getCategories: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {
   return {
     user: state.auth.user,
     token: state.auth.token,
+    categories: state.listings.categories,
   };
 };
 
-export default connect(mapStateToProps, null)(HomeScreen);
+export default connect(mapStateToProps, { getCategories })(HomeScreen);
