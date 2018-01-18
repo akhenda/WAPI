@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Router, Scene, Drawer } from 'react-native-router-flux';
 import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator';
 
+import WalkthroughScreen from 'src/containers/WalkthroughScreen';
 import LoginScreen from 'src/containers/LoginScreen';
 import SignUpScreen from 'src/containers/SignUpScreen';
 import HomeScreen from 'src/containers/HomeScreen';
@@ -25,7 +26,7 @@ class RootContainer extends Component {
   }
 
   render() {
-    const { user, authenticated } = this.props;
+    const { introduced, user, authenticated } = this.props;
     if (user && !authenticated) return <LoadingIndicator />;
 
     return (
@@ -43,6 +44,7 @@ class RootContainer extends Component {
             >
               <Scene key="login" title="Log In" component={LoginScreen} />
               <Scene key="signup" title="Sign Up" component={SignUpScreen} />
+              <Scene initial={!introduced} key="intro" title="Sign Up" component={WalkthroughScreen} />
             </Scene>
             <Drawer
               hideNavBar
@@ -64,6 +66,7 @@ class RootContainer extends Component {
 RootContainer.propTypes = {
   user: PropTypes.object,
   token: PropTypes.string,
+  introduced: PropTypes.bool,
   authenticated: PropTypes.bool,
   isUserSignedIn: PropTypes.func,
 };
@@ -72,6 +75,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.auth.user,
     token: state.auth.token,
+    introduced: state.app.introduced,
     authenticated: state.auth.authenticated,
   };
 };

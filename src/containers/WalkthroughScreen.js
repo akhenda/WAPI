@@ -1,12 +1,22 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Image, View } from 'react-native';
+import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 import Onboarding from 'react-native-onboarding-swiper';
 
 import { images, colors } from 'src/theme';
+import { doneAppIntro } from 'src/state/actions/app';
 import styles from './styles/WalkthroughScreenStyles';
 
 
 class WalkthroughScreen extends Component {
+  onDone = () => {
+    this.props.doneAppIntro();
+    Actions.auth();
+    Actions.login();
+  }
+
   renderImage(image) {
     return (
       <View style={styles.imageContainer}>
@@ -38,9 +48,17 @@ class WalkthroughScreen extends Component {
     ];
 
     return (
-      <Onboarding pages={pageArray} />
+      <Onboarding
+        pages={pageArray}
+        onSkip={this.onDone}
+        onDone={this.onDone}
+      />
     );
   }
 }
 
-export default WalkthroughScreen;
+WalkthroughScreen.propTypes = {
+  doneAppIntro: PropTypes.func,
+};
+
+export default connect(null, { doneAppIntro })(WalkthroughScreen);

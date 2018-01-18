@@ -10,4 +10,7 @@ export const SIGNUP_USER_SUCCESS = 'SIGNUP_USER_SUCCESS';
 export const SIGNUP_USER_FAILURE = 'SIGNUP_USER_FAILURE';
 export const SIGNOUT_USER_SUCCESS = 'SIGNOUT_USER_SUCCESS';
 
+/* ------------- App Types ------------- */
+export const DONE_APP_INTRO = 'DONE_APP_INTRO';
+
 /* ------------- Other Types ------------- */

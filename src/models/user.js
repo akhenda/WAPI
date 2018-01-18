@@ -33,7 +33,6 @@ export const isUserAuthenticated = (dispatch, token) => {
   api
     .validateToken(token)
     .then((res) => {
-      console.tron.log(res);
       if (res.ok) {
         fetchUserInfo(dispatch, token);
       } else {
