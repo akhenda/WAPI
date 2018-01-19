@@ -3,6 +3,7 @@ package com.wapi;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.marianhello.react.BackgroundGeolocationPackage;
 import com.rnfs.RNFSPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
@@ -26,9 +27,10 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new RNFSPackage(),
-            new LinearGradientPackage(),
-            new ReactNativeConfigPackage()
+          new RNFSPackage(),
+          new LinearGradientPackage(),
+          new ReactNativeConfigPackage(),
+          new BackgroundGeolocationPackage()
       );
     }
 

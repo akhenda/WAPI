@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 import { colors, metrics } from 'src/theme';
 
@@ -9,8 +9,7 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    padding: 15,
-    marginTop: 60,
+    marginTop: Platform.OS === 'ios' ? 65 : 80,
   },
   emptyContainer: {
     alignItems: 'center',

@@ -1,4 +1,4 @@
-import { SEARCH_FIELD_CHANGED } from 'src/state/types';
+import { SEARCH_FIELD_CHANGED, SELECT_CATEGORY } from 'src/state/types';
 import {
   fetchCategories,
   fetchCategoryListings,
@@ -16,7 +16,16 @@ export const searchFieldChanged = ({ prop, value }) => {
 
 export const getCategories = token => dispatch => fetchCategories(dispatch, token);
 
-export const getCategoryListings = token => dispatch => fetchCategoryListings(dispatch, token);
+export const selectCategory = (id, name) => {
+  return {
+    type: SELECT_CATEGORY,
+    payload: { id, name },
+  };
+};
+
+export const getCategoryListings = (token, id, page) => {
+  return dispatch => fetchCategoryListings(dispatch, token, id, page);
+};
 
 export const getListing = token => dispatch => fetchListing(dispatch, token);
 

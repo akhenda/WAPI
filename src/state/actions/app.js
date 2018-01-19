@@ -2,6 +2,9 @@ import {
   DONE_APP_INTRO,
   APP_FIELD_CHANGED,
   DONE_SURVEY,
+  UPDATE_LOCATION,
+  ADD_FAVOURITE,
+  REMOVE_FAVOURITE,
 } from 'src/state/types';
 
 
@@ -18,4 +21,25 @@ export const appFieldChanged = ({ prop, value }) => {
 
 export const doneSurvey = () => {
   return { type: DONE_SURVEY };
+};
+
+export const updateLocation = (location) => {
+  return {
+    type: UPDATE_LOCATION,
+    payload: location,
+  };
+};
+
+export const addFavourite = (listing) => {
+  return {
+    type: ADD_FAVOURITE,
+    payload: listing,
+  };
+};
+
+export const removeFavourite = (id) => {
+  return {
+    type: REMOVE_FAVOURITE,
+    payload: id,
+  };
 };

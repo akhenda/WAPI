@@ -61,7 +61,7 @@ const create = (baseURL = 'https://wapi-kenya.com/wp-json/') => {
   const getUserInfo = context => api.get(`wp/v2/users/me?context=${context}`);
   
   const getCategories = () => api.get('wp/v2/listing-category');
-  const getCategoryListings = id => api.get(`wp/v2/listing?listing-category=${id}`);
+  const getCategoryListings = (id, page) => api.get(`wp/v2/listing?listing-category=${id}&page=${page}`);
   const searchListings = search => api.get(`wp/v2/listing?search=${search}`);
   const getListing = id => api.get(`wp/v2/listing/${id}`);
 

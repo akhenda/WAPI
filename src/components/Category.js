@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { TouchableOpacity } from 'react-native';
 import { View, Text } from 'native-base';
 import CacheableImage from 'react-native-cacheable-image';
 
@@ -7,10 +8,10 @@ import styles from './styles/CategoryStyles';
 
 
 const Category = ({
-  image, title, descritption, titleSize, fallbackImage,
+  image, title, descritption, titleSize, fallbackImage, onSelectCategory,
 }) => {
   return (
-    <View style={styles.category}>
+    <TouchableOpacity style={styles.category} onPress={onSelectCategory}>
       <View style={styles.categoryImageContainer}>
         <CacheableImage
           style={styles.categoryImage}
@@ -23,7 +24,7 @@ const Category = ({
         <View style={styles.separator} />
         <Text style={styles.descritption}>{descritption}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -33,6 +34,7 @@ Category.propTypes = {
   titleSize: PropTypes.number,
   descritption: PropTypes.string,
   fallbackImage: PropTypes.number,
+  onSelectCategory: PropTypes.func,
 };
 
 export default Category;

@@ -26,18 +26,23 @@ const getFallbackImageName = (name) => {
   return imageName;
 };
 
-const CategoriesList = ({ categories }) => {
+const CategoriesList = (props) => {
+  const { categories, onSelectCategory } = props;
   return (
     <View style={styles.container}>
       {categories.map((category) => {
+        const { id, name, description } = category;
+
         return (
           <Category
-            key={category.id}
-            title={category.name.split(' ')[0]}
-            descritption={category.description}
+            id={id}
+            key={id}
+            title={name.split(' ')[0]}
+            descritption={description}
             image={category.banner_image_url[0]}
             fallbackImage={images[getFallbackImageName]}
-            titleSize={calculateTitleSize(category.name)}
+            titleSize={calculateTitleSize(name)}
+            onSelectCategory={() => onSelectCategory(id, name)}
           />
         );
       })}
@@ -48,6 +53,7 @@ const CategoriesList = ({ categories }) => {
 CategoriesList.propTypes = {
   name: PropTypes.string,
   categories: PropTypes.array,
+  onSelectCategory: PropTypes.func,
 };
 
 export default CategoriesList;

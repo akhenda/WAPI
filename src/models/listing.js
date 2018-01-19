@@ -30,36 +30,38 @@ export const fetchCategories = (dispatch, token) => {
     });
 };
 
-export const fetchCategoryListings = (dispatch, token) => {
+export const fetchCategoryListings = (dispatch, token, id, page) => {
   api.setHeader('Authorization', `Bearer ${token}`);
   api
-    .getCategoryListings()
+    .getCategoryListings(id, page)
     .then((res) => {
       if (res.status === 200) {
-        dispatch({ type: FETCH_LISTINGS_SUCCESS, payload: res.data });
+        const totalPages = res.headers['x-wp-totalpages'];
+        dispatch({ type: FETCH_LISTINGS_SUCCESS, payload: { listings: res.data, totalPages } });
       } else {
         dispatch({ type: FETCH_LISTINGS_FAILURE, payload: res.data });
       }
     });
 };
 
-export const performSearch = (dispatch, token) => {
+export const performSearch = (dispatch, token, search) => {
   api.setHeader('Authorization', `Bearer ${token}`);
   api
-    .searchListings()
+    .searchListings(search)
     .then((res) => {
       if (res.status === 200) {
-        dispatch({ type: SEARCH_LISTINGS_SUCCESS, payload: res.data });
+        const totalPages = res.headers['x-wp-totalpages'];
+        dispatch({ type: SEARCH_LISTINGS_SUCCESS, payload: { listings: res.data, totalPages } });
       } else {
         dispatch({ type: SEARCH_LISTINGS_FAILURE, payload: res.data });
       }
     });
 };
 
-export const fetchListing = (dispatch, token) => {
+export const fetchListing = (dispatch, token, id) => {
   api.setHeader('Authorization', `Bearer ${token}`);
   api
-    .getListing()
+    .getListing(id)
     .then((res) => {
       if (res.status === 200) {
         dispatch({ type: FETCH_LISTING_SUCCESS, payload: res.data });

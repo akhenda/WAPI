@@ -4,9 +4,10 @@ import { colors } from 'src/theme';
 
 const styles = StyleSheet.create({
   compact: {
+    marginHorizontal: 15,
     elevation: 2,
     borderRadius: 5,
-    marginBottom: 15,
+    marginTop: 15,
     overflow: 'hidden',
     flexDirection: 'row',
     backgroundColor: colors.primary.text,
@@ -36,6 +37,7 @@ const styles = StyleSheet.create({
   },
   compactTitle: {
     fontSize: 15,
+    marginRight: 20,
     fontWeight: '900',
     color: colors.secondary.text,
     backgroundColor: 'transparent',
@@ -52,6 +54,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginTop: 4,
     marginLeft: 5,
+    marginRight: 10,
     color: colors.lightestText,
     backgroundColor: 'transparent',
   },
@@ -98,15 +101,17 @@ const styles = StyleSheet.create({
   },
   compactFavouriteIcon: {
     fontSize: 20,
+    color: colors.secondary.dark,
     backgroundColor: 'transparent',
   },
   
   large: {
     height: 200,
     elevation: 2,
+    marginTop: 15,
     borderRadius: 5,
-    marginBottom: 15,
     overflow: 'hidden',
+    marginHorizontal: 15,
     justifyContent: 'flex-end',
     backgroundColor: colors.primary.text,
   },
@@ -121,7 +126,7 @@ const styles = StyleSheet.create({
     top: 0,
     width: '100%',
     height: '100%',
-    backgroundColor: colors.statusBarTranslucentDarker,
+    backgroundColor: colors.statusBarTranslucentDark,
   },
   largeRating: {
     flexDirection: 'row',
@@ -184,12 +189,12 @@ const styles = StyleSheet.create({
   largeDistanceIcon: {
     fontSize: 17,
     marginRight: 3,
-    color: colors.primary.lighter,
+    color: colors.primary.lightest,
     backgroundColor: 'transparent',
   },
   largeDistanceText: {
     fontSize: 13,
-    color: colors.primary.lighter,
+    color: colors.primary.lightest,
     backgroundColor: 'transparent',
   },
   largeTitle: {

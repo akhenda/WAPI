@@ -64,5 +64,13 @@
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
 	</array>
+  <key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
+  <key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app always requires location tracking</string>
+  <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+  <string>This app always requires location tracking</string>
 </dict>
 </plist>

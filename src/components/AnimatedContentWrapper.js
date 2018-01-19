@@ -64,7 +64,7 @@ class AnimatedContentWrapper extends Component {
   }
   
   renderHeader() {
-    const { headerTitle } = this.props;
+    const { headerTitle, opaqueHeader } = this.props;
 
     const headerOpacity = this.state.scrollY.interpolate({
       inputRange: [0, HEADER_SCROLL_DISTANCE * 0.9, HEADER_SCROLL_DISTANCE],
@@ -73,7 +73,7 @@ class AnimatedContentWrapper extends Component {
     });
 
     return (
-      <Animated.View style={[styles.header, { opacity: headerOpacity }]}>
+      <Animated.View style={[styles.header, { opacity: opaqueHeader ? 1 : headerOpacity }]}>
         {this.renderToolbarLeftButton()}
         <Text style={styles.headerTitle}>{headerTitle}</Text>
         {this.renderToolbarRightButton()}
@@ -153,13 +153,13 @@ class AnimatedContentWrapper extends Component {
   }
 
   render() {
-    const { children } = this.props;
+    const { children, WrapperComponent } = this.props;
 
     return (
       <Container style={styles.container}>
         {this.renderBanner()}
 
-        <Animated.ScrollView
+        <WrapperComponent
           style={{ flex: 1 }}
           scrollEventThrottle={5}
           onScroll={Animated.event(
@@ -168,7 +168,7 @@ class AnimatedContentWrapper extends Component {
           )}
         >
           {children}
-        </Animated.ScrollView>
+        </WrapperComponent>
 
         {this.renderHeader()}
       </Container>
@@ -177,6 +177,8 @@ class AnimatedContentWrapper extends Component {
 }
 
 AnimatedContentWrapper.propTypes = {
+  WrapperComponent: PropTypes.any,
+  opaqueHeader: PropTypes.bool,
   showLogo: PropTypes.bool,
   onLeftButton: PropTypes.func,
   onRightButton: PropTypes.func,
@@ -197,6 +199,7 @@ AnimatedContentWrapper.propTypes = {
 
 AnimatedContentWrapper.defaultProps = {
   showLogo: true,
+  opaqueHeader: false,
   linearGradient: true,
   menuLeftIcon: 'menu',
   menuRightIcon: 'search',
@@ -204,6 +207,7 @@ AnimatedContentWrapper.defaultProps = {
   showBannerRightButton: false,
   showToolbarLeftButton: true,
   showToolbarRightButton: true,
+  WrapperComponent: Animated.ScrollView,
 };
 
 export default AnimatedContentWrapper;

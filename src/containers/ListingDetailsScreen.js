@@ -35,10 +35,10 @@ class ListingDetailsScreen extends Component {
   }
 
   render() {
-    const { item, loading } = this.state;
+    const { loading } = this.state;
     const {
-      title, address, rating, ratings, description,
-    } = item;
+      title, rating, ratings, description, listingpro,
+    } = this.props.item;
 
     if (loading) return <LoadingIndicator />;
   
@@ -51,24 +51,23 @@ class ListingDetailsScreen extends Component {
           headerTitle={title}
           extraButtonIcon="md-map"
         >
-          
-          <Text style={styles.title} numberOfLines={1}>{title}</Text>
+          <Text style={styles.title} numberOfLines={1}>{title.rendered}</Text>
           <View style={styles.content}>
             <View style={[styles.dropShadow, styles.contacts]}>
               <View style={[styles.contactItem, styles.address]}>
-                <Text style={styles.addressText} numberOfLines={2}>{address}</Text>
+                <Text style={styles.addressText} numberOfLines={2}>{listingpro.gAddress}</Text>
                 <Icon name="pin" style={styles.addressIcon} />
               </View>
               <View style={[styles.contactItem, styles.phone]}>
-                <Text style={styles.phoneText} numberOfLines={1}>+254 724 733384</Text>
+                <Text style={styles.phoneText} numberOfLines={1}>{listingpro.phone}</Text>
                 <Icon name="call" style={styles.phoneIcon} />
               </View>
               <View style={[styles.contactItem, styles.email]}>
-                <Text style={styles.emailText} numberOfLines={1}>jakhenda@gmail.com</Text>
+                <Text style={styles.emailText} numberOfLines={1}>{listingpro.email}</Text>
                 <Icon name="at" style={styles.emailIcon} />
               </View>
               <View style={[styles.contactItem, styles.website]}>
-                <Text style={styles.websiteText} numberOfLines={1}>www.hendacorp.com</Text>
+                <Text style={styles.websiteText} numberOfLines={1}>{listingpro.website}</Text>
                 <Icon name="globe" style={styles.websiteIcon} />
               </View>
             </View>
@@ -167,6 +166,7 @@ class ListingDetailsScreen extends Component {
 
 ListingDetailsScreen.propTypes = {
   user: PropTypes.object,
+  item: PropTypes.object,
 };
 
 const mapStateToProps = (state) => {
