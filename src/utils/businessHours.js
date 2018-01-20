@@ -32,6 +32,7 @@ const sanitizeOpeningTimes = (openingTimes) => {
 };
 
 export const openStatus = (openingTimes) => {
+  if (!openingTimes) return false;
   const now = moment();
   const times = sanitizeOpeningTimes(openingTimes);
   const openingTimesMoment = new OpeningTimes(times, 'Africa/Nairobi');
