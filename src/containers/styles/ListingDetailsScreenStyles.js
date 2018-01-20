@@ -44,6 +44,19 @@ const styles = StyleSheet.create({
     marginTop: metrics.headerMaxHeight,
   },
   contacts: {},
+  openStatus: {
+    position: 'absolute',
+    top: 15,
+    left: 15,
+    borderRadius: 5,
+    paddingVertical: 6,
+    paddingHorizontal: 10,
+    backgroundColor: colors.secondary.main,
+  },
+  openStatusText: {
+    fontSize: 13,
+    color: colors.primary.lightest,
+  },
   contactItem: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -52,14 +65,23 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: colors.separator,
   },
-  address: {
+  contactsTopSpacer: {
     marginTop: 35,
   },
   addressText: {
-    width: '70%',
+    width: '80%',
+  },
+  phoneText: {
+    width: '80%',
+  },
+  emailText: {
+    width: '80%',
   },
   website: {
     borderBottomWidth: 0,
+  },
+  websiteText: {
+    width: '80%',
   },
   gallery: {
     padding: 10,
@@ -139,36 +161,35 @@ const styles = StyleSheet.create({
     padding: -15,
     marginBottom: 20,
   },
-  owner: {
+  businessHours: {
     marginBottom: 40,
   },
-  ownerInfo: {
+  businessHoursContent: {
     flex: 1,
     marginTop: 8,
     marginBottom: 12,
+  },
+  businessHoursContentRow: {
     flexDirection: 'row',
-    alignItems: 'center',
+    marginVertical: 6,
   },
-  avatarContainer: {
-    width: 50,
-    marginRight: 12,
-    borderRadius: 500,
-    overflow: 'hidden',
-  },
-  avatar: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    resizeMode: 'cover',
-  },
-  ownerName: {
+  businessHoursContentDay: {
+    width: '60%',
     fontSize: 15,
     fontWeight: '600',
     color: colors.secondary.text,
   },
-  ownerText: {
-    fontSize: 12,
-    fontWeight: '200',
+  businessHoursContentTitle: {
+    width: '20%',
+    fontSize: 15,
+    fontWeight: '500',
+    textAlign: 'center',
+  },
+  businessHoursContentTime: {
+    width: '20%',
+    fontSize: 14,
+    fontWeight: '500',
+    textAlign: 'center',
     color: colors.lightestText,
   },
 });

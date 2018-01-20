@@ -110,7 +110,6 @@ class ListingsScreen extends Component {
           WrapperComponent={View}
           menuLeftIcon="arrow-back"
           menuRightIcon="md-map"
-          scrollEnabled={false}
           onLeftButton={Actions.pop}
           headerTitle={this.props.selectedCategory.name}
         >

@@ -1,34 +1,30 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, FlatList, Image, Easing } from 'react-native';
+import { View, FlatList, Easing } from 'react-native';
 import { connect } from 'react-redux';
 import { Container, Text, Fab, Icon } from 'native-base';
 import Config from 'react-native-config';
 import ZoomImage from 'react-native-zoom-image';
 import StarRating from 'react-native-star-rating';
+import { Actions } from 'react-native-router-flux';
 import GoogleStaticMap from 'react-native-google-static-map';
 
-import { colors, images } from 'src/theme';
+import { stripHTML } from 'src/utils/strip';
+import { openStatus } from 'src/utils/businessHours';
 import LoadingIndicator from 'src/components/LoadingIndicator';
+import { addFavourite, removeFavourite } from 'src/state/actions/app';
 import AnimatedContentWrapper from 'src/components/AnimatedContentWrapper';
 
+import { colors, metrics } from 'src/theme';
 import styles from './styles/ListingDetailsScreenStyles';
 
 
+/* eslint-disable camelcase */
 class ListingDetailsScreen extends Component {  
   constructor(props) {
     super(props);
 
     this.state = {
-      item: {
-        id: 9,
-        title: 'Kitengela Hot Glass',
-        address: '5 Glass Lane, Oloosirkon – Masai Lodge Road, Off',
-        rating: 4.5,
-        ratings: 2,
-        description: '100% recycled pieces of art, décor and everything glass you can think of. Discover the Kitengela universe with a workshop tour or treat yourself to one of their pieces.',
-        distance: 1.26,
-      },
       empty: false,
       loading: false,
     };
@@ -37,58 +33,95 @@ class ListingDetailsScreen extends Component {
   render() {
     const { loading } = this.state;
     const {
-      title, rating, ratings, description, listingpro,
+      id,
+      title,
+      content,
+      listingpro,
+      listing_rate,
+      gallery_images,
+      listing_reviewed,
+      featured_image_url,
     } = this.props.item;
+    const { isOpen } = openStatus(listingpro.business_hours);
+    let onFavourite = () => this.props.addFavourite(this.props.item);
+    const isFavourite = Object.keys(this.props.favourites).includes(String(id));
+
+    if (isFavourite) {
+      onFavourite = () => this.props.removeFavourite(this.props.item.id);
+    }
 
     if (loading) return <LoadingIndicator />;
-  
+
     return (
       <Container style={styles.container}>
         <AnimatedContentWrapper
-          showExtraButton
           showLogo={false}
+          bannerSourceIsURI
+          showBannerRightButton
           linearGradient={false}
-          headerTitle={title}
-          extraButtonIcon="md-map"
+          menuRightIcon="md-map"
+          menuLeftIcon="arrow-back"
+          onLeftButton={Actions.listings}
+          headerTitle={title.rendered}
+          bannerSource={featured_image_url[0]}
         >
           <Text style={styles.title} numberOfLines={1}>{title.rendered}</Text>
           <View style={styles.content}>
             <View style={[styles.dropShadow, styles.contacts]}>
-              <View style={[styles.contactItem, styles.address]}>
-                <Text style={styles.addressText} numberOfLines={2}>{listingpro.gAddress}</Text>
-                <Icon name="pin" style={styles.addressIcon} />
+              <View
+                style={[
+                  styles.openStatus,
+                  !isOpen ? { backgroundColor: colors.secondary.dark } : null,
+                ]}
+              >
+                <Text style={styles.openStatusText}>{isOpen ? 'OPEN' : 'CLOSED'} NOW</Text>
               </View>
-              <View style={[styles.contactItem, styles.phone]}>
-                <Text style={styles.phoneText} numberOfLines={1}>{listingpro.phone}</Text>
-                <Icon name="call" style={styles.phoneIcon} />
-              </View>
-              <View style={[styles.contactItem, styles.email]}>
-                <Text style={styles.emailText} numberOfLines={1}>{listingpro.email}</Text>
-                <Icon name="at" style={styles.emailIcon} />
-              </View>
-              <View style={[styles.contactItem, styles.website]}>
-                <Text style={styles.websiteText} numberOfLines={1}>{listingpro.website}</Text>
-                <Icon name="globe" style={styles.websiteIcon} />
-              </View>
+              <View style={styles.contactsTopSpacer} />
+              {listingpro.gAddress
+                ? <View style={[styles.contactItem, styles.address]}>
+                    <Text style={styles.addressText} numberOfLines={2}>{listingpro.gAddress}</Text>
+                    <Icon name="pin" style={styles.addressIcon} />
+                  </View>
+                : null}
+              {listingpro.phone
+                ? <View style={[styles.contactItem, styles.phone]}>
+                    <Text style={styles.phoneText} numberOfLines={1}>{listingpro.phone}</Text>
+                    <Icon name="call" style={styles.phoneIcon} />
+                  </View>
+                : null}
+              {listingpro.email
+                ? <View style={[styles.contactItem, styles.email]}>
+                    <Text style={styles.emailText} numberOfLines={1}>{listingpro.email}</Text>
+                    <Icon name="at" style={styles.emailIcon} />
+                  </View>
+                : null}
+              {listingpro.website
+                ? <View style={[styles.contactItem, styles.website]}>
+                    <Text style={styles.websiteText} numberOfLines={1}>{listingpro.website}</Text>
+                    <Icon name="globe" style={styles.websiteIcon} />
+                  </View>
+                : null}
             </View>
             
-            <FlatList
-              horizontal
-              data={[1, 2, 3, 4, 5, 6, 7, 8]}
-              keyExtractor={pic => pic}
-              renderItem={() => {
-                return (
-                  <ZoomImage
-                    source={images.shopping}
-                    imgStyle={styles.galleryItem}
-                    duration={200}
-                    enableScaling={false}
-                    easingFunc={Easing.ease}
-                  />
-                );
-              }}
-              style={[styles.gallery]}
-            />
+            {gallery_images.length > 0
+              ? <FlatList
+                  horizontal
+                  data={gallery_images}
+                  keyExtractor={item => item[0]}
+                  renderItem={({ item }) => {
+                    return (
+                      <ZoomImage
+                        duration={200}
+                        enableScaling={false}
+                        easingFunc={Easing.ease}
+                        source={{ uri: item[0] }}
+                        imgStyle={styles.galleryItem}
+                      />
+                    );
+                  }}
+                  style={[styles.gallery]}
+                />
+              : null}
           
             <View style={[styles.dropShadow, styles.moreInfo]}>
               <View style={styles.verified}>
@@ -96,14 +129,14 @@ class ListingDetailsScreen extends Component {
                 <Text style={styles.verifiedText}>Verified by WAPI?</Text>
               </View>
               <Text style={[styles.titles, styles.moreInfoTitle]}>Details</Text>
-              <Text style={styles.description}>{description}</Text>
+              <Text style={styles.description}>{stripHTML(content.rendered)}</Text>
             </View>
           
             <View style={[styles.dropShadow, styles.reviews]}>
               <Text style={[styles.titles, styles.reviewsTitle]}>How others rate this place</Text>
               <View style={styles.ratings}>
                 <View style={styles.ratingsValueContainer}>
-                  <Text style={styles.ratingsValue}>{rating}</Text>
+                  <Text style={styles.ratingsValue}>{listing_rate || '0.0'}</Text>
                 </View>
                 <View style={styles.starsContainer}>
                   <View style={styles.stars}>
@@ -114,13 +147,13 @@ class ListingDetailsScreen extends Component {
                       halfStar={'ios-star-half'}
                       iconSet={'Ionicons'}
                       maxStars={5}
-                      rating={rating}
+                      rating={Number(listing_rate) || 0}
                       starSize={18}
                       style={{ width: 50 }}
                       starColor={colors.secondary.light}
                     />
                   </View>
-                <Text style={styles.totalRevies}>{ratings} Reviews</Text>
+                <Text style={styles.totalRevies}>{listing_reviewed || 0} Reviews</Text>
                 </View>
               </View>
             </View>
@@ -128,35 +161,47 @@ class ListingDetailsScreen extends Component {
             <View style={[styles.dropShadow, styles.mapContainer]}>
               <GoogleStaticMap
                 style={styles.map}
-                latitude={'-1.2897776'}
-                longitude={'36.7748068'}
+                latitude={listingpro.latitude || '0.0'}
+                longitude={listingpro.longitude || '0.0'}
                 zoom={13}
-                size={{ width: '100%', height: 220 }}
+                size={{ width: metrics.screenWidth, height: 220 }}
                 apiKey={Config.GOOGLE_MAPS_API_KEY}
               />
             </View>
-          
-            <View style={[styles.dropShadow, styles.owner]}>
-              <Text style={[styles.titles, styles.ownerTitle]}>Meet the owner</Text>
-              <View style={styles.ownerInfo}>
-                <View style={styles.avatarContainer}>
-                  <Image source={images.activities} style={styles.avatar} />
-                </View>
-                <View style={styles.ownerMeta}>
-                  <Text style={styles.ownerName}>Joseph Akhenda</Text>
-                  <Text style={styles.ownerText}>Member since March, 2017</Text>
-                </View>
-              </View>
-            </View>
             
+            {listingpro.business_hours
+              ? <View style={[styles.dropShadow, styles.businessHours]}>
+                  <Text style={[styles.titles, styles.businessHoursTitle]}>Business Hours</Text>
+                  <View style={styles.businessHoursContent}>
+                    <View style={styles.businessHoursContentRow}>
+                      <Text style={styles.businessHoursContentDay} />
+                      <Text style={styles.businessHoursContentTitle}>Opening</Text>
+                      <Text style={styles.businessHoursContentTitle}>Closing</Text>
+                    </View>
+                    {Object.keys(listingpro.business_hours).map((day) => {
+                      return (
+                        <View key={day} style={styles.businessHoursContentRow}>
+                          <Text style={styles.businessHoursContentDay}>{day}</Text>
+                          <Text style={styles.businessHoursContentTime}>
+                            {listingpro.business_hours[day].open}
+                          </Text>
+                          <Text style={styles.businessHoursContentTime}>
+                            {listingpro.business_hours[day].close}
+                          </Text>
+                        </View>
+                      );
+                    })}
+                  </View>
+                </View>
+              : null}
           </View>
           <Fab
             active
             style={styles.fab}
             position="topRight"
-            onPress={() => {}}
+            onPress={onFavourite}
           >
-            <Icon name="heart" />
+            <Icon name={isFavourite ? 'ios-heart' : 'ios-heart-outline'} />
           </Fab>
         </AnimatedContentWrapper>
       </Container>
@@ -167,12 +212,16 @@ class ListingDetailsScreen extends Component {
 ListingDetailsScreen.propTypes = {
   user: PropTypes.object,
   item: PropTypes.object,
+  favourites: PropTypes.object,
+  addFavourite: PropTypes.func,
+  removeFavourite: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {
   return {
     user: state.auth.user,
+    favourites: state.app.favourites,
   };
 };
 
-export default connect(mapStateToProps, null)(ListingDetailsScreen);
+export default connect(mapStateToProps, { addFavourite, removeFavourite })(ListingDetailsScreen);

@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     top: metrics.animatedHeaderPaddingTop + 5,
     left: 5,
   },
-  extraButton: {
+  rightButton: {
     position: 'absolute',
     top: metrics.animatedHeaderPaddingTop + 5,
     right: 5,

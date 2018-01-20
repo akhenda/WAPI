@@ -38,7 +38,9 @@
   },
   "dependencies": {
     "apisauce": "^0.14.3",
+    "assert": "^1.4.1",
     "geodist": "^0.2.1",
+    "moment-opening-times": "^2.6.0",
     "native-base": "^2.3.6",
     "prop-types": "^15.6.0",
     "react": "16.0.0",

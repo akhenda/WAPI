@@ -55,11 +55,11 @@ class AnimatedContentWrapper extends Component {
   }
   
   renderBannerRightButton() {
-    const { headerButton, headerIcon } = styles;
+    const { rightButton, headerIcon } = styles;
     const { showBannerRightButton, menuRightIcon, onRightButton } = this.props;
   
     if (showBannerRightButton) {
-      return this.renderMenuButton(headerButton, onRightButton, menuRightIcon, headerIcon);
+      return this.renderMenuButton(rightButton, onRightButton, menuRightIcon, headerIcon);
     }
   }
   
@@ -82,7 +82,9 @@ class AnimatedContentWrapper extends Component {
   }
   
   renderBanner() {
-    const { showLogo, bannerSource, linearGradient } = this.props;
+    const {
+      showLogo, bannerSourceIsURI, bannerSource, linearGradient,
+    } = this.props;
 
     const headerTranslate = this.state.scrollY.interpolate({
       inputRange: [0, HEADER_SCROLL_DISTANCE + 50],
@@ -121,7 +123,7 @@ class AnimatedContentWrapper extends Component {
         ]}
       >
         <Animated.Image
-          source={bannerSource || getBackground()}
+          source={bannerSourceIsURI ? { uri: bannerSource } : bannerSource || getBackground()}
           style={[
             styles.bannerImage,
             {
@@ -178,11 +180,11 @@ class AnimatedContentWrapper extends Component {
 
 AnimatedContentWrapper.propTypes = {
   WrapperComponent: PropTypes.any,
+  bannerSourceIsURI: PropTypes.bool,
   opaqueHeader: PropTypes.bool,
   showLogo: PropTypes.bool,
   onLeftButton: PropTypes.func,
   onRightButton: PropTypes.func,
-  bannerSource: PropTypes.number,
   linearGradient: PropTypes.bool,
   menuLeftIcon: PropTypes.string,
   menuRightIcon: PropTypes.string,
@@ -195,10 +197,15 @@ AnimatedContentWrapper.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
+  bannerSource: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
 };
 
 AnimatedContentWrapper.defaultProps = {
   showLogo: true,
+  bannerSourceIsURI: false,
   opaqueHeader: false,
   linearGradient: true,
   menuLeftIcon: 'menu',

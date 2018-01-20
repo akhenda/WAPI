@@ -12,6 +12,7 @@ import SurveyScreen from 'src/containers/SurveyScreen';
 import HomeScreen from 'src/containers/HomeScreen';
 import ProfileScreen from 'src/containers/ProfileScreen';
 import ListingsScreen from 'src/containers/ListingsScreen';
+import ListingDetailsScreen from 'src/containers/ListingDetailsScreen';
 
 import DrawerContent from 'src/components/DrawerContent';
 import LoadingIndicator from 'src/components/LoadingIndicator';
@@ -62,6 +63,7 @@ class RootContainer extends Component {
             >
               <Scene key="home" hideNavBar title="Home" component={HomeScreen} />
               <Scene key="listings" hideNavBar title="Listings" component={ListingsScreen} />
+              <Scene key="listing" hideNavBar title="Listing" component={ListingDetailsScreen} />
               <Scene key="profile" hideNavBar title="Profile" component={ProfileScreen} />
               <Scene key="survey" hideNavBar initial={!surveyed} title="Survey" component={SurveyScreen} />
             </Drawer>

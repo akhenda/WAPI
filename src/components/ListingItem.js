@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Image, TouchableOpacity } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { View, Text, Icon } from 'native-base';
 import geodist from 'geodist';
 import StarRating from 'react-native-star-rating';
+import { Actions } from 'react-native-router-flux';
+import CacheableImage from 'react-native-cacheable-image';
+
+import { openStatus } from 'src/utils/businessHours';
 
 import { colors } from 'src/theme';
-
 import styles from './styles/ListingItemStyles';
 
 
@@ -18,6 +21,7 @@ const ListingItem = (props) => {
   const {
     title, listing_reviewed, listingpro, listing_rate, featured_image_url,
   } = item;
+  const { isOpen } = openStatus(listingpro.business_hours);
   const userLocation = { lat: location.latitude, lon: location.longitude };
   const listingLocation = { lat: listingpro.latitude, lon: listingpro.longitude };
   const distance = geodist(userLocation, listingLocation, { exact: true, unit: 'km' });
@@ -25,8 +29,11 @@ const ListingItem = (props) => {
   
   if (type === 'large') {
     return (
-      <View style={styles.large}>
-        <Image source={{ uri: featured_image_url[0] }} style={styles.largeImage} />
+      <TouchableOpacity
+        style={styles.large}
+        onPress={() => Actions.listing({ item, onFavourite, isFavourite })}
+      >
+        <CacheableImage style={styles.largeImage} source={{ uri: featured_image_url[0] }} />
         <View style={styles.largeImageMask} />
         <View style={styles.largeRating}>
           <Text style={styles.largeRatingValue}>{listing_rate}</Text>
@@ -40,7 +47,7 @@ const ListingItem = (props) => {
         <View style={styles.largeContent}>
           <View style={styles.largeMeta}>
             <View style={styles.largeOpenStatus}>
-              <Text style={styles.largeOpenStatusText}>OPEN NOW</Text>
+              <Text style={styles.largeOpenStatusText}>{isOpen ? 'OPEN' : 'CLOSED'} NOW</Text>
             </View>
             <View style={styles.largeDistance}>
               <Icon name="ios-navigate-outline" style={styles.largeDistanceIcon} />
@@ -56,14 +63,17 @@ const ListingItem = (props) => {
             : null}
           <Text style={styles.largeDescription} numberOfLines={1}>{listingpro.tagline_text}</Text>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   }
 
   return (
-    <View style={styles.compact}>
+    <TouchableOpacity
+      style={styles.compact}
+      onPress={() => Actions.listing({ item, onFavourite, isFavourite })}
+    >
       <View style={styles.compactImageContainer}>
-        <Image source={{ uri: featured_image_url[0] }} style={styles.compactImage} />
+        <CacheableImage style={styles.compactImage} source={{ uri: featured_image_url[0] }} />
       </View>
       <View style={styles.compactContent}>
         <Text style={styles.compactTitle} numberOfLines={1}>{title.rendered}</Text>
@@ -96,7 +106,7 @@ const ListingItem = (props) => {
       <TouchableOpacity style={styles.compactFavourite} onPress={onFavourite}>
         <Icon name={isFavourite ? 'ios-heart' : 'ios-heart-outline'} style={styles.compactFavouriteIcon} />
       </TouchableOpacity>
-    </View>
+    </TouchableOpacity>
   );
 };
 
