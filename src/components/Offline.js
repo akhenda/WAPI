@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, StatusBar, Alert } from 'react-native';
+import { View, Image, StatusBar, BackHandler } from 'react-native';
 import { Button, Text } from 'native-base';
 
 import { colors, images } from '../theme';
@@ -16,7 +16,7 @@ const Offline = () => {
         We&apos;re sorry, there seems to be a problem with your internet connection.
         The application will resume as soon as it is able to reconnect to the internet.
       </Text>
-      <Button rounded bordered style={styles.button} onPress={() => Alert.alert('Retrying...')}>
+      <Button rounded bordered style={styles.button} onPress={() => BackHandler.exitApp()}>
         <Text style={styles.buttonText}>Try Again</Text>
       </Button>
     </View>
