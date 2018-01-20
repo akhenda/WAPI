@@ -6,16 +6,55 @@ import { Content, Button, Text, Icon } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
 import { images } from 'src/theme';
+import { selectCategory } from 'src/state/actions/listings';
 import styles from './styles/DrawerContentStyles';
 
 class DrawerContent extends Component {
+  onSelectCategory(id, name) {
+    this.props.selectCategory(id, name);
+    Actions.listings();
+  }
+
   renderMenuItem(icon, action, title, color, style) {
     return (
-      <TouchableOpacity onPress={action} style={[styles.menuItem, style]}>
+      <TouchableOpacity key={icon} onPress={action} style={[styles.menuItem, style]}>
         <Icon name={icon} style={[styles.menuItemIcon, { color }]} />
         <Text style={styles.menuItemText}>{title}</Text>
       </TouchableOpacity>
     );
+  }
+  
+  renderCategories() {
+    if (this.props.categories.length > 0) {
+      return this.props.categories.map((category) => {
+        let iconName = 'walk';
+        let iconColor = 'orange';
+        const name = category.name.toLowerCase();
+        if (name.indexOf('restaurants') >= 0) {
+          iconName = 'restaurant';
+          iconColor = 'darkblue';
+        } else if (name.indexOf('medical') >= 0) {
+          iconName = 'medkit';
+          iconColor = 'green';
+        } else if (name.indexOf('services') >= 0) {
+          iconName = 'pricetags';
+          iconColor = 'darkslategrey';
+        } else if (name.indexOf('shopping') >= 0) {
+          iconName = 'cart';
+          iconColor = 'deepskyblue';
+        } else if (name.indexOf('volunteering') >= 0) {
+          iconName = 'hand';
+          iconColor = 'fuchsia';
+        }
+
+        return this.renderMenuItem(
+          iconName,
+          () => this.onSelectCategory(category.id, category.name),
+          category.name.split(' ')[0],
+          iconColor,
+        );
+      });
+    }
   }
 
   render() {
@@ -41,15 +80,10 @@ class DrawerContent extends Component {
             <Text style={styles.profileButtonText}>Profile</Text>
           </Button>
         </View>
-        <Image source={images.avatar} style={styles.avatar} />
+        <Image source={{ uri: user.avatar_urls['96'] }} style={styles.avatar} />
         <View style={styles.menuItems}>
           {this.renderMenuItem('home', Actions.home, 'Home', 'blue')}
-          {this.renderMenuItem('walk', Actions.home, 'Activities', 'orange')}
-          {this.renderMenuItem('restaurant', Actions.home, 'Restaurants', 'darkblue')}
-          {this.renderMenuItem('medkit', Actions.home, 'Medical', 'green')}
-          {this.renderMenuItem('pricetags', Actions.home, 'Services', 'darkslategrey')}
-          {this.renderMenuItem('cart', Actions.home, 'Shopping', 'deepskyblue')}
-          {this.renderMenuItem('hand', Actions.home, 'Volunteering', 'fuchsia')}
+          {this.renderCategories()}
           {this.renderMenuItem('settings', Actions.home, 'Settings', 'black', styles.lastMenuItem)}
         </View>
         <TouchableOpacity style={styles.signOut}>
@@ -62,12 +96,17 @@ class DrawerContent extends Component {
 
 DrawerContent.propTypes = {
   user: PropTypes.object,
+  token: PropTypes.string,
+  categories: PropTypes.array,
+  selectCategory: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {
   return {
     user: state.auth.user,
+    token: state.auth.token,
+    categories: state.listings.categories,
   };
 };
 
-export default connect(mapStateToProps, null)(DrawerContent);
+export default connect(mapStateToProps, { selectCategory })(DrawerContent);

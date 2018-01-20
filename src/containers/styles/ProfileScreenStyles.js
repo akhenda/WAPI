@@ -80,11 +80,45 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
-  listingItem: {
+  listingItemContainer: {
     width: metrics.screenWidth / 3,
     height: metrics.screenWidth / 3,
     // margin: metrics.screenWidth / (4/600),
+  },
+  listingItemLoading: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.primary.lightest,
+  },
+  listingItem: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
     resizeMode: 'cover',
+  },
+  listingItemTextContainer: {
+    width: metrics.screenWidth / 3,
+    height: metrics.screenWidth / 3,
+    borderRadius: 5,
+    overflow: 'hidden',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  listingItemText: {
+    padding: 5,
+    fontSize: 17,
+    borderRadius: 5,
+    textAlign: 'center',
+    color: colors.primary.text,
+    textAlignVertical: 'center',
+    backgroundColor: colors.statusBarTranslucentDark,
   },
   
   empty: {
