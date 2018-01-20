@@ -104,6 +104,7 @@ android {
         targetSdkVersion 26
         versionCode googleVer
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+        multiDexEnabled true
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -148,6 +149,15 @@ android {
                 output.versionCodeOverride =
                         versionCodes.get(abi) * 1048576 + defaultConfig.versionCode
             }
+        }
+    }
+    configurations {
+        all {
+            exclude module: 'httpclient'
+            exclude module: 'commons-logging'
+            exclude module: 'opengl-api'
+            exclude module: 'xmlParserAPIs'
+            exclude module: 'xpp3'
         }
     }
 }
