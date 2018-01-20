@@ -15,6 +15,7 @@ import styles from './styles/ListingItemStyles';
 
 /* eslint-disable camelcase */
 const ListingItem = (props) => {
+  let distance = 0;
   const {
     type, item, location, isFavourite, onAddFavourite, onRemoveFavourite,
   } = props;
@@ -22,11 +23,14 @@ const ListingItem = (props) => {
     title, listing_reviewed, listingpro, listing_rate, featured_image_url,
   } = item;
   const { isOpen } = openStatus(listingpro.business_hours);
-  const userLocation = { lat: location.latitude, lon: location.longitude };
-  const listingLocation = { lat: listingpro.latitude, lon: listingpro.longitude };
-  const distance = geodist(userLocation, listingLocation, { exact: true, unit: 'km' });
   const onFavourite = isFavourite ? () => onRemoveFavourite(item.id) : () => onAddFavourite(item);
-  
+
+  if (location) {
+    const userLocation = { lat: location.latitude, lon: location.longitude };
+    const listingLocation = { lat: listingpro.latitude, lon: listingpro.longitude };
+    distance = geodist(userLocation, listingLocation, { exact: true, unit: 'km' });
+  }
+
   if (type === 'large') {
     return (
       <TouchableOpacity
@@ -49,10 +53,12 @@ const ListingItem = (props) => {
             <View style={styles.largeOpenStatus}>
               <Text style={styles.largeOpenStatusText}>{isOpen ? 'OPEN' : 'CLOSED'} NOW</Text>
             </View>
-            <View style={styles.largeDistance}>
-              <Icon name="ios-navigate-outline" style={styles.largeDistanceIcon} />
-              <Text style={styles.largeDistanceText}>{distance.toFixed(2)} Km</Text>
-            </View>
+            {distance > 0
+              ? <View style={styles.largeDistance}>
+                  <Icon name="ios-navigate-outline" style={styles.largeDistanceIcon} />
+                  <Text style={styles.largeDistanceText}>{distance.toFixed(2)} Km</Text>
+                </View>
+              : null}
           </View>
           <Text style={styles.largeTitle}>{title.rendered}</Text>
           {listingpro.gAddress
@@ -98,10 +104,12 @@ const ListingItem = (props) => {
           <Text style={styles.compactRatingText}> | {listing_reviewed || '0'} Ratings</Text>
         </View>
         <Text style={styles.compactDescription} numberOfLines={2}>{listingpro.tagline_text}</Text>
-        <View style={styles.compactDistance}>
-          <Icon name="ios-navigate-outline" style={styles.compactDistanceIcon} />
-          <Text style={styles.compactDistanceText}>{distance.toFixed(2)} Km</Text>
-        </View>
+        {distance > 0
+          ? <View style={styles.compactDistance}>
+              <Icon name="ios-navigate-outline" style={styles.compactDistanceIcon} />
+              <Text style={styles.compactDistanceText}>{distance.toFixed(2)} Km</Text>
+            </View>
+          : null}
       </View>
       <TouchableOpacity style={styles.compactFavourite} onPress={onFavourite}>
         <Icon name={isFavourite ? 'ios-heart' : 'ios-heart-outline'} style={styles.compactFavouriteIcon} />

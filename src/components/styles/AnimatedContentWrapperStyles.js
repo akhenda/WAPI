@@ -16,6 +16,15 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     height: '70%',
   },
+  bannerImageLoading: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '70%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   bannerImage: {
     width: '100%',
     height: '100%',

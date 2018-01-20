@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Animated, Image } from 'react-native';
+import { Animated, Image, ActivityIndicator, View } from 'react-native';
 import { Container, Text, Icon, Button } from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -122,6 +122,9 @@ class AnimatedContentWrapper extends Component {
           },
         ]}
       >
+        <View style={styles.bannerImageLoading}>
+          <ActivityIndicator size="large" color={colors.secondary.light} />
+        </View>
         <Animated.Image
           source={bannerSourceIsURI ? { uri: bannerSource } : bannerSource || getBackground()}
           style={[

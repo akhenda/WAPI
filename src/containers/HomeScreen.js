@@ -22,15 +22,12 @@ class HomeScreen extends Component {
     super(props);
 
     this.state = {
-      isRunning: false,
+      loading: true,
     };
   }
   
-  componentWillMount() {
-    this.props.getCategories(this.props.token);
-  }
-  
   componentDidMount() {
+    this.props.getCategories(this.props.token);
     BackgroundGeolocation.configure({
       desiredAccuracy: 10,
       stationaryRadius: 50,
@@ -40,16 +37,6 @@ class HomeScreen extends Component {
       locationProvider: BackgroundGeolocation.DISTANCE_FILTER_PROVIDER,
       interval: 10000,
       fastestInterval: 5000,
-    });
-    
-    BackgroundGeolocation.on('start', () => {
-      console.tron.log('[DEBUG] BackgroundGeolocation has been started');
-      this.setState({ isRunning: true });
-    });
-
-    BackgroundGeolocation.on('stop', () => {
-      console.tron.log('[DEBUG] BackgroundGeolocation has been stopped');
-      this.setState({ isRunning: false });
     });
 
     BackgroundGeolocation.on('authorization', (status) => {
@@ -66,7 +53,7 @@ class HomeScreen extends Component {
     });
     
     BackgroundGeolocation.on('error', ({ message }) => {
-      Alert.alert('BackgroundGeolocation error', message);
+      Alert.alert('Background Geolocation error', message);
     });
 
     BackgroundGeolocation.on('location', (location) => {
@@ -81,15 +68,11 @@ class HomeScreen extends Component {
       });
     });
     
-    BackgroundGeolocation.on('foreground', () => {
-      console.tron.log('[INFO] App is in foreground');
-    });
-    
-    BackgroundGeolocation.checkStatus(({ isRunning }) => {
-      this.setState({ isRunning });
-    });
-    
     BackgroundGeolocation.start();
+  }
+  
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.categories) this.setState({ loading: false });
   }
   
   componentWillUnmount() {
@@ -106,7 +89,7 @@ class HomeScreen extends Component {
   render() {
     const { user, categories } = this.props;
 
-    if (user === null || categories.length === 0) return <LoadingIndicator />;
+    if (this.state.loading) return <LoadingIndicator />;
 
     return (
       <Container style={styles.container}>

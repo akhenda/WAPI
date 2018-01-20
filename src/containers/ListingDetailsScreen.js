@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, FlatList, Easing } from 'react-native';
+import { View, FlatList, Easing, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { Container, Text, Fab, Icon } from 'native-base';
 import Config from 'react-native-config';
@@ -159,6 +159,9 @@ class ListingDetailsScreen extends Component {
             </View>
           
             <View style={[styles.dropShadow, styles.mapContainer]}>
+              <View style={styles.mapLoading}>
+                <ActivityIndicator size="large" color={colors.secondary.light} />
+              </View>
               <GoogleStaticMap
                 style={styles.map}
                 latitude={listingpro.latitude || '0.0'}

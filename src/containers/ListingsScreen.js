@@ -123,10 +123,10 @@ class ListingsScreen extends Component {
                       <ListingItem
                         item={item}
                         type={listingType}
-                        location={currentLocation}
                         onAddFavourite={this.onAddFavourite}
                         onRemoveFavourite={this.onRemoveFavourite}
                         isFavourite={Object.keys(favourites).includes(String(item.id))}
+                        location={currentLocation}
                       />
                     );
                   }}

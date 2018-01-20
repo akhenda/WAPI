@@ -161,6 +161,15 @@ const styles = StyleSheet.create({
     padding: -15,
     marginBottom: 20,
   },
+  mapLoading: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   businessHours: {
     marginBottom: 40,
   },
