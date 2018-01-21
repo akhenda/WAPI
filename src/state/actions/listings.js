@@ -1,4 +1,4 @@
-import { SEARCH_FIELD_CHANGED, SELECT_CATEGORY } from 'src/state/types';
+import { SEARCH_FIELD_CHANGED, SELECT_CATEGORY, CLEAR_LISTINGS } from 'src/state/types';
 import {
   fetchCategories,
   fetchCategoryListings,
@@ -30,3 +30,7 @@ export const getCategoryListings = (token, id, page) => {
 export const getListing = token => dispatch => fetchListing(dispatch, token);
 
 export const searchListings = (token, search) => dispatch => performSearch(dispatch, token, search);
+
+export const clearListings = () => {
+  return { type: CLEAR_LISTINGS };
+};

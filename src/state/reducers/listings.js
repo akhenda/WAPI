@@ -2,6 +2,7 @@ import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
 
 import {
+  CLEAR_LISTINGS,
   SELECT_CATEGORY,
   SEARCH_FIELD_CHANGED,
   FETCH_CATEGORIES_SUCCESS,
@@ -55,6 +56,15 @@ const authReducer = (state = INITIAL_STATE, action) => {
       };
     case SEARCH_LISTINGS_FAILURE:
       return { ...state, error: action.payload };
+    case CLEAR_LISTINGS:
+      return {
+        ...state,
+        error: {},
+        places: [],
+        totalPages: 1,
+        selectedListing: null,
+        selectedCategory: null,
+      };
     default:
       return state;
   }

@@ -8,7 +8,7 @@ import { Actions } from 'react-native-router-flux';
 import LocationServicesDialogBox from 'react-native-android-location-services-dialog-box';
 
 import { updateLocation } from 'src/state/actions/app';
-import { getCategories, selectCategory } from 'src/state/actions/listings';
+import { getCategories, selectCategory, clearListings } from 'src/state/actions/listings';
 import SearchBar from 'src/components/SearchBar';
 import Salutation from 'src/components/Salutation';
 import CategoriesList from 'src/components/CategoriesList';
@@ -76,6 +76,8 @@ class HomeScreen extends Component {
     BackHandler.addEventListener('hardwareBackPress', () => {
       LocationServicesDialogBox.forceCloseDialog();
     });
+    
+    this.props.clearListings();
   }
   
   componentWillReceiveProps(nextProps) {
@@ -127,6 +129,7 @@ HomeScreen.propTypes = {
   user: PropTypes.object,
   token: PropTypes.string,
   categories: PropTypes.array,
+  clearListings: PropTypes.func,
   getCategories: PropTypes.func,
   selectCategory: PropTypes.func,
   updateLocation: PropTypes.func,
@@ -141,5 +144,5 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  getCategories, selectCategory, updateLocation,
+  getCategories, selectCategory, updateLocation, clearListings,
 })(HomeScreen);

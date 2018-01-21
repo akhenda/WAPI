@@ -19,6 +19,7 @@ export const ADD_FAVOURITE = 'ADD_FAVOURITE';
 export const REMOVE_FAVOURITE = 'REMOVE_FAVOURITE';
 
 /* ------------- Listing Types ------------- */
+export const CLEAR_LISTINGS = 'CLEAR_LISTINGS';
 export const SELECT_CATEGORY = 'SELECT_CATEGORY';
 export const SEARCH_FIELD_CHANGED = 'SEARCH_FIELD_CHANGED';
 export const FETCH_CATEGORIES_SUCCESS = 'FETCH_CATEGORIES_SUCCESS';
