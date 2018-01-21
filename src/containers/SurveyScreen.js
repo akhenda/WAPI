@@ -61,7 +61,7 @@ class SurveyScreen extends Component {
     );
 
     if (currentPosition === 0 && !isPageOneFilled) {
-      this.renderAlert('Empty Fields', 'Please fill all fields on this section');
+      this.renderAlert('Empty Fields', 'Please fill all fields in this section');
       return;
     }
     

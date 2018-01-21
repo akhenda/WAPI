@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Container } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
-import { getCategoryListings } from 'src/state/actions/listings';
+import { getCategoryListings, searchListings } from 'src/state/actions/listings';
 import { addFavourite, removeFavourite } from 'src/state/actions/app';
 import ListingItem from 'src/components/ListingItem';
 import LoadingIndicator from 'src/components/LoadingIndicator';
@@ -21,7 +21,7 @@ class ListingsScreen extends Component {
     this.state = {
       page: 1,
       totalPages: 1,
-      listings: [],
+      places: [],
       empty: false,
       loading: false,
       refreshing: false,
@@ -44,16 +44,31 @@ class ListingsScreen extends Component {
         loading: false,
         refreshing: false,
         totalPages: Number(nextProps.totalPages),
-        listings: page === 1 ? nextProps.listings : [...prevState.listings, ...nextProps.listings],
+        places: page === 1 ? nextProps.places : [...prevState.places, ...nextProps.places],
       };
     });
   }
 
   fetchListings = () => {
-    const { token, selectedCategory } = this.props;
+    const {
+      token, isSearch, selectedCategory, searchText,
+    } = this.props;
+    
+    console.tron.display({
+      name: '🔥 IGNITE 🔥',
+      preview: 'You should totally expand this',
+      value: {
+        '💃': 'Welcome to the future!',
+        props: this.props,
+      },
+    });
 
-    this.setState({ loading: true });    
-    this.props.getCategoryListings(token, selectedCategory.id, this.state.page);
+    this.setState({ loading: true });
+    if (isSearch) {
+      this.props.searchListings(token, searchText);
+    } else {
+      this.props.getCategoryListings(token, selectedCategory.id, this.state.page);
+    }
   }
 
   handleRefresh = () => {
@@ -94,12 +109,15 @@ class ListingsScreen extends Component {
 
   render() {
     const emptyHeight = '100%';
-    const { loading, refreshing, listings } = this.state;
-    const { currentLocation, favourites, selectedCategory } = this.props;
-    const empty = listings.length > 0;
+    const { loading, refreshing, places } = this.state;
+    const {
+      currentLocation, favourites, selectedCategory, isSearch, searchText,
+    } = this.props;
+    const empty = places.length > 0;
     const listingType = selectedCategory.name.indexOf('Restaurant') >= 0 ? 'large' : 'compact';
+    const headerTitle = isSearch ? `Search: ${searchText}` : selectedCategory.name;
 
-    if (loading && listings.length === 0) return <LoadingIndicator />;
+    if (loading && places.length === 0) return <LoadingIndicator />;
 
     return (
       <Container style={styles.container}>
@@ -107,16 +125,16 @@ class ListingsScreen extends Component {
           opaqueHeader
           showLogo={false}
           showBannerRightButton
+          menuRightIcon="md-map"
           WrapperComponent={View}
           menuLeftIcon="arrow-back"
-          menuRightIcon="md-map"
+          headerTitle={headerTitle}
           onLeftButton={Actions.pop}
-          headerTitle={this.props.selectedCategory.name}
         >
           <View style={[styles.content, empty ? { height: emptyHeight } : null]}>
             {empty
               ? <FlatList
-                  data={listings}
+                  data={places}
                   keyExtractor={item => item.id}
                   renderItem={({ item }) => {
                     return (
@@ -152,12 +170,15 @@ class ListingsScreen extends Component {
 
 ListingsScreen.propTypes = {
   user: PropTypes.object,
+  places: PropTypes.array,
   error: PropTypes.object,
   token: PropTypes.string,
-  listings: PropTypes.array,
+  isSearch: PropTypes.bool,
+  searchText: PropTypes.string,
   favourites: PropTypes.object,
   totalPages: PropTypes.number,
   addFavourite: PropTypes.func,
+  searchListings: PropTypes.func,
   removeFavourite: PropTypes.func,
   currentLocation: PropTypes.object,
   selectedCategory: PropTypes.object,
@@ -169,8 +190,8 @@ const mapStateToProps = (state) => {
     user: state.auth.user,
     token: state.auth.token,
     error: state.listings.error,
+    places: state.listings.places,
     favourites: state.app.favourites,
-    listings: state.listings.listings,
     totalPages: state.listings.totalPages,
     currentLocation: state.app.currentLocation,
     selectedCategory: state.listings.selectedCategory,
@@ -178,5 +199,5 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  getCategoryListings, addFavourite, removeFavourite,
+  getCategoryListings, addFavourite, removeFavourite, searchListings,
 })(ListingsScreen);

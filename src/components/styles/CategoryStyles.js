@@ -6,6 +6,18 @@ const styles = StyleSheet.create({
   category: {
     height: 200,
     marginBottom: 15,
+    borderRadius: 5,
+    elevation: 3,
+
+    // iOS Drop Shadow
+    borderWidth: 0,
+    shadowColor: '#000000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowRadius: 3,
+    shadowOpacity: 0.4,
   },
   categoryImageContainer: {
     position: 'absolute',

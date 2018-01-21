@@ -37,7 +37,7 @@ export const fetchCategoryListings = (dispatch, token, id, page) => {
     .then((res) => {
       if (res.status === 200) {
         const totalPages = res.headers['x-wp-totalpages'];
-        dispatch({ type: FETCH_LISTINGS_SUCCESS, payload: { listings: res.data, totalPages } });
+        dispatch({ type: FETCH_LISTINGS_SUCCESS, payload: { places: res.data, totalPages } });
       } else {
         dispatch({ type: FETCH_LISTINGS_FAILURE, payload: res.data });
       }
@@ -51,7 +51,7 @@ export const performSearch = (dispatch, token, search) => {
     .then((res) => {
       if (res.status === 200) {
         const totalPages = res.headers['x-wp-totalpages'];
-        dispatch({ type: SEARCH_LISTINGS_SUCCESS, payload: { listings: res.data, totalPages } });
+        dispatch({ type: SEARCH_LISTINGS_SUCCESS, payload: { places: res.data, totalPages } });
       } else {
         dispatch({ type: SEARCH_LISTINGS_FAILURE, payload: res.data });
       }

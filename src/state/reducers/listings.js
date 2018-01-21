@@ -17,7 +17,7 @@ import {
 const INITIAL_STATE = {
   error: {},
   categories: [],
-  listings: [],
+  places: [],
   totalPages: 1,
   selectedCategory: null,
   selectedListing: null,
@@ -37,7 +37,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         error: {},
-        listings: action.payload.listings,
+        places: action.payload.places,
         totalPages: Number(action.payload.totalPages),
       };
     case FETCH_LISTINGS_FAILURE:
@@ -47,7 +47,12 @@ const authReducer = (state = INITIAL_STATE, action) => {
     case FETCH_LISTING_FAILURE:
       return { ...state, error: action.payload };
     case SEARCH_LISTINGS_SUCCESS:
-      return { ...state, listings: action.payload };
+      return {
+        ...state,
+        error: {},
+        places: action.payload.places,
+        totalPages: Number(action.payload.totalPages),
+      };
     case SEARCH_LISTINGS_FAILURE:
       return { ...state, error: action.payload };
     default:

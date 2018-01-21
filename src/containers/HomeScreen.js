@@ -85,6 +85,10 @@ class HomeScreen extends Component {
     this.props.selectCategory(id, name);
     Actions.listings();
   }
+  
+  onSearch = (searchText) => {
+    Actions.listings({ isSearch: true, searchText });
+  }
 
   render() {
     const { user, categories } = this.props;
@@ -99,7 +103,7 @@ class HomeScreen extends Component {
         >
           <View style={styles.content}>
             <Salutation name={user.first_name || 'Stranger 😃'} />
-            <SearchBar />
+            <SearchBar onSearch={this.onSearch} />
             <CategoriesList
               categories={categories}
               onSelectCategory={(id, name) => this.onSelectCategory(id, name)}

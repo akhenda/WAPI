@@ -4,27 +4,39 @@ import { Item, Input, Icon, Button } from 'native-base';
 
 import styles from './styles/SearchBarStyles';
 
-const submitSearch = () => {
-  /* eslint-disable no-alert */
-  alert('Searching...');
-};
 
-const SearchBar = (props) => {  
-  return (
-    <Item rounded style={styles.container}>
-      <Input
-        returnKeyType='search'
-        onSubmitEditing={submitSearch}
-        placeholder={props.placeholder}
-      />
-    <Button rounded transparent onPress={submitSearch} style={styles.barButton}>
-        <Icon active name='search' style={styles.barIcon} />
-      </Button>
-    </Item>
-  );
-};
+class SearchBar extends React.Component {
+  constructor(props) {
+    super(props);
+    
+    this.state = { text: '' };
+  }
+  
+  render() {
+    const { text } = this.state;
+    const { placeholder, onSearch } = this.props;
+
+    return (
+      <Item rounded style={styles.container}>
+        <Input
+          value={text}
+          autoCorrect={false}
+          autoCapitalize='none'
+          returnKeyType='search'
+          placeholder={placeholder}
+          onSubmitEditing={() => onSearch(text)}
+          onChangeText={val => this.setState({ text: val })}
+        />
+        <Button rounded transparent onPress={() => onSearch(text)} style={styles.barButton}>
+          <Icon active name='search' style={styles.barIcon} />
+        </Button>
+      </Item>
+    );
+  }
+}
 
 SearchBar.propTypes = {
+  onSearch: PropTypes.func,
   placeholder: PropTypes.string,
 };
 

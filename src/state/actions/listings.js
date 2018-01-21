@@ -29,4 +29,4 @@ export const getCategoryListings = (token, id, page) => {
 
 export const getListing = token => dispatch => fetchListing(dispatch, token);
 
-export const searchListings = token => dispatch => performSearch(dispatch, token);
+export const searchListings = (token, search) => dispatch => performSearch(dispatch, token, search);
