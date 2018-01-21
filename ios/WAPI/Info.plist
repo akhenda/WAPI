@@ -35,8 +35,6 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -64,13 +62,16 @@
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
 	</array>
-  <key>UIBackgroundModes</key>
+	<key>UIBackgroundModes</key>
 	<array>
+		<string>fetch</string>
 		<string>location</string>
 	</array>
-  <key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app always requires location tracking</string>
-  <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-  <string>This app always requires location tracking</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app uses your location in the foreground to recommend places nearby.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app uses your location in the background to recommend places nearby.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>This app uses your location in the background to recommend places nearby.</string>
 </dict>
 </plist>

@@ -35,9 +35,6 @@ class ListingsScreen extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { page } = this.state;
-    
-    console.tron.log(this.props);
-    console.tron.log(nextProps);
 
     this.setState((prevState) => {
       return {
@@ -53,15 +50,6 @@ class ListingsScreen extends Component {
     const {
       token, isSearch, selectedCategory, searchText,
     } = this.props;
-    
-    console.tron.display({
-      name: '🔥 IGNITE 🔥',
-      preview: 'You should totally expand this',
-      value: {
-        '💃': 'Welcome to the future!',
-        props: this.props,
-      },
-    });
 
     this.setState({ loading: true });
     if (isSearch) {

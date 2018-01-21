@@ -13,7 +13,8 @@
     "start:rc": "npm start -- --reset-cache",
     "clean": "rm -rf $TMPDIR/react-* && watchman watch-del-all && npm cache verify",
     "clean:start": "npm run clean && npm run start:rc",
-    "clean:android": "npm run clean && cd android/ && ./gradlew clean && cd .. && react-native run-android",
+    "clean:debug": "npm run clean && cd android/ && ./gradlew clean && cd .. && react-native run-android",
+    "clean:release": "npm run clean && cd android/ && ./gradlew clean && cd .. && react-native run-android --variant=release",
     "fresh-install": "rm -rf $TMPDIR/react-* && watchman watch-del-all && rm -rf ios/build/ModuleCache/* && rm -rf node_modules/ && npm cache verify && npm install",
     "fresh-start": "npm run fresh-install && npm run start:rc",
     "android:build": "cd android && ./gradlew assembleRelease",
@@ -45,16 +46,17 @@
     "prop-types": "^15.6.0",
     "react": "16.0.0",
     "react-native": "0.51.0",
+    "react-native-android-location-services-dialog-box": "^2.4.4",
     "react-native-animatable": "^1.2.4",
     "react-native-cacheable-image": "^1.6.0",
     "react-native-config": "^0.11.5",
     "react-native-datepicker": "^1.6.0",
     "react-native-google-static-map": "^0.1.11",
     "react-native-linear-gradient": "^2.4.0",
-    "react-native-mauron85-background-geolocation": "^0.4.1",
     "react-native-offline-mode": "^0.1.5",
     "react-native-onboarding-swiper": "^0.3.1",
     "react-native-permissions": "^1.0.6",
+    "react-native-radar": "^1.0.14",
     "react-native-router-flux": "^4.0.0-beta.27",
     "react-native-select-input-ios": "^1.1.4",
     "react-native-star-rating": "^1.0.8",
@@ -182,6 +184,11 @@
         "type": "ios.simulator",
         "name": "iPhone 7 Plus"
       }
+    }
+  },
+  "pods": {
+    "RadarSDK": {
+      "pod": "RadarSDK"
     }
   }
 }

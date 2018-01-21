@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Alert } from 'react-native';
+import { View, BackHandler, PermissionsAndroid, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import { Container } from 'native-base';
+import Radar from 'react-native-radar';
 import { Actions } from 'react-native-router-flux';
-import BackgroundGeolocation from 'react-native-mauron85-background-geolocation';
+import LocationServicesDialogBox from 'react-native-android-location-services-dialog-box';
 
 import { updateLocation } from 'src/state/actions/app';
 import { getCategories, selectCategory } from 'src/state/actions/listings';
@@ -27,48 +28,54 @@ class HomeScreen extends Component {
   }
   
   componentDidMount() {
+    let granted;
     this.props.getCategories(this.props.token);
-    BackgroundGeolocation.configure({
-      desiredAccuracy: 10,
-      stationaryRadius: 50,
-      distanceFilter: 50,
-      startOnBoot: false,
-      stopOnTerminate: true,
-      locationProvider: BackgroundGeolocation.DISTANCE_FILTER_PROVIDER,
-      interval: 10000,
-      fastestInterval: 5000,
-    });
 
-    BackgroundGeolocation.on('authorization', (status) => {
-      if (status !== BackgroundGeolocation.auth.AUTHORIZED) {
-        Alert.alert(
-          'Location services are disabled',
-          'Would you like to open location settings?',
-          [
-            { text: 'Yes', onPress: () => BackgroundGeolocation.showLocationSettings() },
-            { text: 'No', onPress: () => console.tron.log('No Pressed'), style: 'cancel' },
-          ],
-        );
-      }
-    });
-    
-    BackgroundGeolocation.on('error', ({ message }) => {
-      Alert.alert('Background Geolocation error', message);
-    });
+    if (Platform.OS === 'android') {
+      LocationServicesDialogBox.checkLocationServicesIsEnabled({
+        message: "<h2>Enable Location?</h2>This app wants to change your device settings:<br/><br/>Use GPS, Wi-Fi, and Cell Network for location<br/><br/><a href='#'>Learn more</a>",
+        ok: 'YES',
+        cancel: 'NO',
+        enableHighAccuracy: true, // true => GPS AND NETWORK PROVIDER, false => ONLY GPS PROVIDER
+        showDialog: true, // false => Opens the Location access page directly
+      })
+        .then(async () => {
+          // success => {alreadyEnabled: true, enabled: true, status: 'enabled'}
+          granted = await PermissionsAndroid
+            .request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION, {
+              title: 'Geolocation Access',
+              message: 'App needs access to your location ' +
+              'so that we can let it be even more awesome.',
+            });
+        })
+        .catch(() => {});
+    }
 
-    BackgroundGeolocation.on('location', (location) => {
-      console.tron.log(location);
+    if ((granted || Platform.OS === 'ios') && this.props.user !== null) {
+      // identify the user and request permissions
+      const { user } = this.props;
+      const description = user.name || user.username;
 
-      BackgroundGeolocation.startTask((taskKey) => {
-        requestAnimationFrame(() => {
-          this.props.updateLocation(location);
+      Radar.setUserId(String(user.id));
+      Radar.setDescription(description);
+      Radar.requestPermissions(false);
 
-          BackgroundGeolocation.endTask(taskKey);
-        });
+      // track the user's location once in the foreground
+      Radar.trackOnce().then((result) => {
+        // do something with result.events, result.user.geofences
+        this.props.updateLocation(result.location);
+      }).catch(() => {
+        // optionally, do something with err
       });
+      
+      Radar.on('location', (result) => {
+        this.props.updateLocation(result.location);
+      });
+    }
+
+    BackHandler.addEventListener('hardwareBackPress', () => {
+      LocationServicesDialogBox.forceCloseDialog();
     });
-    
-    BackgroundGeolocation.start();
   }
   
   componentWillReceiveProps(nextProps) {
@@ -76,8 +83,9 @@ class HomeScreen extends Component {
   }
   
   componentWillUnmount() {
-    BackgroundGeolocation.events.forEach((event) => {
-      BackgroundGeolocation.removeAllListeners(event);
+    Radar.off('location');
+    BackHandler.removeEventListener('hardwareBackPress', () => {
+      LocationServicesDialogBox.forceCloseDialog();
     });
   }
   

@@ -3,7 +3,9 @@ package com.wapi;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.marianhello.react.BackgroundGeolocationPackage;
+import com.showlocationservicesdialogbox.LocationServicesDialogBoxPackage;
+import com.onradar.sdk.Radar;
+import com.onradar.react.RNRadarPackage;
 import com.rnfs.RNFSPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
@@ -27,10 +29,11 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-          new RNFSPackage(),
+            new LocationServicesDialogBoxPackage(),
           new LinearGradientPackage(),
           new ReactNativeConfigPackage(),
-          new BackgroundGeolocationPackage()
+          new RNRadarPackage(),
+          new RNFSPackage()
       );
     }
 
@@ -48,6 +51,7 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
     super.onCreate();
+    Radar.initialize(getApplicationContext(), BuildConfig.RADAR_PUBLISHABLE_API_KEY);
     SoLoader.init(this, /* native exopackage */ false);
   }
 }

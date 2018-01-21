@@ -53,7 +53,7 @@ const ListingItem = (props) => {
             <View style={styles.largeOpenStatus}>
               <Text style={styles.largeOpenStatusText}>{isOpen ? 'OPEN' : 'CLOSED'} NOW</Text>
             </View>
-            {distance > 0
+            {distance > 0 && listingpro.latitude !== ''
               ? <View style={styles.largeDistance}>
                   <Icon name="ios-navigate-outline" style={styles.largeDistanceIcon} />
                   <Text style={styles.largeDistanceText}>{distance.toFixed(2)} Km</Text>
@@ -104,7 +104,7 @@ const ListingItem = (props) => {
           <Text style={styles.compactRatingText}> | {listing_reviewed || '0'} Ratings</Text>
         </View>
         <Text style={styles.compactDescription} numberOfLines={2}>{listingpro.tagline_text}</Text>
-        {distance > 0
+        {distance > 0 && listingpro.latitude !== ''
           ? <View style={styles.compactDistance}>
               <Icon name="ios-navigate-outline" style={styles.compactDistanceIcon} />
               <Text style={styles.compactDistanceText}>{distance.toFixed(2)} Km</Text>

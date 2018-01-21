@@ -1,0 +1,795 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		15165CB4B416C4624F3702F5BB34F6A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		44715886E732CFF2D97241D1CAF79752 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		4EF36A4CD61F87CE26BB0C61A6451EC3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		60C3A749C1109606F3CDCFD061D1D3CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		99A961FEEA85A6745465B89492EF3F4D /* Pods-WAPI-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD326ADA6768530AF7F9680B503A12E /* Pods-WAPI-dummy.m */; };
+		9D036811B7798D5D5023B09D127D54F9 /* Pods-WAPI-tvOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBF2096C6710995724FD21E2BBC1BA6 /* Pods-WAPI-tvOS-dummy.m */; };
+		D3D66A75BDD4FF5C6E16C94C7F3E08E4 /* Pods-WAPI-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E1F2CF120CEF3795F6C1356C63728AF /* Pods-WAPI-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E793F42EC18CE96D0B9225C6D1F1B226 /* Pods-WAPI-tvOSTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AADE59E618CE6E5B473F215D14874444 /* Pods-WAPI-tvOSTests-dummy.m */; };
+		F349D79797874FD7BB25E874FD79463F /* Pods-WAPITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C972A33C875435C07DA4517861A5194 /* Pods-WAPITests-dummy.m */; };
+		FBFB378097F36AC537AE976268F56440 /* Pods-WAPITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 83677CCFFB5110DAA5ED9C1EECFB3B7F /* Pods-WAPITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		14EB04F0268E2E64B717F8685055FF65 /* RadarSDK.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RadarSDK.h; path = RadarSDK/RadarSDK.framework/Versions/A/Headers/RadarSDK.h; sourceTree = "<group>"; };
+		1573DE25C69E8011DD7A59DE78BE89FF /* Pods-WAPITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-WAPITests-frameworks.sh"; sourceTree = "<group>"; };
+		1DD41FBD0CA42A4CDFAAEC4CD1E75773 /* Pods-WAPITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WAPITests.release.xcconfig"; sourceTree = "<group>"; };
+		22B49919BEA21ECDBE0BC2A35DADFC57 /* Pods-WAPI-tvOSTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-WAPI-tvOSTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		2361689E4F644F7A5151587039EA6430 /* Pods_WAPITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_WAPITests.framework; path = "Pods-WAPITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		23DC2F47171D25E359AA3139146F8A9E /* Pods-WAPITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-WAPITests.modulemap"; sourceTree = "<group>"; };
+		280E9B3028FA6F470DAE2A148359112E /* Pods-WAPITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-WAPITests-resources.sh"; sourceTree = "<group>"; };
+		2C02934ABA0052461D793097C5D4508A /* RadarUserInsightsLocation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RadarUserInsightsLocation.h; path = RadarSDK/RadarSDK.framework/Versions/A/Headers/RadarUserInsightsLocation.h; sourceTree = "<group>"; };
+		2C0F40EBC49DD28B950740E30432CEE8 /* RadarUserInsightsState.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RadarUserInsightsState.h; path = RadarSDK/RadarSDK.framework/Versions/A/Headers/RadarUserInsightsState.h; sourceTree = "<group>"; };
+		351901EBD5A98D80E85FB428F081B965 /* RadarUserInsights.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RadarUserInsights.h; path = RadarSDK/RadarSDK.framework/Versions/A/Headers/RadarUserInsights.h; sourceTree = "<group>"; };
+		3B2BBAFF809D7415DA80D46EC5646A41 /* Pods-WAPI-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-WAPI-acknowledgements.plist"; sourceTree = "<group>"; };
+		3F7384BAFB91C80255D8CE025A078288 /* Pods-WAPI-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-WAPI-frameworks.sh"; sourceTree = "<group>"; };
+		4C95D1C29AEDBE1A210958AD3E0C7D64 /* RadarGeofence.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RadarGeofence.h; path = RadarSDK/RadarSDK.framework/Versions/A/Headers/RadarGeofence.h; sourceTree = "<group>"; };
+		4C9D9E64372E5A786AB0C5C8FFB9578C /* RadarEvent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RadarEvent.h; path = RadarSDK/RadarSDK.framework/Versions/A/Headers/RadarEvent.h; sourceTree = "<group>"; };
+		502D513E79012B6A7A59871F38C85514 /* RadarDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RadarDelegate.h; path = RadarSDK/RadarSDK.framework/Versions/A/Headers/RadarDelegate.h; sourceTree = "<group>"; };
+		56456668E686E5E5D3CCC4B2AADE3986 /* Pods-WAPITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-WAPITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		587BCB95B4128C4B40F5B7E6D87F61F0 /* RadarSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RadarSDK.framework; path = RadarSDK/RadarSDK.framework; sourceTree = "<group>"; };
+		59700CF5113EE9FBCCA2E751B8D7AAE0 /* Pods-WAPI-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WAPI-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		5C1A3BF2B7DA2DB14DAB949A6A35A120 /* Pods-WAPI-tvOSTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-WAPI-tvOSTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		5FBA527BC73EE95B2976B2E916B27588 /* Pods-WAPI-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WAPI-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		606E20370AD3EE21D933A578B1F7A72E /* Pods-WAPI-tvOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-WAPI-tvOS-acknowledgements.markdown"; sourceTree = "<group>"; };
+		60CC01484C64E5787FE2EBEEC3BC2AA9 /* RadarPlace.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RadarPlace.h; path = RadarSDK/RadarSDK.framework/Versions/A/Headers/RadarPlace.h; sourceTree = "<group>"; };
+		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		78D5838DE58176AFC00E21B47E4D3206 /* Pods-WAPI-tvOSTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-WAPI-tvOSTests-frameworks.sh"; sourceTree = "<group>"; };
+		7D49685C72F7A83BCF3670B79473C91E /* Pods-WAPI-tvOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-WAPI-tvOS-acknowledgements.plist"; sourceTree = "<group>"; };
+		83677CCFFB5110DAA5ED9C1EECFB3B7F /* Pods-WAPITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-WAPITests-umbrella.h"; sourceTree = "<group>"; };
+		8C972A33C875435C07DA4517861A5194 /* Pods-WAPITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-WAPITests-dummy.m"; sourceTree = "<group>"; };
+		8D5E142E65CC3F15E3883A0151195A81 /* RadarChain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RadarChain.h; path = RadarSDK/RadarSDK.framework/Versions/A/Headers/RadarChain.h; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		95BD52FAF447057C97F5A03D79A69173 /* Pods-WAPI.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-WAPI.modulemap"; sourceTree = "<group>"; };
+		9A0A3EA2AD2E5C291B54B5285288E844 /* Pods-WAPI-tvOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-WAPI-tvOS-resources.sh"; sourceTree = "<group>"; };
+		9C771306669FD2F81BD8699DE1E31C1B /* Pods-WAPITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-WAPITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		9D577B11EDFA1226D607A97CFC3C2F76 /* Pods-WAPI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WAPI.release.xcconfig"; sourceTree = "<group>"; };
+		9E1F2CF120CEF3795F6C1356C63728AF /* Pods-WAPI-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-WAPI-umbrella.h"; sourceTree = "<group>"; };
+		A17EF991839BFC8A951DC35B40825BD7 /* libPods-WAPI-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-WAPI-tvOSTests.a"; path = "libPods-WAPI-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A64EBDE3D889D4BB8366D2904EE4D724 /* Radar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Radar.h; path = RadarSDK/RadarSDK.framework/Versions/A/Headers/Radar.h; sourceTree = "<group>"; };
+		AADE59E618CE6E5B473F215D14874444 /* Pods-WAPI-tvOSTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-WAPI-tvOSTests-dummy.m"; sourceTree = "<group>"; };
+		BBD326ADA6768530AF7F9680B503A12E /* Pods-WAPI-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-WAPI-dummy.m"; sourceTree = "<group>"; };
+		BC0300A73F394F8F0615FC788D726469 /* Pods-WAPI-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WAPI-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		BEB0F7A01839BE334E789E2A355B34A9 /* Pods-WAPI-tvOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-WAPI-tvOS-frameworks.sh"; sourceTree = "<group>"; };
+		C03962A53D92A366AA62BBE6A87FC44E /* Pods-WAPI-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-WAPI-acknowledgements.markdown"; sourceTree = "<group>"; };
+		C2BC4645890A6B79176B863F7B111E02 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C31C3658976667BC6F5E42353BAB465A /* Pods-WAPITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WAPITests.debug.xcconfig"; sourceTree = "<group>"; };
+		D163D7DA8BBD0940260DE61E5819E602 /* Pods-WAPI-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-WAPI-resources.sh"; sourceTree = "<group>"; };
+		DB34665FAF80BDD1744A75FCCA8D5F83 /* RadarUser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RadarUser.h; path = RadarSDK/RadarSDK.framework/Versions/A/Headers/RadarUser.h; sourceTree = "<group>"; };
+		DBA7FB4B6002ACB173FCD4652A040FD9 /* Pods-WAPI-tvOSTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-WAPI-tvOSTests-resources.sh"; sourceTree = "<group>"; };
+		E427E79D13E5059E712A97A523026F2C /* Pods-WAPI-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WAPI-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		EA55BB2430A344B832CF35EB73E8B7FA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECC922D5F85E346460B0627836A40E7A /* Pods-WAPI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WAPI.debug.xcconfig"; sourceTree = "<group>"; };
+		F4C3C48CA641686EDF33478150566A75 /* libPods-WAPI-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-WAPI-tvOS.a"; path = "libPods-WAPI-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCBF2096C6710995724FD21E2BBC1BA6 /* Pods-WAPI-tvOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-WAPI-tvOS-dummy.m"; sourceTree = "<group>"; };
+		FE3022960A8C97EA9DFD0C1676B26BBE /* Pods_WAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_WAPI.framework; path = "Pods-WAPI.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0D48B1FC9537704D80953E9A64DBE2AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60C3A749C1109606F3CDCFD061D1D3CB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		580F775E4D0615D213DA9D912CECD206 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4EF36A4CD61F87CE26BB0C61A6451EC3 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		72FAA9BE3D12B7291D54E7A26D12D310 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15165CB4B416C4624F3702F5BB34F6A3 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF2C2E8BFAFC4A4173C46DB32EE031CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44715886E732CFF2D97241D1CAF79752 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1C046665D036034343FE9776908F6BC8 /* RadarSDK */ = {
+			isa = PBXGroup;
+			children = (
+				A64EBDE3D889D4BB8366D2904EE4D724 /* Radar.h */,
+				8D5E142E65CC3F15E3883A0151195A81 /* RadarChain.h */,
+				502D513E79012B6A7A59871F38C85514 /* RadarDelegate.h */,
+				4C9D9E64372E5A786AB0C5C8FFB9578C /* RadarEvent.h */,
+				4C95D1C29AEDBE1A210958AD3E0C7D64 /* RadarGeofence.h */,
+				60CC01484C64E5787FE2EBEEC3BC2AA9 /* RadarPlace.h */,
+				14EB04F0268E2E64B717F8685055FF65 /* RadarSDK.h */,
+				DB34665FAF80BDD1744A75FCCA8D5F83 /* RadarUser.h */,
+				351901EBD5A98D80E85FB428F081B965 /* RadarUserInsights.h */,
+				2C02934ABA0052461D793097C5D4508A /* RadarUserInsightsLocation.h */,
+				2C0F40EBC49DD28B950740E30432CEE8 /* RadarUserInsightsState.h */,
+				900E45ED6E4E5920C639EBE7E4810F73 /* Frameworks */,
+			);
+			name = RadarSDK;
+			path = RadarSDK;
+			sourceTree = "<group>";
+		};
+		3118AF8D7B1E2B313B64B7D8BA29469B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F4C3C48CA641686EDF33478150566A75 /* libPods-WAPI-tvOS.a */,
+				A17EF991839BFC8A951DC35B40825BD7 /* libPods-WAPI-tvOSTests.a */,
+				FE3022960A8C97EA9DFD0C1676B26BBE /* Pods_WAPI.framework */,
+				2361689E4F644F7A5151587039EA6430 /* Pods_WAPITests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3FEE1B8CFFEF1B627C00A01472CB33EB /* Pods-WAPITests */ = {
+			isa = PBXGroup;
+			children = (
+				C2BC4645890A6B79176B863F7B111E02 /* Info.plist */,
+				23DC2F47171D25E359AA3139146F8A9E /* Pods-WAPITests.modulemap */,
+				9C771306669FD2F81BD8699DE1E31C1B /* Pods-WAPITests-acknowledgements.markdown */,
+				56456668E686E5E5D3CCC4B2AADE3986 /* Pods-WAPITests-acknowledgements.plist */,
+				8C972A33C875435C07DA4517861A5194 /* Pods-WAPITests-dummy.m */,
+				1573DE25C69E8011DD7A59DE78BE89FF /* Pods-WAPITests-frameworks.sh */,
+				280E9B3028FA6F470DAE2A148359112E /* Pods-WAPITests-resources.sh */,
+				83677CCFFB5110DAA5ED9C1EECFB3B7F /* Pods-WAPITests-umbrella.h */,
+				C31C3658976667BC6F5E42353BAB465A /* Pods-WAPITests.debug.xcconfig */,
+				1DD41FBD0CA42A4CDFAAEC4CD1E75773 /* Pods-WAPITests.release.xcconfig */,
+			);
+			name = "Pods-WAPITests";
+			path = "Target Support Files/Pods-WAPITests";
+			sourceTree = "<group>";
+		};
+		525397CDCE9A358E78DC7AD425BE568F /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				8F810139560D95D91DF9970F3FC9E859 /* Pods-WAPI */,
+				B96ABB3F8139D03780A5D57BC3EBB34D /* Pods-WAPI-tvOS */,
+				8DEC729C21B041532D3B6E65E10AA5A7 /* Pods-WAPI-tvOSTests */,
+				3FEE1B8CFFEF1B627C00A01472CB33EB /* Pods-WAPITests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				CD72067D2AB795E30031F2ECE607CAA5 /* Pods */,
+				3118AF8D7B1E2B313B64B7D8BA29469B /* Products */,
+				525397CDCE9A358E78DC7AD425BE568F /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		8DEC729C21B041532D3B6E65E10AA5A7 /* Pods-WAPI-tvOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				5C1A3BF2B7DA2DB14DAB949A6A35A120 /* Pods-WAPI-tvOSTests-acknowledgements.markdown */,
+				22B49919BEA21ECDBE0BC2A35DADFC57 /* Pods-WAPI-tvOSTests-acknowledgements.plist */,
+				AADE59E618CE6E5B473F215D14874444 /* Pods-WAPI-tvOSTests-dummy.m */,
+				78D5838DE58176AFC00E21B47E4D3206 /* Pods-WAPI-tvOSTests-frameworks.sh */,
+				DBA7FB4B6002ACB173FCD4652A040FD9 /* Pods-WAPI-tvOSTests-resources.sh */,
+				E427E79D13E5059E712A97A523026F2C /* Pods-WAPI-tvOSTests.debug.xcconfig */,
+				59700CF5113EE9FBCCA2E751B8D7AAE0 /* Pods-WAPI-tvOSTests.release.xcconfig */,
+			);
+			name = "Pods-WAPI-tvOSTests";
+			path = "Target Support Files/Pods-WAPI-tvOSTests";
+			sourceTree = "<group>";
+		};
+		8F810139560D95D91DF9970F3FC9E859 /* Pods-WAPI */ = {
+			isa = PBXGroup;
+			children = (
+				EA55BB2430A344B832CF35EB73E8B7FA /* Info.plist */,
+				95BD52FAF447057C97F5A03D79A69173 /* Pods-WAPI.modulemap */,
+				C03962A53D92A366AA62BBE6A87FC44E /* Pods-WAPI-acknowledgements.markdown */,
+				3B2BBAFF809D7415DA80D46EC5646A41 /* Pods-WAPI-acknowledgements.plist */,
+				BBD326ADA6768530AF7F9680B503A12E /* Pods-WAPI-dummy.m */,
+				3F7384BAFB91C80255D8CE025A078288 /* Pods-WAPI-frameworks.sh */,
+				D163D7DA8BBD0940260DE61E5819E602 /* Pods-WAPI-resources.sh */,
+				9E1F2CF120CEF3795F6C1356C63728AF /* Pods-WAPI-umbrella.h */,
+				ECC922D5F85E346460B0627836A40E7A /* Pods-WAPI.debug.xcconfig */,
+				9D577B11EDFA1226D607A97CFC3C2F76 /* Pods-WAPI.release.xcconfig */,
+			);
+			name = "Pods-WAPI";
+			path = "Target Support Files/Pods-WAPI";
+			sourceTree = "<group>";
+		};
+		900E45ED6E4E5920C639EBE7E4810F73 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				587BCB95B4128C4B40F5B7E6D87F61F0 /* RadarSDK.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B96ABB3F8139D03780A5D57BC3EBB34D /* Pods-WAPI-tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				606E20370AD3EE21D933A578B1F7A72E /* Pods-WAPI-tvOS-acknowledgements.markdown */,
+				7D49685C72F7A83BCF3670B79473C91E /* Pods-WAPI-tvOS-acknowledgements.plist */,
+				FCBF2096C6710995724FD21E2BBC1BA6 /* Pods-WAPI-tvOS-dummy.m */,
+				BEB0F7A01839BE334E789E2A355B34A9 /* Pods-WAPI-tvOS-frameworks.sh */,
+				9A0A3EA2AD2E5C291B54B5285288E844 /* Pods-WAPI-tvOS-resources.sh */,
+				BC0300A73F394F8F0615FC788D726469 /* Pods-WAPI-tvOS.debug.xcconfig */,
+				5FBA527BC73EE95B2976B2E916B27588 /* Pods-WAPI-tvOS.release.xcconfig */,
+			);
+			name = "Pods-WAPI-tvOS";
+			path = "Target Support Files/Pods-WAPI-tvOS";
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CD72067D2AB795E30031F2ECE607CAA5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1C046665D036034343FE9776908F6BC8 /* RadarSDK */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		4E1D1E991167EF357D0A34E24FF6333B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBFB378097F36AC537AE976268F56440 /* Pods-WAPITests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		945B57E736E405E02034A17C953D2BE3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3D66A75BDD4FF5C6E16C94C7F3E08E4 /* Pods-WAPI-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		0E95728B4A517E406814E9A2FE1F9986 /* Pods-WAPI-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E6C599C2CE5173F944C04A9818F0FBD1 /* Build configuration list for PBXNativeTarget "Pods-WAPI-tvOS" */;
+			buildPhases = (
+				2A8574176007F22C4D781FEE405AC240 /* Sources */,
+				72FAA9BE3D12B7291D54E7A26D12D310 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-WAPI-tvOS";
+			productName = "Pods-WAPI-tvOS";
+			productReference = F4C3C48CA641686EDF33478150566A75 /* libPods-WAPI-tvOS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		3DF2D9F6AAFB5CDAF621C7ACF03600B0 /* Pods-WAPI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B1C32AE88EAF3BDEF802C14030164FD4 /* Build configuration list for PBXNativeTarget "Pods-WAPI" */;
+			buildPhases = (
+				2383B680E4ED0972B6AD2144DE56E9DA /* Sources */,
+				580F775E4D0615D213DA9D912CECD206 /* Frameworks */,
+				945B57E736E405E02034A17C953D2BE3 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-WAPI";
+			productName = "Pods-WAPI";
+			productReference = FE3022960A8C97EA9DFD0C1676B26BBE /* Pods_WAPI.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		CA6E2F8044B655FAA9E53D1403BF6EE3 /* Pods-WAPI-tvOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3C861446907BE8417130EF7E9A20BEBC /* Build configuration list for PBXNativeTarget "Pods-WAPI-tvOSTests" */;
+			buildPhases = (
+				38F0F7948D15CC6BE776928E6C6649C8 /* Sources */,
+				0D48B1FC9537704D80953E9A64DBE2AA /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-WAPI-tvOSTests";
+			productName = "Pods-WAPI-tvOSTests";
+			productReference = A17EF991839BFC8A951DC35B40825BD7 /* libPods-WAPI-tvOSTests.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		D406D2CACC7D4C1EC7C6F83667C0AA6B /* Pods-WAPITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6AEC9D93B2462A17CA4FD3F8C82408AD /* Build configuration list for PBXNativeTarget "Pods-WAPITests" */;
+			buildPhases = (
+				DAD7B5492368561BF70C551352CB6C7D /* Sources */,
+				CF2C2E8BFAFC4A4173C46DB32EE031CE /* Frameworks */,
+				4E1D1E991167EF357D0A34E24FF6333B /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-WAPITests";
+			productName = "Pods-WAPITests";
+			productReference = 2361689E4F644F7A5151587039EA6430 /* Pods_WAPITests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 3118AF8D7B1E2B313B64B7D8BA29469B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3DF2D9F6AAFB5CDAF621C7ACF03600B0 /* Pods-WAPI */,
+				0E95728B4A517E406814E9A2FE1F9986 /* Pods-WAPI-tvOS */,
+				CA6E2F8044B655FAA9E53D1403BF6EE3 /* Pods-WAPI-tvOSTests */,
+				D406D2CACC7D4C1EC7C6F83667C0AA6B /* Pods-WAPITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2383B680E4ED0972B6AD2144DE56E9DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				99A961FEEA85A6745465B89492EF3F4D /* Pods-WAPI-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A8574176007F22C4D781FEE405AC240 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D036811B7798D5D5023B09D127D54F9 /* Pods-WAPI-tvOS-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		38F0F7948D15CC6BE776928E6C6649C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E793F42EC18CE96D0B9225C6D1F1B226 /* Pods-WAPI-tvOSTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DAD7B5492368561BF70C551352CB6C7D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F349D79797874FD7BB25E874FD79463F /* Pods-WAPITests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		27F720F65F7FFE19FB44B4F0ED574E77 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1DD41FBD0CA42A4CDFAAEC4CD1E75773 /* Pods-WAPITests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-WAPITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-WAPITests/Pods-WAPITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_WAPITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		39C5BC78A31CDE101068C530CAC7FA0F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		844B93B5017CC19A8192B769406F397D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C31C3658976667BC6F5E42353BAB465A /* Pods-WAPITests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-WAPITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-WAPITests/Pods-WAPITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_WAPITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		856736D47DC2340B66A3D27909932BA2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 59700CF5113EE9FBCCA2E751B8D7AAE0 /* Pods-WAPI-tvOSTests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		89C8BB24E37B25BAEEB8FBA01EE05DAF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		929388C06EA925734828C50B0FDB2C44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BC0300A73F394F8F0615FC788D726469 /* Pods-WAPI-tvOS.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9804F443236478A5BD2C3E3ADEB8919F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D577B11EDFA1226D607A97CFC3C2F76 /* Pods-WAPI.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-WAPI/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-WAPI/Pods-WAPI.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_WAPI;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B9F4B45445048E5AEFFB3F4CA9F06B93 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E427E79D13E5059E712A97A523026F2C /* Pods-WAPI-tvOSTests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C18A35C74797B30981FAE7E422790995 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5FBA527BC73EE95B2976B2E916B27588 /* Pods-WAPI-tvOS.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D76C39D353FA9EF3CC5F759D717B2A75 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECC922D5F85E346460B0627836A40E7A /* Pods-WAPI.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-WAPI/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-WAPI/Pods-WAPI.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_WAPI;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				39C5BC78A31CDE101068C530CAC7FA0F /* Debug */,
+				89C8BB24E37B25BAEEB8FBA01EE05DAF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3C861446907BE8417130EF7E9A20BEBC /* Build configuration list for PBXNativeTarget "Pods-WAPI-tvOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9F4B45445048E5AEFFB3F4CA9F06B93 /* Debug */,
+				856736D47DC2340B66A3D27909932BA2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6AEC9D93B2462A17CA4FD3F8C82408AD /* Build configuration list for PBXNativeTarget "Pods-WAPITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				844B93B5017CC19A8192B769406F397D /* Debug */,
+				27F720F65F7FFE19FB44B4F0ED574E77 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B1C32AE88EAF3BDEF802C14030164FD4 /* Build configuration list for PBXNativeTarget "Pods-WAPI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D76C39D353FA9EF3CC5F759D717B2A75 /* Debug */,
+				9804F443236478A5BD2C3E3ADEB8919F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E6C599C2CE5173F944C04A9818F0FBD1 /* Build configuration list for PBXNativeTarget "Pods-WAPI-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				929388C06EA925734828C50B0FDB2C44 /* Debug */,
+				C18A35C74797B30981FAE7E422790995 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

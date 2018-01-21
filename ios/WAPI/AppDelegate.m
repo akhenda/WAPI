@@ -8,15 +8,18 @@
  */
 
 #import "AppDelegate.h"
+#import "ReactNativeConfig.h"
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import <RadarSDK/RadarSDK.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   NSURL *jsCodeLocation;
+  NSString *radarAPIKey = [ReactNativeConfig envFor:@"RADAR_PUBLISHABLE_API_KEY"];
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
 
@@ -31,6 +34,7 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  [Radar initializeWithPublishableKey:radarAPIKey];
   return YES;
 }
 
