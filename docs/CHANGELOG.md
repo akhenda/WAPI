@@ -1,3 +1,11 @@
+<a name="0.2.2"></a>
+## [0.2.2](https://github.com/akhenda/WAPI/compare/v0.2.1...v0.2.2) (2018-01-22)
+
+
+### Bug Fixes
+
+* **build:** change some theme files casing ([19170cb](https://github.com/akhenda/WAPI/commit/19170cb))
+
 <a name="0.2.1"></a>
 ## [0.2.1](https://github.com/akhenda/WAPI/compare/v0.2.0...v0.2.1) (2018-01-22)
 
