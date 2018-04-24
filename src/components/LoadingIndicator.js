@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, StatusBar } from 'react-native';
+import { View, StatusBar } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
 import { colors, images } from '../theme';
@@ -10,7 +10,14 @@ const LoadingIndicator = () => {
   return (
     <View style={styles.container}>
       <StatusBar translucent backgroundColor={colors.statusBarTranslucent} />
-      <Image source={images.loading2} style={styles.image} />
+      <Animatable.Image
+        source={images.logoWhite}
+        style={styles.image}
+        duration={2000}
+        animation="pulse"
+        easing="ease-in-out"
+        iterationCount="infinite"
+      />
       <Animatable.Text
         duration={4000}
         animation="flash"

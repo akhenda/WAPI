@@ -5,7 +5,7 @@ import { colors } from 'src/theme';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.loadingBackground,
+    backgroundColor: colors.primary.dark,
     alignItems: 'center',
     justifyContent: 'center',
   },
