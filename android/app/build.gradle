@@ -154,7 +154,7 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-android-location-services-dialog-box')
+    implementation project(':react-native-android-location-services-dialog-box')
     implementation project(':react-native-radar')
     implementation project(':react-native-fs')
     implementation project(':react-native-linear-gradient')
