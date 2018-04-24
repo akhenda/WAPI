@@ -96,13 +96,16 @@ class ListingsScreen extends Component {
   }
 
   render() {
+    let listingType = 'compact';
     const emptyHeight = '100%';
     const { loading, refreshing, places } = this.state;
     const {
       currentLocation, favourites, selectedCategory, isSearch, searchText,
     } = this.props;
     const empty = places.length > 0;
-    const listingType = selectedCategory.name.indexOf('Restaurant') >= 0 ? 'large' : 'compact';
+    if (selectedCategory !== null) {
+      listingType = selectedCategory.name.indexOf('Restaurant') >= 0 ? 'large' : 'compact';
+    }
     const headerTitle = isSearch ? `Search: ${searchText}` : selectedCategory.name;
 
     if (loading && places.length === 0) return <LoadingIndicator />;
