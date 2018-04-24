@@ -54,7 +54,10 @@ class SurveyScreen extends Component {
     } = interests;
     
     const isPageOneFilled = (
-      nationality !== 'default' && occupation !== 'default' && gender !== 'default' && date
+      nationality !== 'default' &&
+      occupation !== 'default' &&
+      gender !== 'default' &&
+      date !== ''
     );
     const isInterestSelected = (
       activities || restaurants || medical || services || shopping || volunteer
@@ -139,6 +142,8 @@ class SurveyScreen extends Component {
   }
   
   renderCategory(icon, title, stateKey, color) {
+    // console.tron.log(stateKey);
+    // console.tron.log(this.props.interests);
     return (
       <ListItem icon>
         <Left>
@@ -197,12 +202,12 @@ class SurveyScreen extends Component {
           Choose the categories you are most interested in.
         </Text>
         <List>
-          {this.renderCategory('walk', 'Activities', 'activities', 'orange')}
-          {this.renderCategory('restaurant', 'Bars, Cafés & Restaurants', 'restaurants', 'darkblue')}
-          {this.renderCategory('medkit', 'Medical', 'medical', 'green')}
-          {this.renderCategory('pricetags', 'Services', 'services', 'darkslategrey')}
-          {this.renderCategory('cart', 'Shopping', 'shopping', 'deepskyblue')}
-          {this.renderCategory('hand', 'Volunteer/Donations', 'volunteer', 'fuchsia')}
+          {this.renderCategory('walk', 'Activities', 'activities', 'purple')}
+          {this.renderCategory('restaurant', 'Bars, Cafés & Restaurants', 'restaurants', 'black')}
+          {this.renderCategory('medkit', 'Medical', 'medical', 'red')}
+          {this.renderCategory('pricetags', 'Services', 'services', 'orange')}
+          {this.renderCategory('cart', 'Shopping', 'shopping', 'blue')}
+          {this.renderCategory('hand', 'Volunteer/Donations', 'volunteer', 'green')}
           <Button success rounded style={styles.nextButton} onPress={() => this.onPageChange(2)}>
             <Text>Done, next step</Text>
           </Button>
@@ -239,6 +244,7 @@ class SurveyScreen extends Component {
         <AnimatedContentWrapper
           showLogo={false}
           headerTitle="About You"
+          showBannerLeftButton={false}
           showToolbarLeftButton={false}
           showToolbarRightButton={false}
         >

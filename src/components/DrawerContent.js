@@ -29,23 +29,23 @@ class DrawerContent extends Component {
     if (this.props.categories.length > 0) {
       return this.props.categories.map((category) => {
         let iconName = 'walk';
-        let iconColor = 'orange';
+        let iconColor = 'purple';
         const name = category.name.toLowerCase();
         if (name.indexOf('restaurants') >= 0) {
           iconName = 'restaurant';
-          iconColor = 'darkblue';
+          iconColor = 'black';
         } else if (name.indexOf('medical') >= 0) {
           iconName = 'medkit';
-          iconColor = 'green';
+          iconColor = 'red';
         } else if (name.indexOf('services') >= 0) {
           iconName = 'pricetags';
-          iconColor = 'darkslategrey';
+          iconColor = 'orange';
         } else if (name.indexOf('shopping') >= 0) {
           iconName = 'cart';
-          iconColor = 'deepskyblue';
+          iconColor = 'blue';
         } else if (name.indexOf('volunteering') >= 0) {
           iconName = 'hand';
-          iconColor = 'fuchsia';
+          iconColor = 'green';
         }
 
         return this.renderMenuItem(
