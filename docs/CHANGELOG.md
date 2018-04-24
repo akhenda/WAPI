@@ -1,3 +1,13 @@
+<a name="0.2.3"></a>
+## [0.2.3](https://github.com/akhenda/WAPI/compare/v0.2.2...v0.2.3) (2018-04-24)
+
+
+### Bug Fixes
+
+* **build:** android build failing due to wrong radar android support lib ([567e177](https://github.com/akhenda/WAPI/commit/567e177))
+* **build:** regenerate react-native-radar patch file ([5870a7d](https://github.com/akhenda/WAPI/commit/5870a7d))
+* **search:** app crashes when searching for a listing ([21f29b0](https://github.com/akhenda/WAPI/commit/21f29b0))
+
 <a name="0.2.2"></a>
 ## [0.2.2](https://github.com/akhenda/WAPI/compare/v0.2.1...v0.2.2) (2018-01-22)
 
