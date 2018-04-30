@@ -3,6 +3,8 @@ package com.wapi;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.avishayil.rnrestart.ReactNativeRestartPackage;
+import com.masteratul.exceptionhandler.ReactNativeExceptionHandlerPackage;
 import com.showlocationservicesdialogbox.LocationServicesDialogBoxPackage;
 import com.onradar.sdk.Radar;
 import com.onradar.react.RNRadarPackage;
@@ -29,6 +31,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+          new ReactNativeRestartPackage(),
+          new ReactNativeExceptionHandlerPackage(),
           new LocationServicesDialogBoxPackage(),
           new LinearGradientPackage(),
           new ReactNativeConfigPackage(),
