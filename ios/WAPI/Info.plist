@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>WAPI?</string>
+	<string>WAPI? Kenya</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>7</string>
+	<string>8</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -35,12 +35,20 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>This app uses your Bluetooth to make your experience better.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>This app uses your Calendar to make your experience better.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>This app uses your location in the background to recommend places nearby.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>This app uses your location in the background to recommend places nearby.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This app uses your location in the foreground to recommend places nearby.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app uses your Photo Library to make your experience better.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>This app uses your Speech Recognition to make your experience better.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Entypo.ttf</string>
