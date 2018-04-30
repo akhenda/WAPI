@@ -16,17 +16,21 @@ const api = DebugConfig.useFixtures ? FixtureAPI : API.create();
 
 const responseFailure = (dispatch, type, response) => {
   let message = 'An error occured! Please try again.';
+  const { message: resMsg } = response.data;
+
   if (response.problem === 'TIMEOUT_ERROR') {
     message = 'A timeout error occured! Check your internet connection and then try again.';
   } else if (response.problem === 'NETWORK_ERROR') {
     message = 'A network error occured! Check your internet connection and then try again.';
   } else if (response.problem === 'CONNECTION_ERROR') {
     message = 'A connection error occured! Service is currently unavailable. Please try again later.';
+  } else if (resMsg) {
+    message = resMsg;
   } else if (response.data) {
-    dispatch({ type, payload: response.data });
+    return dispatch({ type, payload: response.data });
   }
 
-  dispatch({ type, payload: { message } });
+  return dispatch({ type, payload: { message } });
 };
 
 export const isUserAuthenticated = (dispatch, token) => {  
