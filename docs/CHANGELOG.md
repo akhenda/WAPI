@@ -1,3 +1,18 @@
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/akhenda/WAPI/compare/v0.2.3...v0.3.0) (2018-04-30)
+
+
+### Bug Fixes
+
+* **auth:** show apprpriate error messages ([b1c2ece](https://github.com/akhenda/WAPI/commit/b1c2ece))
+* **build:** iOS assets errors when validating archive ([739a91c](https://github.com/akhenda/WAPI/commit/739a91c))
+
+
+### Features
+
+* **build:** install and configure react native sentry ([dcc9cdc](https://github.com/akhenda/WAPI/commit/dcc9cdc))
+* **build:** install react native exception handler ([b71f096](https://github.com/akhenda/WAPI/commit/b71f096))
+
 <a name="0.2.3"></a>
 ## [0.2.3](https://github.com/akhenda/WAPI/compare/v0.2.2...v0.2.3) (2018-04-24)
 
