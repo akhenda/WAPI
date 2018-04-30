@@ -1,6 +1,7 @@
 import { Text } from 'react-native';
 import debugConfig from './debug';
 import appConfig from './app';
+import './sentry';
 
 // Allow/disallow font-scaling in app
 Text.defaultProps.allowFontScaling = appConfig.allowTextFontScaling;

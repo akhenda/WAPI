@@ -61,6 +61,7 @@
     "react-native-restart": "0.0.6",
     "react-native-router-flux": "^4.0.0-beta.27",
     "react-native-select-input-ios": "^1.1.4",
+    "react-native-sentry": "^0.36.0",
     "react-native-star-rating": "^1.0.8",
     "react-native-step-indicator": "0.0.7",
     "react-native-zoom-image": "^0.1.2",
