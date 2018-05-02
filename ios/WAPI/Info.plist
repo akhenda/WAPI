@@ -49,6 +49,10 @@
 	<string>This app uses your Photo Library to make your experience better.</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>This app uses your Speech Recognition to make your experience better.</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>This app uses Apple Music to make your experience better.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>This app uses Motion to make your experience better.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Entypo.ttf</string>
