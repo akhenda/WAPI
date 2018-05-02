@@ -1,3 +1,11 @@
+<a name="0.3.1"></a>
+## [0.3.1](https://github.com/akhenda/WAPI/compare/v0.3.0...v0.3.1) (2018-05-02)
+
+
+### Bug Fixes
+
+* **build:** react-native-sentry causes iOS archive build to fail ([498fde9](https://github.com/akhenda/WAPI/commit/498fde9))
+
 <a name="0.3.0"></a>
 # [0.3.0](https://github.com/akhenda/WAPI/compare/v0.2.3...v0.3.0) (2018-04-30)
 
