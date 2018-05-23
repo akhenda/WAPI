@@ -64,6 +64,7 @@
     "react-native-sentry": "^0.36.0",
     "react-native-star-rating": "^1.0.9",
     "react-native-step-indicator": "0.0.8",
+    "react-native-view-more-text": "^1.4.4",
     "react-native-zoom-image": "^0.1.2",
     "react-redux": "^5.0.7",
     "redux": "^3.7.2",

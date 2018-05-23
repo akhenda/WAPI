@@ -17,7 +17,7 @@ import { colors } from 'src/theme';
 import styles, { customStepperStyles } from './styles/SurveyScreenStyles';
 
 
-class SurveyScreen extends Component {  
+class SurveyScreen extends Component {
   constructor(props) {
     super(props);
 
@@ -26,11 +26,11 @@ class SurveyScreen extends Component {
       currentPosition: 0,
     };
   }
-  
+
   onSubmitEditingValue = (key, value) => {
     this.props.appFieldChanged({ prop: key, value });
   };
-  
+
   onInterestValueChange = (key, value) => {
     this.props.appFieldChanged({
       prop: 'interests',
@@ -50,7 +50,7 @@ class SurveyScreen extends Component {
     const {
       activities, restaurants, medical, services, shopping, volunteer,
     } = interests;
-    
+
     const isPageOneFilled = (
       nationality !== 'default' &&
       occupation !== 'default' &&
@@ -65,20 +65,20 @@ class SurveyScreen extends Component {
       this.renderAlert('Empty Fields', 'Please fill all fields in this section');
       return;
     }
-    
+
     if (currentPosition === 1 && !isInterestSelected) {
       this.renderAlert('No interest selected', 'Please select at least one interest.');
       return;
     }
-    
+
     this.setState({ currentPosition: position });
   };
-  
+
   onDone = () => {
     this.props.doneSurvey();
     Actions.home();
   }
-  
+
   getNationalityOptions = () => {
     return [
       { value: 'default', label: 'I am a...' },
@@ -89,7 +89,7 @@ class SurveyScreen extends Component {
       { value: 'other', label: 'Other' },
     ];
   };
-  
+
   getOccupationOptions = () => {
     return [
       { value: 'default', label: 'I work in...' },
@@ -102,7 +102,7 @@ class SurveyScreen extends Component {
       { value: 'other', label: 'Other' },
     ];
   };
-  
+
   getGenderOptions = () => {
     return [
       { value: 'default', label: 'Gender' },
@@ -110,7 +110,7 @@ class SurveyScreen extends Component {
       { value: 'f', label: 'Female' },
     ];
   };
-  
+
   renderAlert(title, msg) {
     return (
       Alert.alert(
@@ -124,7 +124,7 @@ class SurveyScreen extends Component {
       )
     );
   }
-  
+
   renderPicker(key, options) {
     return (
       <View>
@@ -140,7 +140,7 @@ class SurveyScreen extends Component {
       </View>
     );
   }
-  
+
   renderCategory(icon, title, stateKey, color) {
     // console.tron.log(stateKey);
     // console.tron.log(this.props.interests);
@@ -161,7 +161,7 @@ class SurveyScreen extends Component {
       </ListItem>
     );
   }
-  
+
   renderAboutYou() {
     const { date } = this.props;
 
@@ -180,6 +180,7 @@ class SurveyScreen extends Component {
           format="YYYY-MM-DD"
           confirmBtnText="Confirm"
           cancelBtnText="Cancel"
+          androidMode="spinner"
           customStyles={{
             dateInput: styles.dateInput,
             dateTouchBody: styles.dateTouchBody,
@@ -194,7 +195,7 @@ class SurveyScreen extends Component {
       </View>
     );
   }
-  
+
   renderYourInterests() {
     return (
       <View style={styles.interests}>
@@ -215,7 +216,7 @@ class SurveyScreen extends Component {
       </View>
     );
   }
-  
+
   renderDone() {
     return (
       <View style={styles.done}>
@@ -238,7 +239,7 @@ class SurveyScreen extends Component {
     const labels = ['About You', 'Your Interests', 'Done'];
 
     if (loading) return <LoadingIndicator />;
-  
+
     return (
       <Container style={styles.container}>
         <AnimatedContentWrapper
