@@ -1,3 +1,25 @@
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/akhenda/WAPI/compare/v0.3.1...v0.4.0) (2018-05-24)
+
+
+### Bug Fixes
+
+* **home:** native base buttons and cacheable images props ([79207a1](https://github.com/akhenda/WAPI/commit/79207a1))
+* **listing:** hide unwanted button icons ([f71eb16](https://github.com/akhenda/WAPI/commit/f71eb16))
+
+
+### Features
+
+* **listing:** add image slider for gallery images ([8563c05](https://github.com/akhenda/WAPI/commit/8563c05))
+* **listing:** fold long description text ([6c814e5](https://github.com/akhenda/WAPI/commit/6c814e5))
+
+
+### Performance Improvements
+
+* **android:** use a spinner for date picker on the survey page ([15fb43f](https://github.com/akhenda/WAPI/commit/15fb43f))
+* **build:** relink the native dependencies ([f14f919](https://github.com/akhenda/WAPI/commit/f14f919))
+* **build:** upgrade dependencies ([b2a4800](https://github.com/akhenda/WAPI/commit/b2a4800))
+
 <a name="0.3.1"></a>
 ## [0.3.1](https://github.com/akhenda/WAPI/compare/v0.3.0...v0.3.1) (2018-05-02)
 
