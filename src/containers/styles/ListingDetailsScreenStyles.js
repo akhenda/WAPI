@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginVertical: 10,
     marginHorizontal: 5,
-    resizeMode: 'cover',
+    // resizeMode: 'cover',
     borderColor: colors.primary.text,
   },
   moreInfo: {
@@ -205,6 +205,13 @@ const styles = StyleSheet.create({
   readMore: {
     marginTop: 5,
     color: colors.primary.main,
+  },
+  modalClose: {
+    position: 'absolute',
+    top: 34,
+    right: 15,
+    color: 'white',
+    fontSize: 18,
   },
 });
 

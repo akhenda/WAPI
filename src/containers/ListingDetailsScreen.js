@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, FlatList, Easing, ActivityIndicator } from 'react-native';
+import { View, FlatList, TouchableOpacity, ActivityIndicator, Modal, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { Container, Text, Fab, Icon } from 'native-base';
 import Config from 'react-native-config';
-import ZoomImage from 'react-native-zoom-image';
 import StarRating from 'react-native-star-rating';
 import { Actions } from 'react-native-router-flux';
 import ViewMoreText from 'react-native-view-more-text';
+import ImageViewer from 'react-native-image-zoom-viewer';
 import GoogleStaticMap from 'react-native-google-static-map';
 
 import { stripHTML } from 'src/utils/strip';
@@ -28,7 +28,13 @@ class ListingDetailsScreen extends Component {
     this.state = {
       empty: false,
       loading: false,
+      imageIndex: 0,
+      modalVisible: false,
     };
+  }
+
+  toggleModal = (index = 0) => {
+    this.setState(prevState => ({ modalVisible: !prevState.modalVisible, imageIndex: index }));
   }
 
   renderViewMore(onPress) {
@@ -44,7 +50,7 @@ class ListingDetailsScreen extends Component {
   }
 
   render() {
-    const { loading } = this.state;
+    const { loading, imageIndex, modalVisible } = this.state;
     const {
       id,
       title,
@@ -58,6 +64,8 @@ class ListingDetailsScreen extends Component {
     const { isOpen } = openStatus(listingpro.business_hours);
     let onFavourite = () => this.props.addFavourite(this.props.item);
     const isFavourite = Object.keys(this.props.favourites).includes(String(id));
+
+    const gallery = gallery_images.map(img => ({ url: img[0] }));
 
     if (isFavourite) {
       onFavourite = () => this.props.removeFavourite(this.props.item.id);
@@ -121,15 +129,15 @@ class ListingDetailsScreen extends Component {
                   horizontal
                   data={gallery_images}
                   keyExtractor={item => item[0]}
-                  renderItem={({ item }) => {
+                  renderItem={({ item, index }) => {
                     return (
-                      <ZoomImage
-                        duration={200}
-                        enableScaling={false}
-                        easingFunc={Easing.ease}
-                        source={{ uri: item[0] }}
-                        imgStyle={styles.galleryItem}
-                      />
+                      <TouchableOpacity onPress={() => this.toggleModal(index)}>
+                        <Image
+                          resizeMode="cover"
+                          source={{ uri: item[0] }}
+                          style={styles.galleryItem}
+                        />
+                      </TouchableOpacity>
                     );
                   }}
                   style={[styles.gallery]}
@@ -226,6 +234,15 @@ class ListingDetailsScreen extends Component {
             <Icon name={isFavourite ? 'ios-heart' : 'ios-heart-outline'} />
           </Fab>
         </AnimatedContentWrapper>
+        <Modal visible={modalVisible} transparent={true} onRequestClose={this.toggleModal}>
+          <ImageViewer
+            imageUrls={gallery}
+            index={imageIndex}
+            backgroundColor="rgba(0, 0, 0, 0.95)"
+            
+          />
+          <Text style={styles.modalClose} onPress={this.toggleModal}>Close</Text>
+        </Modal>
       </Container>
     );
   }

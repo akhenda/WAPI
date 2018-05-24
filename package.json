@@ -53,6 +53,7 @@
     "react-native-datepicker": "^1.7.2",
     "react-native-exception-handler": "^2.7.5",
     "react-native-google-static-map": "^0.1.12",
+    "react-native-image-zoom-viewer": "^2.2.5",
     "react-native-linear-gradient": "^2.4.0",
     "react-native-offline-mode": "^0.1.5",
     "react-native-onboarding-swiper": "^0.6.0",
