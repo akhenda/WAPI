@@ -7,6 +7,7 @@ import Config from 'react-native-config';
 import ZoomImage from 'react-native-zoom-image';
 import StarRating from 'react-native-star-rating';
 import { Actions } from 'react-native-router-flux';
+import ViewMoreText from 'react-native-view-more-text';
 import GoogleStaticMap from 'react-native-google-static-map';
 
 import { stripHTML } from 'src/utils/strip';
@@ -28,6 +29,18 @@ class ListingDetailsScreen extends Component {
       empty: false,
       loading: false,
     };
+  }
+
+  renderViewMore(onPress) {
+    return (
+      <Text onPress={onPress} style={styles.readMore}>Read more</Text>
+    );
+  }
+
+  renderViewLess(onPress) {
+    return (
+      <Text onPress={onPress} style={styles.readMore}>Show less</Text>
+    );
   }
 
   render() {
@@ -128,8 +141,14 @@ class ListingDetailsScreen extends Component {
                 <Icon name="thumbs-up" style={styles.verifiedIcon} />
                 <Text style={styles.verifiedText}>Verified by WAPI?</Text>
               </View>
-              <Text style={[styles.titles, styles.moreInfoTitle]}>Details</Text>
-              <Text style={styles.description}>{stripHTML(content.rendered)}</Text>
+              <Text style={[styles.titles, styles.moreInfoTitle]}>Description</Text>
+              <ViewMoreText
+                numberOfLines={8}
+                renderViewMore={this.renderViewMore}
+                renderViewLess={this.renderViewLess}
+              >
+                <Text style={styles.description}>{stripHTML(content.rendered)}</Text>
+              </ViewMoreText>
             </View>
 
             <View style={[styles.dropShadow, styles.reviews]}>

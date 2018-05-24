@@ -91,7 +91,7 @@ class HomeScreen extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.categories) this.setState({ loading: false });
+    if (nextProps.categories && nextProps.user) this.setState({ loading: false });
   }
 
   componentWillUnmount() {

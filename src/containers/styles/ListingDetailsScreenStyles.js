@@ -201,6 +201,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: colors.lightestText,
   },
+
+  readMore: {
+    marginTop: 5,
+    color: colors.primary.main,
+  },
 });
 
 export default styles;
