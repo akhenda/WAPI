@@ -67,15 +67,23 @@ const styles = StyleSheet.create({
     color: colors.lightestText,
   },
   button: {
-    marginTop: 10,
-    marginBottom: 20,
+    // marginTop: 10,
+    // marginBottom: 20,
     alignSelf: 'center',
-    borderColor: colors.primary.lighter, 
+    borderColor: colors.primary.lighter,
+  },
+  spacer10: {
+    width: '100%',
+    height: 10,
+  },
+  spacer20: {
+    width: '100%',
+    height: 20,
   },
   buttonText: {
     color: colors.primary.main,
   },
-  
+
   listing: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -101,7 +109,7 @@ const styles = StyleSheet.create({
     left: 0,
     width: '100%',
     height: '100%',
-    resizeMode: 'cover',
+    // resizeMode: 'cover',
   },
   listingItemTextContainer: {
     width: metrics.screenWidth / 3,
@@ -120,7 +128,7 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center',
     backgroundColor: colors.statusBarTranslucentDark,
   },
-  
+
   empty: {
     justifyContent: 'center',
     width: metrics.screenWidth,

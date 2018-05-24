@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     flexDirection: 'row',
     backgroundColor: colors.primary.text,
-    
+
     // iOS Drop Shadow
     borderWidth: 0,
     shadowColor: '#000000',
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: null,
     height: null,
-    resizeMode: 'cover',
+    // resizeMode: 'cover',
   },
   compactContent: {
     flex: 1.9,
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     color: colors.secondary.dark,
     backgroundColor: 'transparent',
   },
-  
+
   large: {
     height: 200,
     elevation: 2,
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '100%',
     height: '100%',
-    resizeMode: 'cover',
+    // resizeMode: 'cover',
   },
   largeImageMask: {
     position: 'absolute',

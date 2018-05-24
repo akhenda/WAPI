@@ -10,7 +10,7 @@ import styles from './styles/FormStyles';
 class Form extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       showFooter: true,
     };
@@ -54,7 +54,7 @@ class Form extends Component {
       </Item>
     );
   }
-  
+
   renderFooter() {
     const { fields } = this.props;
 
@@ -99,24 +99,26 @@ class Form extends Component {
         {fields.includes('username')
           ? this.renderInput(usernameValue, 'Username', onChangeUsername, 'ios-person-outline')
           : null}
-      
+
         {fields.includes('email')
           ? this.renderInput(emailValue, 'Email Address', onChangeEmail, 'ios-mail', 'email-address')
           : null}
-        
+
         {fields.includes('password')
           ? this.renderInput(passwordValue, 'Password', onChangePassword, 'ios-lock')
           : null}
-        
+
         <Button rounded block light style={styles.button} onPress={onSubmitForm}>
           {loading
             ? <ActivityIndicator animating size="large" />
             : <Text>{buttonText}</Text>
           }
         </Button>
+        <View style={styles.spacer} />
         <Button transparent block light style={styles.button} onPress={altAction}>
           <Text>{altText}</Text>
         </Button>
+        <View style={styles.spacer} />
         {this.renderFooter()}
       </View>
     );

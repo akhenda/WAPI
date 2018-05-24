@@ -189,6 +189,7 @@ class SurveyScreen extends Component {
           style={styles.dateInputStyle}
           onDateChange={(tarehe) => { this.onSubmitEditingValue('date', tarehe); } }
         />
+        <View style={styles.spacer} />
         <Button success rounded style={styles.nextButton} onPress={() => this.onPageChange(1)}>
           <Text>Done, next step</Text>
         </Button>
@@ -209,6 +210,7 @@ class SurveyScreen extends Component {
           {this.renderCategory('pricetags', 'Services', 'services', 'orange')}
           {this.renderCategory('cart', 'Shopping', 'shopping', 'blue')}
           {this.renderCategory('hand', 'Volunteer/Donations', 'volunteer', 'green')}
+          <View style={styles.spacer} />
           <Button success rounded style={styles.nextButton} onPress={() => this.onPageChange(2)}>
             <Text>Done, next step</Text>
           </Button>

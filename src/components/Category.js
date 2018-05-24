@@ -14,8 +14,9 @@ const Category = ({
     <TouchableOpacity style={styles.category} onPress={onSelectCategory}>
       <View style={styles.categoryImageContainer}>
         <CacheableImage
-          style={styles.categoryImage}
+          resizeMode="cover"
           source={{ uri: image }}
+          style={styles.categoryImage}
           defaultSource={fallbackImage}
         />
       </View>

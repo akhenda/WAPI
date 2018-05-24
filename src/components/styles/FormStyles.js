@@ -16,7 +16,11 @@ const styles = StyleSheet.create({
     color: '#FEFEFE',
   },
   button: {
-    marginBottom: 15,
+    // marginBottom: 15,
+  },
+  spacer: {
+    width: '100%',
+    height: 15,
   },
   textInputField: {
     color: 'white',

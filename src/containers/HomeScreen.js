@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, BackHandler, PermissionsAndroid, Platform } from 'react-native';
+import { View, BackHandler, PermissionsAndroid, Platform, DeviceEventEmitter } from 'react-native';
 import { connect } from 'react-redux';
 import { Container } from 'native-base';
 import Radar from 'react-native-radar';
@@ -18,7 +18,7 @@ import AnimatedContentWrapper from 'src/components/AnimatedContentWrapper';
 import styles from './styles/HomeScreenStyles';
 
 
-class HomeScreen extends Component {  
+class HomeScreen extends Component {
   constructor(props) {
     super(props);
 
@@ -26,7 +26,7 @@ class HomeScreen extends Component {
       loading: true,
     };
   }
-  
+
   componentDidMount() {
     let granted;
     this.props.getCategories(this.props.token);
@@ -36,8 +36,12 @@ class HomeScreen extends Component {
         message: "<h2>Enable Location?</h2>This app wants to change your device settings:<br/><br/>Use GPS, Wi-Fi, and Cell Network for location<br/><br/><a href='#'>Learn more</a>",
         ok: 'YES',
         cancel: 'NO',
-        enableHighAccuracy: true, // true => GPS AND NETWORK PROVIDER, false => ONLY GPS PROVIDER
+        enableHighAccuracy: true, // true => GPS & NETWORK, false => GPS OR NETWORK PROVIDER
         showDialog: true, // false => Opens the Location access page directly
+        openLocationServices: true,
+        preventOutSideTouch: true,
+        preventBackClick: false,
+        providerListener: true,
       })
         .then(async () => {
           // success => {alreadyEnabled: true, enabled: true, status: 'enabled'}
@@ -67,7 +71,7 @@ class HomeScreen extends Component {
       }).catch(() => {
         // optionally, do something with err
       });
-      
+
       Radar.on('location', (result) => {
         this.props.updateLocation(result.location);
       });
@@ -76,32 +80,40 @@ class HomeScreen extends Component {
     BackHandler.addEventListener('hardwareBackPress', () => {
       LocationServicesDialogBox.forceCloseDialog();
     });
-    
+
+    DeviceEventEmitter.addListener('locationProviderStatusChange', (status) => {
+      // only trigger when "providerListener" is enabled
+      // console.tron.log(status);
+      // status => {enabled: false, status: "disabled"} or {enabled: true, status: "enabled"}
+    });
+
     this.props.clearListings();
   }
-  
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.categories) this.setState({ loading: false });
   }
-  
+
   componentWillUnmount() {
     Radar.off('location');
     BackHandler.removeEventListener('hardwareBackPress', () => {
       LocationServicesDialogBox.forceCloseDialog();
     });
+    LocationServicesDialogBox.stopListener(); // Stop the "locationProviderStatusChange" listener
   }
-  
+
   onSelectCategory(id, name) {
     this.props.selectCategory(id, name);
     Actions.listings();
   }
-  
+
   onSearch = (searchText) => {
     Actions.listings({ isSearch: true, searchText });
   }
 
   render() {
     const { user, categories } = this.props;
+    const firstName = user ? user.first_name : 'Stranger 😃';
 
     if (this.state.loading) return <LoadingIndicator />;
 
@@ -112,7 +124,7 @@ class HomeScreen extends Component {
           onLeftButton={Actions.drawerOpen}
         >
           <View style={styles.content}>
-            <Salutation name={user.first_name || 'Stranger 😃'} />
+            <Salutation name={firstName} />
             <SearchBar onSearch={this.onSearch} />
             <CategoriesList
               categories={categories}

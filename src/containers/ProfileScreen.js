@@ -11,7 +11,7 @@ import LoadingIndicator from 'src/components/LoadingIndicator';
 import styles from './styles/ProfileScreenStyles';
 
 
-class ProfileScreen extends Component {  
+class ProfileScreen extends Component {
   constructor(props) {
     super(props);
 
@@ -27,8 +27,9 @@ class ProfileScreen extends Component {
           <ActivityIndicator size="small" />
         </View>
         <CacheableImage
+          resizeMode="cover"
           style={styles.listingItem}
-          source={{ uri: item.featured_image_url[0] }} 
+          source={{ uri: item.featured_image_url[0] }}
         />
         <View style={styles.listingItemTextContainer}>
           <Text style={styles.listingItemText}>{item.title.rendered}</Text>
@@ -36,7 +37,7 @@ class ProfileScreen extends Component {
       </TouchableOpacity>
     );
   }
-  
+
   renderEmpty(message) {
     return (
       <View style={styles.empty}>
@@ -68,9 +69,11 @@ class ProfileScreen extends Component {
             <Text style={styles.bio}>
               {user.description || '~ Use the online portal to update your bio ~'}
             </Text>
+            <View style={styles.spacer10} />
             <Button rounded light bordered small style={styles.button}>
               <Text style={styles.buttonText}>Edit Profile</Text>
             </Button>
+            <View style={styles.spacer20} />
           </View>
           <Tabs initialPage={0}>
             <Tab heading="Favourites">

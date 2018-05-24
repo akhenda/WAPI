@@ -37,7 +37,11 @@ const ListingItem = (props) => {
         style={styles.large}
         onPress={() => Actions.listing({ item, onFavourite, isFavourite })}
       >
-        <CacheableImage style={styles.largeImage} source={{ uri: featured_image_url[0] }} />
+        <CacheableImage
+          resizeMode="cover"
+          style={styles.largeImage}
+          source={{ uri: featured_image_url[0] }}
+        />
         <View style={styles.largeImageMask} />
         <View style={styles.largeRating}>
           <Text style={styles.largeRatingValue}>{listing_rate}</Text>
@@ -47,7 +51,7 @@ const ListingItem = (props) => {
         <TouchableOpacity style={styles.largeFavourite} onPress={onFavourite}>
           <Icon name={isFavourite ? 'ios-heart' : 'ios-heart-outline'} style={styles.largeFavouriteIcon} />
         </TouchableOpacity>
-        
+
         <View style={styles.largeContent}>
           <View style={styles.largeMeta}>
             <View style={styles.largeOpenStatus}>
@@ -79,7 +83,11 @@ const ListingItem = (props) => {
       onPress={() => Actions.listing({ item, onFavourite, isFavourite })}
     >
       <View style={styles.compactImageContainer}>
-        <CacheableImage style={styles.compactImage} source={{ uri: featured_image_url[0] }} />
+        <CacheableImage
+          resizeMode="cover"
+          style={styles.compactImage}
+          source={{ uri: featured_image_url[0] }}
+        />
       </View>
       <View style={styles.compactContent}>
         <Text style={styles.compactTitle} numberOfLines={1}>{title.rendered}</Text>

@@ -66,12 +66,17 @@ const styles = StyleSheet.create({
     alignSelf: Platform.OS === 'ios' ? 'center' : 'flex-start',
     marginLeft: Platform.OS === 'ios' ? 0 : 10,
   },
-  
+
   nextButton: {
     alignSelf: 'center',
-    marginTop: 30,
+    // marginTop: 30,
   },
-  
+
+  spacer: {
+    width: '100%',
+    height: 30,
+  },
+
   interests: {
     marginTop: 50,
   },
