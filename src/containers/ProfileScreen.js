@@ -60,9 +60,9 @@ class ProfileScreen extends Component {
             <Button transparent style={styles.leftMenuButton} onPress={Actions.pop}>
               <Icon name='arrow-back' style={styles.menuButton} />
             </Button>
-            <Button transparent style={styles.rightMenuButton}>
+            {/* <Button transparent style={styles.rightMenuButton}>
               <Icon name='create' style={styles.menuButton} />
-            </Button>
+            </Button> */}
           </View>
           <View style={styles.info}>
             <Text style={styles.name}>{(user.name || user.username).toUpperCase()}</Text>

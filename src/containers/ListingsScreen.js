@@ -14,7 +14,7 @@ import AnimatedContentWrapper from 'src/components/AnimatedContentWrapper';
 import styles from './styles/ListingsScreenStyles';
 
 
-class ListingsScreen extends Component {  
+class ListingsScreen extends Component {
   constructor(props) {
     super(props);
 
@@ -28,7 +28,7 @@ class ListingsScreen extends Component {
       error: {},
     };
   }
-  
+
   componentDidMount() {
     this.fetchListings();
   }
@@ -77,15 +77,15 @@ class ListingsScreen extends Component {
       });
     }
   }
-  
+
   onAddFavourite = (listing) => {
     this.props.addFavourite(listing);
   }
-  
+
   onRemoveFavourite = (id) => {
     this.props.removeFavourite(id);
   }
-  
+
   renderFooter() {
     return (
       this.state.loading &&
@@ -115,12 +115,12 @@ class ListingsScreen extends Component {
         <AnimatedContentWrapper
           opaqueHeader
           showLogo={false}
-          showBannerRightButton
           menuRightIcon="md-map"
           WrapperComponent={View}
           menuLeftIcon="arrow-back"
           headerTitle={headerTitle}
           onLeftButton={Actions.pop}
+          showToolbarRightButton={false}
         >
           <View style={[styles.content, empty ? { height: emptyHeight } : null]}>
             {empty

@@ -20,7 +20,7 @@ import styles from './styles/ListingDetailsScreenStyles';
 
 
 /* eslint-disable camelcase */
-class ListingDetailsScreen extends Component {  
+class ListingDetailsScreen extends Component {
   constructor(props) {
     super(props);
 
@@ -57,12 +57,12 @@ class ListingDetailsScreen extends Component {
         <AnimatedContentWrapper
           showLogo={false}
           bannerSourceIsURI
-          showBannerRightButton
           linearGradient={false}
           menuRightIcon="md-map"
           menuLeftIcon="arrow-back"
           onLeftButton={Actions.listings}
           headerTitle={title.rendered}
+          showToolbarRightButton={false}
           bannerSource={featured_image_url[0]}
         >
           <Text style={styles.title} numberOfLines={1}>{title.rendered}</Text>
@@ -102,7 +102,7 @@ class ListingDetailsScreen extends Component {
                   </View>
                 : null}
             </View>
-            
+
             {gallery_images.length > 0
               ? <FlatList
                   horizontal
@@ -122,7 +122,7 @@ class ListingDetailsScreen extends Component {
                   style={[styles.gallery]}
                 />
               : null}
-          
+
             <View style={[styles.dropShadow, styles.moreInfo]}>
               <View style={styles.verified}>
                 <Icon name="thumbs-up" style={styles.verifiedIcon} />
@@ -131,7 +131,7 @@ class ListingDetailsScreen extends Component {
               <Text style={[styles.titles, styles.moreInfoTitle]}>Details</Text>
               <Text style={styles.description}>{stripHTML(content.rendered)}</Text>
             </View>
-          
+
             <View style={[styles.dropShadow, styles.reviews]}>
               <Text style={[styles.titles, styles.reviewsTitle]}>How others rate this place</Text>
               <View style={styles.ratings}>
@@ -157,7 +157,7 @@ class ListingDetailsScreen extends Component {
                 </View>
               </View>
             </View>
-          
+
             <View style={[styles.dropShadow, styles.mapContainer]}>
               <View style={styles.mapLoading}>
                 <ActivityIndicator size="large" color={colors.secondary.light} />
@@ -171,7 +171,7 @@ class ListingDetailsScreen extends Component {
                 apiKey={Config.GOOGLE_MAPS_API_KEY}
               />
             </View>
-            
+
             {listingpro.business_hours
               ? <View style={[styles.dropShadow, styles.businessHours]}>
                   <Text style={[styles.titles, styles.businessHoursTitle]}>Business Hours</Text>
