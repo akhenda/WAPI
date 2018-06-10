@@ -21,9 +21,9 @@ import { isUserSignedIn } from 'src/state/actions/auth';
 import { colors, metrics } from 'src/theme';
 import styles from './styles/RootContainerStyles';
 
-
+/* eslint-disable camelcase */
 class RootContainer extends Component {
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.props.isUserSignedIn(this.props.token);
   }
 

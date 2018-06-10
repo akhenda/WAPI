@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, BackHandler, PermissionsAndroid, Platform, DeviceEventEmitter } from 'react-native';
+import { View, PermissionsAndroid, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import { Container } from 'native-base';
 import Radar from 'react-native-radar';
 import { Actions } from 'react-native-router-flux';
-import LocationServicesDialogBox from 'react-native-android-location-services-dialog-box';
+import RNAndroidLocationEnabler from 'react-native-android-location-enabler';
 
 import { updateLocation } from 'src/state/actions/app';
 import { getCategories, selectCategory, clearListings } from 'src/state/actions/listings';
@@ -18,6 +18,7 @@ import AnimatedContentWrapper from 'src/components/AnimatedContentWrapper';
 import styles from './styles/HomeScreenStyles';
 
 
+/* eslint-disable camelcase */
 class HomeScreen extends Component {
   constructor(props) {
     super(props);
@@ -31,31 +32,7 @@ class HomeScreen extends Component {
     let granted;
     this.props.getCategories(this.props.token);
 
-    if (Platform.OS === 'android') {
-      LocationServicesDialogBox.checkLocationServicesIsEnabled({
-        message: "<h2>Enable Location?</h2>This app wants to change your device settings:<br/><br/>Use GPS, Wi-Fi, and Cell Network for location<br/><br/><a href='#'>Learn more</a>",
-        ok: 'YES',
-        cancel: 'NO',
-        enableHighAccuracy: true, // true => GPS & NETWORK, false => GPS OR NETWORK PROVIDER
-        showDialog: true, // false => Opens the Location access page directly
-        openLocationServices: true,
-        preventOutSideTouch: true,
-        preventBackClick: false,
-        providerListener: true,
-      })
-        .then(async () => {
-          // success => {alreadyEnabled: true, enabled: true, status: 'enabled'}
-          granted = await PermissionsAndroid
-            .request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION, {
-              title: 'Geolocation Access',
-              message: 'App needs access to your location ' +
-              'so that we can let it be even more awesome.',
-            });
-        })
-        .catch(() => {});
-    }
-
-    if ((granted || Platform.OS === 'ios') && this.props.user !== null) {
+    const locationSetup = () => {
       // identify the user and request permissions
       const { user } = this.props;
       const description = user.name || user.username;
@@ -75,31 +52,34 @@ class HomeScreen extends Component {
       Radar.on('location', (result) => {
         this.props.updateLocation(result.location);
       });
+    };
+
+    if (Platform.OS === 'android') {
+      RNAndroidLocationEnabler
+        .promptForEnableLocationIfNeeded({ interval: 7000, fastInterval: 3000 })
+        .then(async () => {
+          // success => {alreadyEnabled: true, enabled: true, status: 'enabled'}
+          granted = await PermissionsAndroid
+            .request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION, {
+              title: 'App needs to access your location',
+              message: 'App needs access to your location ' +
+              'so we can let our app be even more awesome.',
+            });
+          if (granted && this.props.user !== null) locationSetup();
+        }).catch(() => {});
     }
 
-    BackHandler.addEventListener('hardwareBackPress', () => {
-      LocationServicesDialogBox.forceCloseDialog();
-    });
+    if (Platform.OS === 'ios' && this.props.user !== null) locationSetup();
 
-    DeviceEventEmitter.addListener('locationProviderStatusChange', (status) => {
-      // only trigger when "providerListener" is enabled
-      // console.tron.log(status);
-      // status => {enabled: false, status: "disabled"} or {enabled: true, status: "enabled"}
-    });
-
-    this.props.clearListings();
+    // this.props.clearListings();
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.categories && nextProps.user) this.setState({ loading: false });
   }
 
   componentWillUnmount() {
     Radar.off('location');
-    BackHandler.removeEventListener('hardwareBackPress', () => {
-      LocationServicesDialogBox.forceCloseDialog();
-    });
-    LocationServicesDialogBox.stopListener(); // Stop the "locationProviderStatusChange" listener
   }
 
   onSelectCategory(id, name) {
@@ -119,10 +99,7 @@ class HomeScreen extends Component {
 
     return (
       <Container style={styles.container}>
-        <AnimatedContentWrapper
-          headerTitle="Discover"
-          onLeftButton={Actions.drawerOpen}
-        >
+        <AnimatedContentWrapper headerTitle="Discover" onLeftButton={Actions.drawerOpen}>
           <View style={styles.content}>
             <Salutation name={firstName} />
             <SearchBar onSearch={this.onSearch} />

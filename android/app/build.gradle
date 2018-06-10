@@ -159,10 +159,10 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-android-location-enabler')
     implementation project(':react-native-sentry')
     implementation project(':react-native-restart')
     implementation project(':react-native-exception-handler')
-    implementation project(':react-native-android-location-services-dialog-box')
     implementation project(':react-native-radar')
     implementation project(':react-native-fs')
     implementation project(':react-native-linear-gradient')

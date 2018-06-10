@@ -33,7 +33,7 @@ const responseFailure = (dispatch, type, response) => {
   return dispatch({ type, payload: { message } });
 };
 
-export const isUserAuthenticated = (dispatch, token) => {  
+export const isUserAuthenticated = (dispatch, token) => {
   api
     .validateToken(token)
     .then((res) => {
@@ -42,12 +42,13 @@ export const isUserAuthenticated = (dispatch, token) => {
       } else {
         const payload = {};
         dispatch({ type: FETCH_USER_FAILURE, payload });
-      } 
+        Actions.auth({ type: 'reset' });
+      }
     });
 };
 
 export const signUpUser = (dispatch, data) => {
-  const { 
+  const {
     email, username, firstName, lastName, password,
   } = data;
 

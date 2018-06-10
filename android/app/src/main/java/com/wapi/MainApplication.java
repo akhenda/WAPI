@@ -3,10 +3,10 @@ package com.wapi;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.heanoria.library.reactnative.locationenabler.RNAndroidLocationEnablerPackage;
 import io.sentry.RNSentryPackage;
 import com.avishayil.rnrestart.ReactNativeRestartPackage;
 import com.masteratul.exceptionhandler.ReactNativeExceptionHandlerPackage;
-import com.showlocationservicesdialogbox.LocationServicesDialogBoxPackage;
 import com.onradar.sdk.Radar;
 import com.onradar.react.RNRadarPackage;
 import com.rnfs.RNFSPackage;
@@ -32,10 +32,10 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+          new RNAndroidLocationEnablerPackage(),
           new RNSentryPackage(MainApplication.this),
           new ReactNativeRestartPackage(),
           new ReactNativeExceptionHandlerPackage(),
-          new LocationServicesDialogBoxPackage(),
           new LinearGradientPackage(),
           new ReactNativeConfigPackage(),
           new RNRadarPackage(),
