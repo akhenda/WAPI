@@ -81,17 +81,17 @@ class HomeScreen extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    console.tron.display({
-      name: '🔥 HomeScreen Container Component 🔥',
-      preview: 'Should our component update? 🤷‍',
-      value: {
-        this_props: this.props,
-        next_props: nextProps,
-        this_state: this.state,
-        next_state: nextState,
-        so_should_it_update: shallowCompare(this, nextProps, nextState),
-      },
-    });
+    // console.tron.display({
+    //   name: '🔥 HomeScreen Container Component 🔥',
+    //   preview: 'Should our component update? 🤷‍',
+    //   value: {
+    //     this_props: this.props,
+    //     next_props: nextProps,
+    //     this_state: this.state,
+    //     next_state: nextState,
+    //     so_should_it_update: shallowCompare(this, nextProps, nextState),
+    //   },
+    // });
     return shallowCompare(this, nextProps, nextState);
   }
 

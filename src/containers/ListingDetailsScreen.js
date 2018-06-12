@@ -9,6 +9,7 @@ import { Actions } from 'react-native-router-flux';
 import ViewMoreText from 'react-native-view-more-text';
 import ImageViewer from 'react-native-image-zoom-viewer';
 import GoogleStaticMap from 'react-native-google-static-map';
+import { web, phonecall, email } from 'react-native-communications';
 
 import { stripHTML } from 'src/utils/strip';
 import { openStatus } from 'src/utils/businessHours';
@@ -35,6 +36,10 @@ class ListingDetailsScreen extends Component {
 
   toggleModal = (index = 0) => {
     this.setState(prevState => ({ modalVisible: !prevState.modalVisible, imageIndex: index }));
+  }
+
+  sendEmail = (listingEmail) => {
+    email([listingEmail], ['info@wapi-kenya.com'], null, 'Listing Enquiry', 'Hello,\n\n I would like to get more information about your establishment listed on WAPI? Kenya.');
   }
 
   renderViewMore(onPress) {
@@ -99,28 +104,40 @@ class ListingDetailsScreen extends Component {
               </View>
               <View style={styles.contactsTopSpacer} />
               {listingpro.gAddress
-                ? <View style={[styles.contactItem, styles.address]}>
+                ? <TouchableOpacity
+                    style={[styles.contactItem, styles.address]}
+                    onPress={() => {}}
+                  >
                     <Text style={styles.addressText} numberOfLines={2}>{listingpro.gAddress}</Text>
                     <Icon name="pin" style={styles.addressIcon} />
-                  </View>
+                  </TouchableOpacity>
                 : null}
               {listingpro.phone
-                ? <View style={[styles.contactItem, styles.phone]}>
+                ? <TouchableOpacity
+                    style={[styles.contactItem, styles.phone]}
+                    onPress={() => phonecall(listingpro.phone, true)}
+                  >
                     <Text style={styles.phoneText} numberOfLines={1}>{listingpro.phone}</Text>
                     <Icon name="call" style={styles.phoneIcon} />
-                  </View>
+                  </TouchableOpacity>
                 : null}
               {listingpro.email
-                ? <View style={[styles.contactItem, styles.email]}>
+                ? <TouchableOpacity
+                    style={[styles.contactItem, styles.email]}
+                    onPress={() => this.sendEmail(listingpro.email)}
+                  >
                     <Text style={styles.emailText} numberOfLines={1}>{listingpro.email}</Text>
                     <Icon name="at" style={styles.emailIcon} />
-                  </View>
+                  </TouchableOpacity>
                 : null}
               {listingpro.website
-                ? <View style={[styles.contactItem, styles.website]}>
+                ? <TouchableOpacity
+                    style={[styles.contactItem, styles.website]}
+                    onPress={() => web(listingpro.website)}
+                  >
                     <Text style={styles.websiteText} numberOfLines={1}>{listingpro.website}</Text>
                     <Icon name="globe" style={styles.websiteIcon} />
-                  </View>
+                  </TouchableOpacity>
                 : null}
             </View>
 
@@ -239,7 +256,7 @@ class ListingDetailsScreen extends Component {
             imageUrls={gallery}
             index={imageIndex}
             backgroundColor="rgba(0, 0, 0, 0.95)"
-            
+
           />
           <Text style={styles.modalClose} onPress={this.toggleModal}>Close</Text>
         </Modal>
