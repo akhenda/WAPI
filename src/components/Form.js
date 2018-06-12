@@ -7,6 +7,7 @@ import { colors } from 'src/theme';
 import styles from './styles/FormStyles';
 
 
+/* eslint-disable react/no-deprecated */
 class Form extends Component {
   constructor(props) {
     super(props);

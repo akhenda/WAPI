@@ -21,9 +21,9 @@ import { isUserSignedIn } from 'src/state/actions/auth';
 import { colors, metrics } from 'src/theme';
 import styles from './styles/RootContainerStyles';
 
-/* eslint-disable camelcase */
+/* eslint-disable react/no-deprecated */
 class RootContainer extends Component {
-  UNSAFE_componentWillMount() {
+  componentWillMount() {
     this.props.isUserSignedIn(this.props.token);
   }
 
@@ -41,7 +41,7 @@ class RootContainer extends Component {
       <View style={styles.container}>
         <StatusBar translucent backgroundColor={colors.statusBarTranslucent} />
         <Router>
-          <Scene key="root" navigationBarStyle={styles.header} >
+          <Scene key="root" navigationBarStyle={styles.header}>
             <Scene
               key="auth"
               hideNavBar

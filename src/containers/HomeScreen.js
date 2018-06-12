@@ -7,6 +7,7 @@ import Radar from 'react-native-radar';
 import { Actions } from 'react-native-router-flux';
 import RNAndroidLocationEnabler from 'react-native-android-location-enabler';
 
+import shallowCompare from 'src/utils/shallowCompare';
 import { updateLocation } from 'src/state/actions/app';
 import { getCategories, selectCategory, clearListings } from 'src/state/actions/listings';
 import SearchBar from 'src/components/SearchBar';
@@ -19,6 +20,7 @@ import styles from './styles/HomeScreenStyles';
 
 
 /* eslint-disable camelcase */
+/* eslint-disable react/no-deprecated */
 class HomeScreen extends Component {
   constructor(props) {
     super(props);
@@ -71,11 +73,26 @@ class HomeScreen extends Component {
 
     if (Platform.OS === 'ios' && this.props.user !== null) locationSetup();
 
-    // this.props.clearListings();
+    this.props.clearListings();
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.categories && nextProps.user) this.setState({ loading: false });
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.tron.display({
+      name: '🔥 HomeScreen Container Component 🔥',
+      preview: 'Should our component update? 🤷‍',
+      value: {
+        this_props: this.props,
+        next_props: nextProps,
+        this_state: this.state,
+        next_state: nextState,
+        so_should_it_update: shallowCompare(this, nextProps, nextState),
+      },
+    });
+    return shallowCompare(this, nextProps, nextState);
   }
 
   componentWillUnmount() {
@@ -95,7 +112,7 @@ class HomeScreen extends Component {
     const { user, categories } = this.props;
     const firstName = user ? user.first_name : 'Stranger 😃';
 
-    if (this.state.loading) return <LoadingIndicator />;
+    if (categories.length <= 0) return <LoadingIndicator />;
 
     return (
       <Container style={styles.container}>

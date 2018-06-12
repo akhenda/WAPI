@@ -13,11 +13,12 @@ import { authFieldChanged, loginUser } from 'src/state/actions/auth';
 import styles from './styles/LoginScreenStyles';
 
 
-class LoginScreen extends Component {  
+/* eslint-disable react/no-deprecated */
+class LoginScreen extends Component {
   componentWillMount() {
     BackHandler.addEventListener('hardwareBackPress', () => this.backAndroid());
   }
-  
+
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', () => this.backAndroid());
   }
@@ -29,7 +30,7 @@ class LoginScreen extends Component {
   onChangePassowrd(value) {
     this.props.authFieldChanged({ prop: 'password', value });
   }
-  
+
   backAndroid() {
     BackHandler.exitApp();
     return false;

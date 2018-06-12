@@ -13,13 +13,14 @@ import { images, colors } from 'src/theme';
 import styles from './styles/LoginScreenStyles';
 
 
+/* eslint-disable react/no-deprecated */
 class SignUpScreen extends Component {
   componentWillMount() {
     this.props.clearInputData();
 
     BackHandler.addEventListener('hardwareBackPress', () => this.backAndroid());
   }
-  
+
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', () => this.backAndroid());
   }
@@ -56,7 +57,7 @@ class SignUpScreen extends Component {
     } else if (fullName) {
       firstName = fullName;
     }
-    
+
     const data = {
       firstName, lastName, username, email, password,
     };
@@ -72,7 +73,7 @@ class SignUpScreen extends Component {
 
     this.props.registerUser(data);
   }
-  
+
   backAndroid() {
     Actions.pop();
     return false;

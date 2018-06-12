@@ -14,6 +14,7 @@ import AnimatedContentWrapper from 'src/components/AnimatedContentWrapper';
 import styles from './styles/ListingsScreenStyles';
 
 
+/* eslint-disable react/no-deprecated */
 class ListingsScreen extends Component {
   constructor(props) {
     super(props);

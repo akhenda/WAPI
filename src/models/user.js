@@ -38,7 +38,9 @@ export const isUserAuthenticated = (dispatch, token) => {
     .validateToken(token)
     .then((res) => {
       if (res.ok) {
-        fetchUserInfo(dispatch, token);
+        // fetchUserInfo(dispatch, token);
+        // I am thinking 🤔, we do not need to call the above here.
+        // We already have the user object persisted
       } else {
         const payload = {};
         dispatch({ type: FETCH_USER_FAILURE, payload });
