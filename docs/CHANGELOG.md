@@ -1,3 +1,16 @@
+# [0.5.0](https://github.com/akhenda/WAPI/compare/v0.4.0...v0.5.0) (2018-06-12)
+
+
+### Bug Fixes
+
+* **android:** geolocation fix for android ([cd62656](https://github.com/akhenda/WAPI/commit/cd62656))
+* **home:** reduce number of rerenders on the HomeScreen ([0bd2165](https://github.com/akhenda/WAPI/commit/0bd2165))
+
+
+### Features
+
+* **listing:** make contact details clickable ([a86ebfa](https://github.com/akhenda/WAPI/commit/a86ebfa))
+
 <a name="0.4.0"></a>
 # [0.4.0](https://github.com/akhenda/WAPI/compare/v0.3.1...v0.4.0) (2018-05-24)
 
