@@ -7,10 +7,11 @@ import CacheableImage from 'react-native-cacheable-image';
 import { Actions } from 'react-native-router-flux';
 
 import { images } from 'src/theme';
+import { getUserListings } from 'src/state/actions/listings';
 import LoadingIndicator from 'src/components/LoadingIndicator';
 import styles from './styles/ProfileScreenStyles';
 
-
+/* eslint-disable react/no-deprecated */
 class ProfileScreen extends Component {
   constructor(props) {
     super(props);
@@ -18,6 +19,23 @@ class ProfileScreen extends Component {
     this.state = {
       loading: false,
     };
+  }
+
+  componentDidMount() {
+    this.fetchUserListings();
+  }
+
+  componentWillReceiveProps() {
+    // this.setState({ loading: false });
+  }
+
+  fetchUserListings = () => {
+    const { token, user } = this.props;
+
+    if (Object.keys(user).length > 0) {
+      // this.setState({ loading: true });
+      this.props.getUserListings(token, user.id);
+    }
   }
 
   renderItem = (item) => {
@@ -47,6 +65,7 @@ class ProfileScreen extends Component {
   }
 
   render() {
+    console.tron.log(this.props.places);
     const { user } = this.props;
     if (this.state.loading) return <LoadingIndicator />;
 
@@ -85,7 +104,11 @@ class ProfileScreen extends Component {
                 : this.renderEmpty('You have not saved any listing ¯\\_(ツ)_/¯')}
             </Tab>
             <Tab heading="My Listings">
-              {this.renderEmpty('You do not have any listings on WAPI?')}
+              {Object.keys(this.props.places).length > 0
+                ? <View style={styles.listing}>
+                    {this.props.places.map(item => this.renderItem(item))}
+                  </View>
+                : this.renderEmpty('You do not have any listings on WAPI? ¯\\_(ツ)_/¯')}
             </Tab>
             <Tab heading="Feed">
               {this.renderEmpty('Feature coming soon...')}
@@ -99,14 +122,19 @@ class ProfileScreen extends Component {
 
 ProfileScreen.propTypes = {
   user: PropTypes.object,
+  places: PropTypes.array,
+  token: PropTypes.string,
   favourites: PropTypes.object,
+  getUserListings: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {
   return {
     user: state.auth.user,
+    token: state.auth.token,
+    places: state.listings.places,
     favourites: state.app.favourites,
   };
 };
 
-export default connect(mapStateToProps, null)(ProfileScreen);
+export default connect(mapStateToProps, { getUserListings })(ProfileScreen);

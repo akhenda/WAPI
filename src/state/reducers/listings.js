@@ -13,6 +13,8 @@ import {
   FETCH_LISTING_FAILURE,
   SEARCH_LISTINGS_SUCCESS,
   SEARCH_LISTINGS_FAILURE,
+  FETCH_USER_LISTINGS_SUCCESS,
+  FETCH_USER_LISTINGS_FAILURE,
 } from 'src/state/types';
 
 const INITIAL_STATE = {
@@ -55,6 +57,14 @@ const authReducer = (state = INITIAL_STATE, action) => {
         totalPages: Number(action.payload.totalPages),
       };
     case SEARCH_LISTINGS_FAILURE:
+      return { ...state, error: action.payload };
+    case FETCH_USER_LISTINGS_SUCCESS:
+      return {
+        ...state,
+        error: {},
+        places: action.payload.places,
+      };
+    case FETCH_USER_LISTINGS_FAILURE:
       return { ...state, error: action.payload };
     case CLEAR_LISTINGS:
       return {

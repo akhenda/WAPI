@@ -20,7 +20,7 @@ const create = (baseURL = 'https://wapi-kenya.com/wp-json/') => {
     // 10 second timeout...
     timeout: 10000,
   });
-  
+
   const setHeader = (header, value) => api.setHeader(header, value);
 
   // ------
@@ -59,11 +59,12 @@ const create = (baseURL = 'https://wapi-kenya.com/wp-json/') => {
     );
   };
   const getUserInfo = context => api.get(`wp/v2/users/me?context=${context}`);
-  
+
   const getCategories = () => api.get('wp/v2/listing-category');
   const getCategoryListings = (id, page) => api.get(`wp/v2/listing?listing-category=${id}&page=${page}`);
   const searchListings = search => api.get(`wp/v2/listing?search=${search}`);
   const getListing = id => api.get(`wp/v2/listing/${id}`);
+  const getUserListings = id => api.get(`wp/v2/listing?context=embed&author=${id}`);
 
   // ------
   // STEP 3
@@ -88,6 +89,7 @@ const create = (baseURL = 'https://wapi-kenya.com/wp-json/') => {
     getCategoryListings,
     searchListings,
     getListing,
+    getUserListings,
   };
 };
 

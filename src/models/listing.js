@@ -11,6 +11,8 @@ import {
   FETCH_LISTINGS_FAILURE,
   SEARCH_LISTINGS_SUCCESS,
   SEARCH_LISTINGS_FAILURE,
+  FETCH_USER_LISTINGS_SUCCESS,
+  FETCH_USER_LISTINGS_FAILURE,
 } from 'src/state/types';
 
 
@@ -67,6 +69,19 @@ export const fetchListing = (dispatch, token, id) => {
         dispatch({ type: FETCH_LISTING_SUCCESS, payload: res.data });
       } else {
         dispatch({ type: FETCH_LISTING_FAILURE, payload: res.data });
+      }
+    });
+};
+
+export const fetchUserListings = (dispatch, token, id) => {
+  api.setHeader('Authorization', `Bearer ${token}`);
+  api
+    .getUserListings(id)
+    .then((res) => {
+      if (res.status === 200) {
+        dispatch({ type: FETCH_USER_LISTINGS_SUCCESS, payload: { places: res.data } });
+      } else {
+        dispatch({ type: FETCH_USER_LISTINGS_FAILURE, payload: res.data });
       }
     });
 };
