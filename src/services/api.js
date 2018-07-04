@@ -65,6 +65,7 @@ const create = (baseURL = 'https://wapi-kenya.com/wp-json/') => {
   const searchListings = search => api.get(`wp/v2/listing?search=${search}`);
   const getListing = id => api.get(`wp/v2/listing/${id}`);
   const getUserListings = id => api.get(`wp/v2/listing?context=embed&author=${id}`);
+  const getFavouriteListings = ids => api.get(`wp/v2/listing?${ids}`); // e.g. include[]=1367&include[]=1065
 
   // ------
   // STEP 3
@@ -90,6 +91,7 @@ const create = (baseURL = 'https://wapi-kenya.com/wp-json/') => {
     searchListings,
     getListing,
     getUserListings,
+    getFavouriteListings,
   };
 };
 

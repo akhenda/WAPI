@@ -30,10 +30,10 @@ export const updateLocation = (location) => {
   };
 };
 
-export const addFavourite = (listing) => {
+export const addFavourite = (id) => {
   return {
     type: ADD_FAVOURITE,
-    payload: listing,
+    payload: id,
   };
 };
 

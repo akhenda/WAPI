@@ -13,6 +13,8 @@ import {
   SEARCH_LISTINGS_FAILURE,
   FETCH_USER_LISTINGS_SUCCESS,
   FETCH_USER_LISTINGS_FAILURE,
+  FETCH_FAVOURITE_LISTINGS_SUCCESS,
+  FETCH_FAVOURITE_LISTINGS_FAILURE,
 } from 'src/state/types';
 
 
@@ -82,6 +84,19 @@ export const fetchUserListings = (dispatch, token, id) => {
         dispatch({ type: FETCH_USER_LISTINGS_SUCCESS, payload: { places: res.data } });
       } else {
         dispatch({ type: FETCH_USER_LISTINGS_FAILURE, payload: res.data });
+      }
+    });
+};
+
+export const fetchFavouriteListings = (dispatch, token, ids) => {
+  api.setHeader('Authorization', `Bearer ${token}`);
+  api
+    .getFavouriteListings(ids)
+    .then((res) => {
+      if (res.status === 200) {
+        dispatch({ type: FETCH_FAVOURITE_LISTINGS_SUCCESS, payload: { places: res.data } });
+      } else {
+        dispatch({ type: FETCH_FAVOURITE_LISTINGS_FAILURE, payload: res.data });
       }
     });
 };

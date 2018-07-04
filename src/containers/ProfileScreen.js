@@ -7,7 +7,7 @@ import CacheableImage from 'react-native-cacheable-image';
 import { Actions } from 'react-native-router-flux';
 
 import { images } from 'src/theme';
-import { getUserListings } from 'src/state/actions/listings';
+import { getUserListings, getFavouriteListings } from 'src/state/actions/listings';
 import LoadingIndicator from 'src/components/LoadingIndicator';
 import styles from './styles/ProfileScreenStyles';
 
@@ -35,12 +35,19 @@ class ProfileScreen extends Component {
     if (Object.keys(user).length > 0) {
       // this.setState({ loading: true });
       this.props.getUserListings(token, user.id);
+
+      const ids = this.props.favourites.reduce((args, id) => `${args}include[]=${id}&`, '').slice(0, -1);
+      this.props.getFavouriteListings(token, ids);
     }
   }
 
   renderItem = (item) => {
     return (
-      <TouchableOpacity key={item.id} style={styles.listingItemContainer}>
+      <TouchableOpacity
+        key={item.id}
+        style={styles.listingItemContainer}
+        onPress={() => Actions.listing({ id: item.id, onLeftButton: Actions.profile })}
+      >
         <View style={styles.listingItemLoading}>
           <ActivityIndicator size="small" />
         </View>
@@ -65,7 +72,6 @@ class ProfileScreen extends Component {
   }
 
   render() {
-    console.tron.log(this.props.places);
     const { user } = this.props;
     if (this.state.loading) return <LoadingIndicator />;
 
@@ -96,10 +102,9 @@ class ProfileScreen extends Component {
           </View>
           <Tabs initialPage={0}>
             <Tab heading="Favourites">
-              {Object.keys(this.props.favourites).length > 0
+              {this.props.favPlaces.length > 0
                 ? <View style={styles.listing}>
-                    {Object.keys(this.props.favourites)
-                      .map(item => this.renderItem(this.props.favourites[item]))}
+                    {this.props.favPlaces.map(item => this.renderItem(item))}
                   </View>
                 : this.renderEmpty('You have not saved any listing ¯\\_(ツ)_/¯')}
             </Tab>
@@ -110,7 +115,7 @@ class ProfileScreen extends Component {
                   </View>
                 : this.renderEmpty('You do not have any listings on WAPI? ¯\\_(ツ)_/¯')}
             </Tab>
-            <Tab heading="Feed">
+            <Tab heading="My Reviews">
               {this.renderEmpty('Feature coming soon...')}
             </Tab>
           </Tabs>
@@ -124,8 +129,10 @@ ProfileScreen.propTypes = {
   user: PropTypes.object,
   places: PropTypes.array,
   token: PropTypes.string,
-  favourites: PropTypes.object,
+  favPlaces: PropTypes.array,
+  favourites: PropTypes.array,
   getUserListings: PropTypes.func,
+  getFavouriteListings: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {
@@ -134,7 +141,8 @@ const mapStateToProps = (state) => {
     token: state.auth.token,
     places: state.listings.places,
     favourites: state.app.favourites,
+    favPlaces: state.listings.favourites,
   };
 };
 
-export default connect(mapStateToProps, { getUserListings })(ProfileScreen);
+export default connect(mapStateToProps, { getUserListings, getFavouriteListings })(ProfileScreen);

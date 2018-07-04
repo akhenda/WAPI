@@ -8,10 +8,10 @@ import styles from './styles/SearchBarStyles';
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.state = { text: '' };
   }
-  
+
   render() {
     const { text } = this.state;
     const { placeholder, onSearch } = this.props;

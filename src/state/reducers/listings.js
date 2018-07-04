@@ -15,6 +15,8 @@ import {
   SEARCH_LISTINGS_FAILURE,
   FETCH_USER_LISTINGS_SUCCESS,
   FETCH_USER_LISTINGS_FAILURE,
+  FETCH_FAVOURITE_LISTINGS_SUCCESS,
+  FETCH_FAVOURITE_LISTINGS_FAILURE,
 } from 'src/state/types';
 
 const INITIAL_STATE = {
@@ -24,6 +26,7 @@ const INITIAL_STATE = {
   totalPages: 1,
   selectedCategory: null,
   selectedListing: null,
+  favourites: [],
 };
 
 const authReducer = (state = INITIAL_STATE, action) => {
@@ -65,6 +68,14 @@ const authReducer = (state = INITIAL_STATE, action) => {
         places: action.payload.places,
       };
     case FETCH_USER_LISTINGS_FAILURE:
+      return { ...state, error: action.payload };
+    case FETCH_FAVOURITE_LISTINGS_SUCCESS:
+      return {
+        ...state,
+        error: {},
+        favourites: action.payload.places,
+      };
+    case FETCH_FAVOURITE_LISTINGS_FAILURE:
       return { ...state, error: action.payload };
     case CLEAR_LISTINGS:
       return {

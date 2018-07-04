@@ -26,7 +26,7 @@ const INITIAL_STATE = {
     volunteer: false,
   },
   currentLocation: null,
-  favourites: {},
+  favourites: [],
 };
 
 const authReducer = (state = INITIAL_STATE, action) => {
@@ -40,11 +40,10 @@ const authReducer = (state = INITIAL_STATE, action) => {
     case UPDATE_LOCATION:
       return { ...state, currentLocation: action.payload };
     case ADD_FAVOURITE:
-      return { ...state, favourites: { ...state.favourites, [action.payload.id]: action.payload } };
+      return { ...state, favourites: [...state.favourites, action.payload] };
     case REMOVE_FAVOURITE: {
-      const fav = Object.assign({}, state.favourites);
-      delete fav[String(action.payload)];
-      return { ...state, favourites: fav };
+      const favourites = state.favourites.filter(fav => fav !== action.payload);
+      return { ...state, favourites };
     }
     default:
       return state;

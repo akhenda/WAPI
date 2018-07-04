@@ -13,7 +13,9 @@ import { web, phonecall, email } from 'react-native-communications';
 
 import { stripHTML } from 'src/utils/strip';
 import { openStatus } from 'src/utils/businessHours';
+import shallowCompare, { shallowEqual } from 'src/utils/shallowCompare';
 import LoadingIndicator from 'src/components/LoadingIndicator';
+import { getListing } from 'src/state/actions/listings';
 import { addFavourite, removeFavourite } from 'src/state/actions/app';
 import AnimatedContentWrapper from 'src/components/AnimatedContentWrapper';
 
@@ -22,16 +24,38 @@ import styles from './styles/ListingDetailsScreenStyles';
 
 
 /* eslint-disable camelcase */
+/* eslint-disable react/no-deprecated */
 class ListingDetailsScreen extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       empty: false,
-      loading: false,
+      loading: true,
       imageIndex: 0,
       modalVisible: false,
     };
+  }
+
+  componentDidMount() {
+    this.fetchListing();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!shallowEqual(nextProps.item, this.props.item)) {
+      this.setState({ loading: false });
+    }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return shallowCompare(this, nextProps, nextState);
+  }
+
+  fetchListing = () => {
+    const { token, id } = this.props;
+
+    this.setState({ loading: true });
+    this.props.getListing(token, id);
   }
 
   toggleModal = (index = 0) => {
@@ -56,6 +80,9 @@ class ListingDetailsScreen extends Component {
 
   render() {
     const { loading, imageIndex, modalVisible } = this.state;
+
+    if (loading) return <LoadingIndicator />;
+
     const {
       id,
       title,
@@ -66,17 +93,15 @@ class ListingDetailsScreen extends Component {
       listing_reviewed,
       featured_image_url,
     } = this.props.item;
+    const isFavourite = this.props.favourites.includes(id);
     const { isOpen } = openStatus(listingpro.business_hours);
-    let onFavourite = () => this.props.addFavourite(this.props.item);
-    const isFavourite = Object.keys(this.props.favourites).includes(String(id));
+    let onFavourite = () => this.props.addFavourite(this.props.item.id);
 
     const gallery = gallery_images.map(img => ({ url: img[0] }));
 
     if (isFavourite) {
       onFavourite = () => this.props.removeFavourite(this.props.item.id);
     }
-
-    if (loading) return <LoadingIndicator />;
 
     return (
       <Container style={styles.container}>
@@ -86,7 +111,7 @@ class ListingDetailsScreen extends Component {
           linearGradient={false}
           menuRightIcon="md-map"
           menuLeftIcon="arrow-back"
-          onLeftButton={Actions.listings}
+          onLeftButton={this.props.onLeftButton}
           headerTitle={title.rendered}
           showToolbarRightButton={false}
           bannerSource={featured_image_url[0]}
@@ -266,18 +291,26 @@ class ListingDetailsScreen extends Component {
 }
 
 ListingDetailsScreen.propTypes = {
+  id: PropTypes.number,
   user: PropTypes.object,
   item: PropTypes.object,
-  favourites: PropTypes.object,
+  token: PropTypes.string,
+  getListing: PropTypes.func,
+  favourites: PropTypes.array,
   addFavourite: PropTypes.func,
   removeFavourite: PropTypes.func,
+  onLeftButton: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
     user: state.auth.user,
+    token: state.auth.token,
     favourites: state.app.favourites,
+    item: state.listings.selectedListing,
   };
 };
 
-export default connect(mapStateToProps, { addFavourite, removeFavourite })(ListingDetailsScreen);
+export default connect(mapStateToProps, {
+  addFavourite, removeFavourite, getListing,
+})(ListingDetailsScreen);

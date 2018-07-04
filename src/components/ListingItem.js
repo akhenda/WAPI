@@ -20,10 +20,10 @@ const ListingItem = (props) => {
     type, item, location, isFavourite, onAddFavourite, onRemoveFavourite,
   } = props;
   const {
-    title, listing_reviewed, listingpro, listing_rate, featured_image_url,
+    id, title, listing_reviewed, listingpro, listing_rate, featured_image_url,
   } = item;
   const { isOpen } = openStatus(listingpro.business_hours);
-  const onFavourite = isFavourite ? () => onRemoveFavourite(item.id) : () => onAddFavourite(item);
+  const onFavourite = isFavourite ? () => onRemoveFavourite(id) : () => onAddFavourite(id);
 
   if (location) {
     const userLocation = { lat: location.latitude, lon: location.longitude };
@@ -35,7 +35,7 @@ const ListingItem = (props) => {
     return (
       <TouchableOpacity
         style={styles.large}
-        onPress={() => Actions.listing({ item, onFavourite, isFavourite })}
+        onPress={() => Actions.listing({ id, onLeftButton: Actions.listings })}
       >
         <CacheableImage
           resizeMode="cover"
@@ -80,7 +80,7 @@ const ListingItem = (props) => {
   return (
     <TouchableOpacity
       style={styles.compact}
-      onPress={() => Actions.listing({ item, onFavourite, isFavourite })}
+      onPress={() => Actions.listing({ id, onLeftButton: Actions.listings })}
     >
       <View style={styles.compactImageContainer}>
         <CacheableImage

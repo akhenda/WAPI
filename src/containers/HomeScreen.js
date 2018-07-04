@@ -101,7 +101,7 @@ class HomeScreen extends Component {
 
   onSelectCategory(id, name) {
     this.props.selectCategory(id, name);
-    Actions.listings();
+    Actions.listings({ isSearch: false });
   }
 
   onSearch = (searchText) => {

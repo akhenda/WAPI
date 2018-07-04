@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Container } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
+import shallowCompare, { shallowEqual } from 'src/utils/shallowCompare';
 import { getCategoryListings, searchListings } from 'src/state/actions/listings';
 import { addFavourite, removeFavourite } from 'src/state/actions/app';
 import ListingItem from 'src/components/ListingItem';
@@ -37,14 +38,31 @@ class ListingsScreen extends Component {
   componentWillReceiveProps(nextProps) {
     const { page } = this.state;
 
-    this.setState((prevState) => {
-      return {
-        loading: false,
-        refreshing: false,
-        totalPages: Number(nextProps.totalPages),
-        places: page === 1 ? nextProps.places : [...prevState.places, ...nextProps.places],
-      };
-    });
+    // console.tron.display({
+    //   name: '🔥 IGNITE - shallowEqual 🔥',
+    //   preview: 'You should totally expand this',
+    //   value: {
+    //     '💃': 'Welcome to the future!',
+    //     props: this.props,
+    //     nextProps,
+    //     data: shallowEqual(nextProps.places, this.props.places),
+    //   },
+    // });
+
+    if (!shallowEqual(nextProps.places, this.props.places)) {
+      this.setState((prevState) => {
+        return {
+          loading: false,
+          refreshing: false,
+          totalPages: Number(nextProps.totalPages),
+          places: page === 1 ? nextProps.places : [...prevState.places, ...nextProps.places],
+        };
+      });
+    }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return shallowCompare(this, nextProps, nextState);
   }
 
   fetchListings = () => {
@@ -79,8 +97,8 @@ class ListingsScreen extends Component {
     }
   }
 
-  onAddFavourite = (listing) => {
-    this.props.addFavourite(listing);
+  onAddFavourite = (id) => {
+    this.props.addFavourite(id);
   }
 
   onRemoveFavourite = (id) => {
@@ -133,10 +151,10 @@ class ListingsScreen extends Component {
                       <ListingItem
                         item={item}
                         type={listingType}
+                        location={currentLocation}
                         onAddFavourite={this.onAddFavourite}
                         onRemoveFavourite={this.onRemoveFavourite}
-                        isFavourite={Object.keys(favourites).includes(String(item.id))}
-                        location={currentLocation}
+                        isFavourite={favourites.includes(item.id)}
                       />
                     );
                   }}
@@ -166,8 +184,8 @@ ListingsScreen.propTypes = {
   error: PropTypes.object,
   token: PropTypes.string,
   isSearch: PropTypes.bool,
+  favourites: PropTypes.array,
   searchText: PropTypes.string,
-  favourites: PropTypes.object,
   totalPages: PropTypes.number,
   addFavourite: PropTypes.func,
   searchListings: PropTypes.func,
