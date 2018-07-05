@@ -1,3 +1,12 @@
+# [0.6.0](https://github.com/akhenda/WAPI/compare/v0.5.0...v0.6.0) (2018-07-05)
+
+
+### Features
+
+* **profile:** finish 'my listings' section on the profile screen ([aceff44](https://github.com/akhenda/WAPI/commit/aceff44))
+* **profile:** make listings on profile screen clickable ([4158a9d](https://github.com/akhenda/WAPI/commit/4158a9d))
+* create the edit profile screen and install RNRestart (wip) ([0efae8c](https://github.com/akhenda/WAPI/commit/0efae8c))
+
 # [0.5.0](https://github.com/akhenda/WAPI/compare/v0.4.0...v0.5.0) (2018-06-12)
 
 
