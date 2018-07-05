@@ -1,7 +1,8 @@
 import 'src/config';
 import React, { Component } from 'react';
-import { View, StatusBar, BackHandler } from 'react-native';
+import { View, StatusBar, BackHandler, Alert } from 'react-native';
 import { Provider } from 'react-redux';
+import RNRestart from 'react-native-restart';
 import RequiresConnection from 'react-native-offline-mode';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import { setJSExceptionHandler, setNativeExceptionHandler } from 'react-native-exception-handler';
@@ -17,8 +18,8 @@ import LoadingIndicator from './components/LoadingIndicator';
 const errorHandler = (e, isFatal) => {
   if (isFatal) {
     Alert.alert(
-        'Unexpected error occurred',
-        `
+      'Unexpected error occurred',
+      `
         Error: ${(isFatal) ? 'Fatal:' : ''} ${e.name} ${e.message}
         We have reported this to our team ! Please close the app and start again!
         `,
@@ -30,8 +31,8 @@ const errorHandler = (e, isFatal) => {
         {
           text: 'Quit',
           onPress: () => BackHandler.exitApp(),
-        }
-      ]
+        },
+      ],
     );
   } else {
     if (__DEV__) console.log(e); // So that we can see it in the ADB logs in case of Android if needed
@@ -52,7 +53,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <PersistGate 
+        <PersistGate
           loading={<LoadingIndicator />}
           onBeforeLift={this.onBeforeLift}
           persistor={persistor}>

@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { Container, Text, Fab, Icon } from 'native-base';
 import Config from 'react-native-config';
 import StarRating from 'react-native-star-rating';
-import { Actions } from 'react-native-router-flux';
 import ViewMoreText from 'react-native-view-more-text';
 import ImageViewer from 'react-native-image-zoom-viewer';
 import GoogleStaticMap from 'react-native-google-static-map';

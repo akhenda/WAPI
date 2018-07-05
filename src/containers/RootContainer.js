@@ -12,6 +12,7 @@ import SurveyScreen from 'src/containers/SurveyScreen';
 import HomeScreen from 'src/containers/HomeScreen';
 import ProfileScreen from 'src/containers/ProfileScreen';
 import ListingsScreen from 'src/containers/ListingsScreen';
+import EditProfileScreen from 'src/containers/EditProfileScreen';
 import ListingDetailsScreen from 'src/containers/ListingDetailsScreen';
 
 import DrawerContent from 'src/components/DrawerContent';

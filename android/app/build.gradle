@@ -159,6 +159,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-restart')
     implementation project(':react-native-android-location-enabler')
     implementation project(':react-native-sentry')
     implementation project(':react-native-restart')
