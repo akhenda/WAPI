@@ -232,8 +232,8 @@ class ListingDetailsScreen extends Component {
               </View>
               <GoogleStaticMap
                 style={styles.map}
-                latitude={listingpro.latitude || '0.0'}
-                longitude={listingpro.longitude || '0.0'}
+                latitude={String(listingpro.latitude) || '0.0'}
+                longitude={String(listingpro.longitude) || '0.0'}
                 zoom={13}
                 size={{ width: metrics.screenWidth, height: 220 }}
                 apiKey={Config.GOOGLE_MAPS_API_KEY}
