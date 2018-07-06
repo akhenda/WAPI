@@ -94,7 +94,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
 const persistConfig = {
   storage,
   key: 'listings',
-  blacklist: [],
+  blacklist: ['favourites'],
 };
 
 export default persistReducer(persistConfig, authReducer);

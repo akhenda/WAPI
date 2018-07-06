@@ -24,7 +24,7 @@ class DrawerContent extends Component {
       </TouchableOpacity>
     );
   }
-  
+
   renderCategories() {
     if (this.props.categories.length > 0) {
       return this.props.categories.map((category) => {
@@ -59,11 +59,11 @@ class DrawerContent extends Component {
   }
 
   render() {
-    const { user } = this.props;
+    const { token, user } = this.props;
 
     // TODO: render the user details after we get the user object because
     // when the RootContainer loads at first the user object is null
-    if (!user) return <View />;
+    if (!token) return <View />;
 
     return (
       <Content
