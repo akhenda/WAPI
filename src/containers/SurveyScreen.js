@@ -51,12 +51,13 @@ class SurveyScreen extends Component {
       activities, restaurants, medical, services, shopping, volunteer,
     } = interests;
 
-    const isPageOneFilled = (
-      nationality !== 'default' &&
-      occupation !== 'default' &&
-      gender !== 'default' &&
-      date !== ''
-    );
+    // const isPageOneFilled = (
+    //   nationality !== 'default' &&
+    //   occupation !== 'default' &&
+    //   gender !== 'default' &&
+    //   date !== ''
+    // );
+    const isPageOneFilled = (nationality !== 'default' && occupation !== 'default');
     const isInterestSelected = (
       activities || restaurants || medical || services || shopping || volunteer
     );
@@ -169,9 +170,9 @@ class SurveyScreen extends Component {
       <View style={styles.aboutYou}>
         {this.renderPicker('nationality', this.getNationalityOptions())}
         {this.renderPicker('occupation', this.getOccupationOptions())}
-        {this.renderPicker('gender', this.getGenderOptions())}
+        {/* {this.renderPicker('gender', this.getGenderOptions())} */}
 
-        {date ? <Text style={styles.label}>*Your date of birth</Text> : null}
+        {/* {date ? <Text style={styles.label}>*Your date of birth</Text> : null}
         <DatePicker
           date={this.state.date}
           mode="date"
@@ -188,7 +189,7 @@ class SurveyScreen extends Component {
           }}
           style={styles.dateInputStyle}
           onDateChange={(tarehe) => { this.onSubmitEditingValue('date', tarehe); } }
-        />
+        /> */}
         <View style={styles.spacer} />
         <Button success rounded style={styles.nextButton} onPress={() => this.onPageChange(1)}>
           <Text>Done, next step</Text>

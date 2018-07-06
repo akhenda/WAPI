@@ -17,7 +17,7 @@ class ProfileScreen extends Component {
     super(props);
 
     this.state = {
-      loading: false,
+      loading: true,
     };
   }
 
@@ -26,14 +26,14 @@ class ProfileScreen extends Component {
   }
 
   componentWillReceiveProps() {
-    // this.setState({ loading: false });
+    this.setState({ loading: false });
   }
 
   fetchUserListings = () => {
     const { token, user } = this.props;
 
     if (Object.keys(user).length > 0) {
-      // this.setState({ loading: true });
+      this.setState({ loading: true });
       this.props.getUserListings(token, user.id);
 
       if (this.props.favourites.length > 0) {
