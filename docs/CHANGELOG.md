@@ -1,3 +1,12 @@
+## [0.6.1](https://github.com/akhenda/WAPI/compare/v0.6.0...v0.6.1) (2018-07-06)
+
+
+### Bug Fixes
+
+* **build:** android force closes on start ([277d069](https://github.com/akhenda/WAPI/commit/277d069))
+* **navigation:** blank drawer bug ([5678757](https://github.com/akhenda/WAPI/commit/5678757))
+* **profile:** prevent fetching listings if user has no favourites ([9fdf405](https://github.com/akhenda/WAPI/commit/9fdf405))
+
 # [0.6.0](https://github.com/akhenda/WAPI/compare/v0.5.0...v0.6.0) (2018-07-05)
 
 
