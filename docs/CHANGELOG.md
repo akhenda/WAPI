@@ -1,3 +1,10 @@
+## [0.6.2](https://github.com/akhenda/WAPI/compare/v0.6.1...v0.6.2) (2018-07-06)
+
+
+### Bug Fixes
+
+* **listing:** googleStaticMap prop types ([7efc8be](https://github.com/akhenda/WAPI/commit/7efc8be))
+
 ## [0.6.1](https://github.com/akhenda/WAPI/compare/v0.6.0...v0.6.1) (2018-07-06)
 
 
