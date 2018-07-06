@@ -36,8 +36,10 @@ class ProfileScreen extends Component {
       // this.setState({ loading: true });
       this.props.getUserListings(token, user.id);
 
-      const ids = this.props.favourites.reduce((args, id) => `${args}include[]=${id}&`, '').slice(0, -1);
-      this.props.getFavouriteListings(token, ids);
+      if (this.props.favourites.length > 0) {
+        const ids = this.props.favourites.reduce((args, id) => `${args}include[]=${id}&`, '').slice(0, -1);
+        this.props.getFavouriteListings(token, ids);
+      }
     }
   }
 

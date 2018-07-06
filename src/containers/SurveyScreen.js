@@ -97,8 +97,8 @@ class SurveyScreen extends Component {
       { value: 'parent', label: 'Artisan' },
       { value: 'concerned_citizen', label: 'Concerned Citizen' },
       { value: 'curious_bird', label: 'Curious Bird' },
-      { value: 'business_man', label: 'Business Man' },
-      { value: 'business_woman', label: 'Business Woman' },
+      { value: 'businessman', label: 'Business Man' },
+      { value: 'businesswoman', label: 'Business Woman' },
       { value: 'other', label: 'Other' },
     ];
   };
