@@ -1,4 +1,9 @@
-import { SEARCH_FIELD_CHANGED, SELECT_CATEGORY, CLEAR_LISTINGS } from 'src/state/types';
+import {
+  CLEAR_LISTINGS,
+  SELECT_CATEGORY,
+  LISTINGS_LOADING,
+  SEARCH_FIELD_CHANGED,
+} from 'src/state/types';
 import {
   fetchListing,
   performSearch,
@@ -16,7 +21,12 @@ export const searchFieldChanged = ({ prop, value }) => {
   };
 };
 
-export const getCategories = token => dispatch => fetchCategories(dispatch, token);
+export const getCategories = (token) => {
+  return (dispatch) => {
+    dispatch({ type: LISTINGS_LOADING });
+    fetchCategories(dispatch, token);
+  };
+};
 
 export const selectCategory = (id, name) => {
   return {

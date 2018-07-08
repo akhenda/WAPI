@@ -59,11 +59,11 @@ class DrawerContent extends Component {
   }
 
   render() {
-    const { token, user } = this.props;
+    const { user } = this.props;
 
     // TODO: render the user details after we get the user object because
     // when the RootContainer loads at first the user object is null
-    if (!token) return <View />;
+    if (!user) return <View />;
 
     return (
       <Content

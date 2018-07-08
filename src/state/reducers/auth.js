@@ -24,7 +24,7 @@ const INITIAL_STATE = {
   loading: false,
   error: {},
   token: 'dummy',
-  user: null,
+  user: {},
   message: '',
 };
 

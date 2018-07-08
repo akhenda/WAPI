@@ -24,19 +24,19 @@ import styles from './styles/RootContainerStyles';
 
 /* eslint-disable react/no-deprecated */
 class RootContainer extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.isUserSignedIn(this.props.token);
   }
 
   render() {
     const {
-      user,
+      loading,
       surveyed,
       introduced,
       authenticated,
     } = this.props;
 
-    if (user && !authenticated) return <LoadingIndicator />;
+    if (loading && !authenticated) return <LoadingIndicator />;
 
     return (
       <View style={styles.container}>
@@ -78,6 +78,7 @@ class RootContainer extends Component {
 RootContainer.propTypes = {
   user: PropTypes.object,
   token: PropTypes.string,
+  loading: PropTypes.bool,
   surveyed: PropTypes.bool,
   introduced: PropTypes.bool,
   authenticated: PropTypes.bool,
@@ -88,6 +89,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.auth.user,
     token: state.auth.token,
+    loading: state.auth.loading,
     surveyed: state.app.surveyed,
     introduced: state.app.introduced,
     authenticated: state.auth.authenticated,

@@ -4,6 +4,7 @@ import { persistReducer } from 'redux-persist';
 import {
   CLEAR_LISTINGS,
   SELECT_CATEGORY,
+  LISTINGS_LOADING,
   SEARCH_FIELD_CHANGED,
   FETCH_CATEGORIES_SUCCESS,
   FETCH_CATEGORIES_FAILURE,
@@ -27,18 +28,26 @@ const INITIAL_STATE = {
   selectedCategory: null,
   selectedListing: null,
   favourites: [],
+  loading: false,
 };
 
 const authReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case LISTINGS_LOADING:
+      return { ...state, loading: true };
     case SELECT_CATEGORY:
       return { ...state, selectedCategory: action.payload };
     case SEARCH_FIELD_CHANGED:
       return { ...state, [action.payload.prop]: action.payload.value };
     case FETCH_CATEGORIES_SUCCESS:
-      return { ...state, categories: action.payload, error: {} };
+      return {
+        ...state,
+        error: {},
+        loading: false,
+        categories: action.payload,
+      };
     case FETCH_CATEGORIES_FAILURE:
-      return { ...state, error: action.payload };
+      return { ...state, error: action.payload, loading: false };
     case FETCH_LISTINGS_SUCCESS:
       return {
         ...state,

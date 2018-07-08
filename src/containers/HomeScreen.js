@@ -76,10 +76,6 @@ class HomeScreen extends Component {
     this.props.clearListings();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.categories && nextProps.user) this.setState({ loading: false });
-  }
-
   shouldComponentUpdate(nextProps, nextState) {
     // console.tron.display({
     //   name: '🔥 HomeScreen Container Component 🔥',
@@ -109,10 +105,15 @@ class HomeScreen extends Component {
   }
 
   render() {
-    const { user, categories } = this.props;
+    const {
+      user,
+      loading,
+      catLoading,
+      categories,
+    } = this.props;
     const firstName = user ? user.first_name : 'Stranger 😃';
 
-    if (categories.length <= 0) return <LoadingIndicator />;
+    if (loading || catLoading) return <LoadingIndicator />;
 
     return (
       <Container style={styles.container}>
@@ -134,6 +135,8 @@ class HomeScreen extends Component {
 HomeScreen.propTypes = {
   user: PropTypes.object,
   token: PropTypes.string,
+  loading: PropTypes.bool,
+  catLoading: PropTypes.bool,
   categories: PropTypes.array,
   clearListings: PropTypes.func,
   getCategories: PropTypes.func,
@@ -145,6 +148,8 @@ const mapStateToProps = (state) => {
   return {
     user: state.auth.user,
     token: state.auth.token,
+    loading: state.auth.loading,
+    catLoading: state.listings.loading,
     categories: state.listings.categories,
   };
 };

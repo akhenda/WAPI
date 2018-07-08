@@ -11,6 +11,7 @@ import GoogleStaticMap from 'react-native-google-static-map';
 import { web, phonecall, email } from 'react-native-communications';
 
 import { stripHTML } from 'src/utils/strip';
+import returnValidURL from 'src/utils/validURL';
 import { openStatus } from 'src/utils/businessHours';
 import shallowCompare, { shallowEqual } from 'src/utils/shallowCompare';
 import LoadingIndicator from 'src/components/LoadingIndicator';
@@ -157,7 +158,7 @@ class ListingDetailsScreen extends Component {
               {listingpro.website
                 ? <TouchableOpacity
                     style={[styles.contactItem, styles.website]}
-                    onPress={() => web(listingpro.website)}
+                    onPress={() => web(returnValidURL(listingpro.website))}
                   >
                     <Text style={styles.websiteText} numberOfLines={1}>{listingpro.website}</Text>
                     <Icon name="globe" style={styles.websiteIcon} />

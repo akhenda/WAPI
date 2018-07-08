@@ -38,7 +38,7 @@ export const isUserAuthenticated = (dispatch, token) => {
     .validateToken(token)
     .then((res) => {
       if (res.ok) {
-        // fetchUserInfo(dispatch, token);
+        fetchUserInfo(dispatch, token);
         // I am thinking 🤔, we do not need to call the above here.
         // We already have the user object persisted
       } else {
@@ -73,21 +73,21 @@ export const signInUser = (dispatch, email, password) => {
     .loginUser(email, password)
     .then((res) => {
       if (res.status === 200) {
-        fetchUserInfo(dispatch, res.data.token);
+        fetchUserInfo(dispatch, res.data.token, true);
       } else {
         responseFailure(dispatch, LOGIN_USER_FAILURE, res);
       }
     });
 };
 
-export const fetchUserInfo = (dispatch, token) => {
+export const fetchUserInfo = (dispatch, token, navigate=false) => {
   api.setHeader('Authorization', `Bearer ${token}`);
   api
     .getUserInfo('edit')
     .then((res) => {
       if (res.status === 200) {
         dispatch({ type: LOGIN_USER_SUCCESS, payload: { token, user: res.data } });
-        Actions.drawer({ type: 'reset' });
+        if (navigate) Actions.drawer({ type: 'reset' });
       } else {
         responseFailure(dispatch, FETCH_USER_FAILURE, res);
       }

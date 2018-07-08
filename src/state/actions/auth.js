@@ -15,7 +15,12 @@ export const authFieldChanged = ({ prop, value }) => {
   };
 };
 
-export const isUserSignedIn = token => dispatch => isUserAuthenticated(dispatch, token);
+export const isUserSignedIn = (token) => {
+  return (dispatch) => {
+    dispatch({ type: AUTH_LOADING });
+    isUserAuthenticated(dispatch, token);
+  };
+};
 
 export const loginUser = ({ email, password }) => {
   return (dispatch) => {

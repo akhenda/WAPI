@@ -42,7 +42,7 @@ const errorHandler = (e, isFatal) => {
 setJSExceptionHandler(errorHandler, true);
 
 setNativeExceptionHandler((errorString) => {
-  if (__DEV__) console.log('setNativeExceptionHandler');
+  if (__DEV__) console.log(`setNativeExceptionHandler: ${errorString}`);
 });
 
 class App extends Component {
