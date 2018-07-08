@@ -1,3 +1,10 @@
+## [0.6.3](https://github.com/akhenda/WAPI/compare/v0.6.2...v0.6.3) (2018-07-08)
+
+
+### Bug Fixes
+
+* **home:** home screen rerender bugs & listing website link bug ([11552d4](https://github.com/akhenda/WAPI/commit/11552d4))
+
 ## [0.6.2](https://github.com/akhenda/WAPI/compare/v0.6.1...v0.6.2) (2018-07-06)
 
 
