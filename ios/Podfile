@@ -6,8 +6,40 @@ target 'WAPI' do
   # use_frameworks!
 
   # Pods for WAPI
-  pod 'RadarSDK', '~> 1.2.0'
+  # Make sure we're also using React-Native from ../node_modules
+  pod 'React', :path => '../node_modules/react-native', :subspecs => [
+    'Core',
+    'CxxBridge',
+    'DevSupport',
+    'RCTWebSocket',
+    'RCTGeolocation',
+    'RCTLinkingIOS',
+    'RCTSettings',
+    'RCTText',
+    'RCTVibration',
+    'RCTImage',
+    'RCTAnimation',
+    'RCTActionSheet',
+    'RCTCameraRoll',
+    'RCTPushNotification',
+  ]
 
+  # React-Native dependencies such as yoga:
+  pod 'yoga', path: '../node_modules/react-native/ReactCommon/yoga'
+
+  # Now our RN libs
+  pod 'RadarSDK', '~> 1.3.0'
+  pod 'RNFS', :path => '../node_modules/react-native-fs'
+  pod 'RCTRestart', :path => '../node_modules/react-native-restart/ios'
+  pod 'react-native-config', path: '../node_modules/react-native-config'
+  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
+  pod 'SentryReactNative', :path => '../node_modules/react-native-sentry/SentryReactNative.podspec'
+  pod 'ReactNativeExceptionHandler', :podspec => '../node_modules/react-native-exception-handler/ios/ReactNativeExceptionHandler.podspec'
+
+  target 'WAPI-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
 
   target 'WAPITests' do
     inherit! :search_paths
