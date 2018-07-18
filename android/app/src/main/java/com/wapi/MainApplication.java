@@ -35,7 +35,7 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
           new VectorIconsPackage(),
           new RNAndroidLocationEnablerPackage(),
-          new RNSentryPackage(MainApplication.this),
+          new RNSentryPackage(),
           new ReactNativeRestartPackage(),
           new ReactNativeExceptionHandlerPackage(),
           new LinearGradientPackage(),

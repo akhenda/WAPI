@@ -77,6 +77,8 @@ PODS:
     - React
   - RNFS (2.9.12):
     - React
+  - RNVectorIcons (4.5.0):
+    - React
   - Sentry (3.12.4):
     - Sentry/Core (= 3.12.4)
     - Sentry/KSCrash (= 3.12.4)
@@ -112,6 +114,7 @@ DEPENDENCIES:
   - React/RCTWebSocket (from `../node_modules/react-native`)
   - ReactNativeExceptionHandler (from `../node_modules/react-native-exception-handler/ios/ReactNativeExceptionHandler.podspec`)
   - RNFS (from `../node_modules/react-native-fs`)
+  - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - SentryReactNative (from `../node_modules/react-native-sentry/SentryReactNative.podspec`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -132,6 +135,8 @@ EXTERNAL SOURCES:
     :path: ../node_modules/react-native-exception-handler/ios/ReactNativeExceptionHandler.podspec
   RNFS:
     :path: ../node_modules/react-native-fs
+  RNVectorIcons:
+    :path: ../node_modules/react-native-vector-icons
   SentryReactNative:
     :path: ../node_modules/react-native-sentry/SentryReactNative.podspec
   yoga:
@@ -149,10 +154,11 @@ SPEC CHECKSUMS:
   React: 1fe0eb13d90b625d94c3b117c274dcfd2e760e11
   ReactNativeExceptionHandler: af388823d41395f59b2b9022e2a3c85af95252fe
   RNFS: bbb1a64eb245763daf34aea86f97c97c4e85f74c
+  RNVectorIcons: c0dbfbf6068fefa240c37b0f71bd03b45dddac44
   Sentry: 7d3ea7176e5184e9c35c12a5825905345807e8c1
   SentryReactNative: 787a08161d641dde91dd36d4c8e76f9b0ba4fc84
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: b06de3b200bfb1345098b45404a341e394761712
+PODFILE CHECKSUM: 997024acedbc0a5ad9eff03c0cda0162441ee5bf
 
 COCOAPODS: 1.4.0

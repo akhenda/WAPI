@@ -78,7 +78,8 @@ project.ext.react = [
 ]
 
 project.ext.sentryCli = [
-    logLevel: "debug"
+    logLevel: "debug",
+    flavorAware: true
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"

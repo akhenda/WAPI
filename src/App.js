@@ -1,6 +1,8 @@
 import 'src/config';
 import React, { Component } from 'react';
-import { View, StatusBar, BackHandler, Alert } from 'react-native';
+import {
+  View, StatusBar, BackHandler, Alert,
+} from 'react-native';
 import { Provider } from 'react-redux';
 import RNRestart from 'react-native-restart';
 import RequiresConnection from 'react-native-offline-mode';
@@ -21,7 +23,7 @@ const errorHandler = (e, isFatal) => {
       'Unexpected error occurred',
       `
         Error: ${(isFatal) ? 'Fatal:' : ''} ${e.name} ${e.message}
-        We have reported this to our team ! Please close the app and start again!
+        We have reported this to our team! Please close the app and start again!
         `,
       [
         {
