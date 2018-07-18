@@ -31,7 +31,7 @@ target 'WAPI' do
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
   # Now our RN libs
-  pod 'RadarSDK', '~> 1.3.0'
+  pod 'RadarSDK', '~> 2.0.0'
   pod 'RNFS', :path => '../node_modules/react-native-fs'
   pod 'RCTRestart', :path => '../node_modules/react-native-restart/ios'
   pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
