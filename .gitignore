@@ -58,3 +58,7 @@ buck-out/
 # Jest Coverage Directory
 coverage/
 .env
+
+ios/Pods/
+Pods/
+*/Pods/

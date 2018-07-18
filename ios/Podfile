@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '9.2'
 
 target 'WAPI' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
@@ -26,6 +26,9 @@ target 'WAPI' do
 
   # React-Native dependencies such as yoga:
   pod 'yoga', path: '../node_modules/react-native/ReactCommon/yoga'
+  pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
+  pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
+  pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
   # Now our RN libs
   pod 'RadarSDK', '~> 1.3.0'
@@ -34,12 +37,7 @@ target 'WAPI' do
   pod 'react-native-config', path: '../node_modules/react-native-config'
   pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
   pod 'SentryReactNative', :path => '../node_modules/react-native-sentry/SentryReactNative.podspec'
-  pod 'ReactNativeExceptionHandler', :podspec => '../node_modules/react-native-exception-handler/ios/ReactNativeExceptionHandler.podspec'
-
-  target 'WAPI-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+  pod 'ReactNativeExceptionHandler', :path => '../node_modules/react-native-exception-handler/ios/ReactNativeExceptionHandler.podspec'
 
   target 'WAPITests' do
     inherit! :search_paths

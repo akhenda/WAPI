@@ -53,7 +53,14 @@
   },
   "settings": {
     "import/resolver": {
-      "babel-module": {}
+      "babel-module": {
+        "root": ["./src"],
+        "alias": {
+          "src": "./src",
+          "tests": "./_tests_"
+        },
+        "cwd": "babelrc"
+      }
     }
   }
 }
