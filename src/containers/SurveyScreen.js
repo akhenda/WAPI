@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Alert, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
-import { Container, Button, Text, List, ListItem, Icon, Left, Body, Right, Switch } from 'native-base';
 import DatePicker from 'react-native-datepicker';
 import { Actions } from 'react-native-router-flux';
 import StepIndicator from 'react-native-step-indicator';
 import SelectInput from 'react-native-select-input-ios';
+import {
+  Container, Button, Text, List, ListItem, Icon, Left, Body, Right, Switch,
+} from 'native-base';
 
 import { appFieldChanged, doneSurvey } from 'src/state/actions/app';
 import { capitalizeWord } from 'src/utils/capitalize';

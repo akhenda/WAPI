@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ActivityIndicator, Keyboard } from 'react-native';
-import { View, Text, Item, Input, Icon, Button } from 'native-base';
+import {
+  View, Text, Item, Input, Icon, Button,
+} from 'native-base';
 
 import { colors } from 'src/theme';
 import styles from './styles/FormStyles';

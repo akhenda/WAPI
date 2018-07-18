@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, FlatList, TouchableOpacity, ActivityIndicator, Modal, Image } from 'react-native';
 import { connect } from 'react-redux';
-import { Container, Text, Fab, Icon } from 'native-base';
 import Config from 'react-native-config';
 import StarRating from 'react-native-star-rating';
 import ViewMoreText from 'react-native-view-more-text';
 import ImageViewer from 'react-native-image-zoom-viewer';
 import GoogleStaticMap from 'react-native-google-static-map';
 import { web, phonecall, email } from 'react-native-communications';
+import {
+  View, FlatList, TouchableOpacity, ActivityIndicator, Modal, Image,
+} from 'react-native';
+import {
+  Container, Text, Fab, Icon,
+} from 'native-base';
 
 import { stripHTML } from 'src/utils/strip';
 import returnValidURL from 'src/utils/validURL';

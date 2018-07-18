@@ -4,4 +4,6 @@ import colors from './colors';
 import styles from './styles';
 import metrics from './metrics';
 
-export { fonts, images, colors, styles, metrics };
+export {
+  fonts, images, colors, styles, metrics,
+};

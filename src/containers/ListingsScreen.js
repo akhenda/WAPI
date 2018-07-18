@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, FlatList, Text, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { Container } from 'native-base';
 import { Actions } from 'react-native-router-flux';
+import {
+  View, FlatList, Text, ActivityIndicator,
+} from 'react-native';
 
 import shallowCompare, { shallowEqual } from 'src/utils/shallowCompare';
 import { getCategoryListings, searchListings } from 'src/state/actions/listings';
@@ -107,10 +109,10 @@ class ListingsScreen extends Component {
 
   renderFooter() {
     return (
-      this.state.loading &&
-      <View style={{ paddingVertical: 20 }}>
-        <ActivityIndicator animating size="large" />
-      </View>
+      this.state.loading
+      && <View style={{ paddingVertical: 20 }}>
+           <ActivityIndicator animating size="large" />
+         </View>
     );
   }
 

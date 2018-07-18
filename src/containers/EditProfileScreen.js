@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { View, Image, TouchableOpacity, ActivityIndicator } from 'react-native';
-import { connect } from 'react-redux';
-import { Container, Content, Button, Text, Tab, Tabs, Icon } from 'native-base';
-import CacheableImage from 'react-native-cacheable-image';
-import { Actions } from 'react-native-router-flux';
 import moment from 'moment';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
+import CacheableImage from 'react-native-cacheable-image';
 import { GiftedForm, GiftedFormManager } from 'react-native-gifted-form';
+import {
+  View, Image, TouchableOpacity, ActivityIndicator,
+} from 'react-native';
+import {
+  Container, Content, Button, Text, Tab, Tabs, Icon,
+} from 'native-base';
 
 import { images } from 'src/theme';
 import { getUserListings, getFavouriteListings } from 'src/state/actions/listings';
@@ -301,7 +305,7 @@ class EditProfileScreen extends Component {
                 ** GiftedFormManager.reset('signupForm');
                 */
               }
-          }}
+            }}
         />
 
         <GiftedForm.NoticeWidget

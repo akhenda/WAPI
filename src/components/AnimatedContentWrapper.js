@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Animated, Image, ActivityIndicator, View } from 'react-native';
-import { Container, Text, Icon, Button } from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
+import {
+  Container, Text, Icon, Button,
+} from 'native-base';
+import {
+  Animated, Image, ActivityIndicator, View,
+} from 'react-native';
 
 import { metrics, colors, images } from 'src/theme';
 import { getBackground } from 'src/utils/randomImages';
@@ -18,7 +22,7 @@ class AnimatedContentWrapper extends Component {
 
     this.state = { scrollY: new Animated.Value(0) };
   }
-  
+
   renderMenuButton(style, action, icon, iconStyle) {
     return (
       <Button rounded transparent style={style} onPress={action}>
@@ -30,39 +34,39 @@ class AnimatedContentWrapper extends Component {
   renderToolbarLeftButton() {
     const { headerButton, headerIcon, emptyButton } = styles;
     const { showToolbarLeftButton, menuLeftIcon, onLeftButton } = this.props;
-  
+
     if (!showToolbarLeftButton) return <Button transparent style={emptyButton} />;
 
     return this.renderMenuButton(headerButton, onLeftButton, menuLeftIcon, headerIcon);
   }
-  
+
   renderToolbarRightButton() {
     const { headerButton, headerIcon, emptyButton } = styles;
     const { showToolbarRightButton, menuRightIcon, onRightButton } = this.props;
-  
+
     if (!showToolbarRightButton) return <Button transparent style={emptyButton} />;
 
     return this.renderMenuButton(headerButton, onRightButton, menuRightIcon, headerIcon);
   }
-  
+
   renderBannerLeftButton() {
     const { leftButton, headerIcon } = styles;
     const { showBannerLeftButton, menuLeftIcon, onLeftButton } = this.props;
-  
+
     if (showBannerLeftButton) {
       return this.renderMenuButton(leftButton, onLeftButton, menuLeftIcon, headerIcon);
     }
   }
-  
+
   renderBannerRightButton() {
     const { rightButton, headerIcon } = styles;
     const { showBannerRightButton, menuRightIcon, onRightButton } = this.props;
-  
+
     if (showBannerRightButton) {
       return this.renderMenuButton(rightButton, onRightButton, menuRightIcon, headerIcon);
     }
   }
-  
+
   renderHeader() {
     const { headerTitle, opaqueHeader } = this.props;
 
@@ -80,7 +84,7 @@ class AnimatedContentWrapper extends Component {
       </Animated.View>
     );
   }
-  
+
   renderBanner() {
     const {
       showLogo, bannerSourceIsURI, bannerSource, linearGradient,
@@ -103,7 +107,7 @@ class AnimatedContentWrapper extends Component {
       outputRange: [0, 100],
       extrapolate: 'clamp',
     });
-    
+
     const imageScale = this.state.scrollY.interpolate({
       inputRange: [-HEADER_SCROLL_DISTANCE, 0],
       outputRange: [3, 1],

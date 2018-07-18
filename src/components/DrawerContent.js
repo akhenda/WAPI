@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { Content, Button, Text, Icon } from 'native-base';
 import { Actions } from 'react-native-router-flux';
+import {
+  Content, Button, Text, Icon,
+} from 'native-base';
 
 import { signOut } from 'src/state/actions/auth';
 import { selectCategory } from 'src/state/actions/listings';

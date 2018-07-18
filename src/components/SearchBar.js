@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Item, Input, Icon, Button } from 'native-base';
+import {
+  Item, Input, Icon, Button,
+} from 'native-base';
 
 import styles from './styles/SearchBarStyles';
 

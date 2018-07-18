@@ -20,8 +20,8 @@ export const shallowEqual = (a, b) => {
     return true;
   }
 
-  if (typeof a !== 'object' || a === null ||
-      typeof b !== 'object' || b === null) {
+  if (typeof a !== 'object' || a === null
+      || typeof b !== 'object' || b === null) {
     return false;
   }
 
@@ -45,7 +45,7 @@ export const shallowEqual = (a, b) => {
 
 export default (instance, nextProps, nextState) => {
   return (
-    !shallowEqual(instance.props, nextProps) ||
-    !shallowEqual(instance.state, nextState)
+    !shallowEqual(instance.props, nextProps)
+    || !shallowEqual(instance.state, nextState)
   );
 };
