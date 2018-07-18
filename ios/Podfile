@@ -34,6 +34,7 @@ target 'WAPI' do
   pod 'RadarSDK', '~> 2.0.0'
   pod 'RNFS', :path => '../node_modules/react-native-fs'
   pod 'RCTRestart', :path => '../node_modules/react-native-restart/ios'
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
   pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
   pod 'SentryReactNative', :path => '../node_modules/react-native-sentry/SentryReactNative.podspec'
   pod 'ReactNativeExceptionHandler', :path => '../node_modules/react-native-exception-handler/ios/ReactNativeExceptionHandler.podspec'
