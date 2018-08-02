@@ -1,3 +1,42 @@
+# [1.0.0](https://github.com/akhenda/WAPI/compare/v0.6.3...v1.0.0) (2018-08-02)
+
+
+### Bug Fixes
+
+* **build:** add semantic release to the dev dependencies ([ccb7ad9](https://github.com/akhenda/WAPI/commit/ccb7ad9))
+* **build:** fix code to conform with latest eslint rules ([78f6f97](https://github.com/akhenda/WAPI/commit/78f6f97))
+* **build:** iOS build after RN upgrade ([2942750](https://github.com/akhenda/WAPI/commit/2942750))
+* **build:** update semantic release configs to work with new updates ([a26ae96](https://github.com/akhenda/WAPI/commit/a26ae96))
+* **tests:** downgrade babel-preset-react-native to fix tests ([ed84685](https://github.com/akhenda/WAPI/commit/ed84685))
+
+
+### chore
+
+* **build:** update all npm packages except detox ([09c5633](https://github.com/akhenda/WAPI/commit/09c5633))
+
+
+### Code Refactoring
+
+* **build:** upgrade React Native to v0.56.0 ([8651379](https://github.com/akhenda/WAPI/commit/8651379))
+
+
+### Features
+
+* **navigation:** rewrite app routing configuration 🔥 ([486a4d2](https://github.com/akhenda/WAPI/commit/486a4d2))
+* **profile:** finish edit profile screen ([27f6ebf](https://github.com/akhenda/WAPI/commit/27f6ebf))
+
+
+### Performance Improvements
+
+* **android:** enable large memory heap for android ([118b17a](https://github.com/akhenda/WAPI/commit/118b17a))
+
+
+### BREAKING CHANGES
+
+* **build:** upgrade redux to v4 and also upgrade semantic-release plugins which will break the
+CI processes
+* **build:** upgrade from RN v0.51.0 to v0.56.0 and start using CocoaPods for iOS
+
 ## [0.6.3](https://github.com/akhenda/WAPI/compare/v0.6.2...v0.6.3) (2018-07-08)
 
 
