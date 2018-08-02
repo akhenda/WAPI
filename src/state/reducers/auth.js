@@ -13,6 +13,10 @@ import {
   SIGNUP_USER_SUCCESS,
   SIGNUP_USER_FAILURE,
   SIGNOUT_USER_SUCCESS,
+  UPDATE_USER_INFO_SUCCESS,
+  UPDATE_USER_INFO_FAILURE,
+  UPDATE_USER_META_SUCCESS,
+  UPDATE_USER_META_FAILURE,
 } from 'src/state/types';
 
 const INITIAL_STATE = {
@@ -54,6 +58,23 @@ const authReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         user: null,
+        loading: false,
+        authenticated: false,
+        error: action.payload.message ? { message: action.payload.message } : {},
+      };
+    case UPDATE_USER_INFO_SUCCESS:
+      return { ...state, user: action.payload };
+    case UPDATE_USER_INFO_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.message ? { message: action.payload.message } : {},
+      };
+    case UPDATE_USER_META_SUCCESS:
+      return { ...state, user: action.payload };
+    case UPDATE_USER_META_FAILURE:
+      return {
+        ...state,
         loading: false,
         error: action.payload.message ? { message: action.payload.message } : {},
       };

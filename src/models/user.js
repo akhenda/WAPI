@@ -9,6 +9,10 @@ import {
   FETCH_USER_FAILURE,
   SIGNUP_USER_FAILURE,
   SIGNOUT_USER_SUCCESS,
+  UPDATE_USER_INFO_SUCCESS,
+  UPDATE_USER_INFO_FAILURE,
+  UPDATE_USER_META_SUCCESS,
+  UPDATE_USER_META_FAILURE,
 } from 'src/state/types';
 
 
@@ -90,6 +94,32 @@ export const fetchUserInfo = (dispatch, token, navigate=false) => {
         if (navigate) Actions.drawer({ type: 'reset' });
       } else {
         responseFailure(dispatch, FETCH_USER_FAILURE, res);
+      }
+    });
+};
+
+export const saveUserInfo = (dispatch, token, data) => {
+  api.setHeader('Authorization', `Bearer ${token}`);
+  api
+    .updateUserInfo('edit', data)
+    .then((res) => {
+      if (res.status === 200) {
+        dispatch({ type: UPDATE_USER_INFO_SUCCESS, payload: res.data });
+      } else {
+        responseFailure(dispatch, UPDATE_USER_INFO_FAILURE, res);
+      }
+    });
+};
+
+export const saveUserMeta = (dispatch, token, data) => {
+  api.setHeader('Authorization', `Bearer ${token}`);
+  api
+    .updateUserMeta('edit', data)
+    .then((res) => {
+      if (res.status === 200) {
+        dispatch({ type: UPDATE_USER_META_SUCCESS, payload: res.data });
+      } else {
+        responseFailure(dispatch, UPDATE_USER_META_FAILURE, res);
       }
     });
 };

@@ -14,6 +14,7 @@ import ProfileScreen from 'src/containers/ProfileScreen';
 import ListingsScreen from 'src/containers/ListingsScreen';
 import EditProfileScreen from 'src/containers/EditProfileScreen';
 import ListingDetailsScreen from 'src/containers/ListingDetailsScreen';
+import FormModalScreen from 'src/containers/FormModalScreen';
 
 import DrawerContent from 'src/components/DrawerContent';
 import LoadingIndicator from 'src/components/LoadingIndicator';
@@ -24,7 +25,7 @@ import styles from './styles/RootContainerStyles';
 
 /* eslint-disable react/no-deprecated */
 class RootContainer extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.isUserSignedIn(this.props.token);
   }
 
@@ -67,6 +68,27 @@ class RootContainer extends Component {
               <Scene key="listing" hideNavBar title="Listing" component={ListingDetailsScreen} />
               <Scene key="profile" hideNavBar title="Profile" component={ProfileScreen} />
               <Scene key="survey" hideNavBar initial={!surveyed} title="Survey" component={SurveyScreen} />
+              <Scene
+                back
+                modal
+                key='formModal'
+                rightTitle='Save'
+                component={FormModalScreen}
+                titleStyle={styles.headerTitle}
+                navigationBarStyle={styles.header}
+                backButtonTintColor={colors.primary.text}
+                rightButtonTextStyle={styles.headerTitle}
+              />
+              <Scene
+                back
+                modal
+                key="editProfile"
+                title="Edit Profile"
+                component={EditProfileScreen}
+                titleStyle={styles.headerTitle}
+                navigationBarStyle={styles.header}
+                backButtonTintColor={colors.primary.text}
+              />
             </Drawer>
           </Scene>
         </Router>

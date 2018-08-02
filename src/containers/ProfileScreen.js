@@ -101,7 +101,14 @@ class ProfileScreen extends Component {
               {user.description || '~ Use the online portal to update your bio ~'}
             </Text>
             <View style={styles.spacer10} />
-            <Button rounded light bordered small style={styles.button}>
+            <Button
+              small
+              light
+              rounded
+              bordered
+              style={styles.button}
+              onPress={Actions.editProfile}
+            >
               <Text style={styles.buttonText}>Edit Profile</Text>
             </Button>
             <View style={styles.spacer20} />

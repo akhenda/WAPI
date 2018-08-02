@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Alert, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
-import DatePicker from 'react-native-datepicker';
+// import DatePicker from 'react-native-datepicker';
 import { Actions } from 'react-native-router-flux';
 import StepIndicator from 'react-native-step-indicator';
 import SelectInput from 'react-native-select-input-ios';
@@ -43,14 +43,14 @@ class SurveyScreen extends Component {
   onPageChange = (position) => {
     const { currentPosition } = this.state;
     const {
-      date,
-      gender,
+      // date,
+      // gender,
       interests,
       occupation,
       nationality,
     } = this.props;
     const {
-      activities, restaurants, medical, services, shopping, volunteer,
+      activities, restaurants, medical, services, shopping, volunteering,
     } = interests;
 
     // const isPageOneFilled = (
@@ -61,7 +61,7 @@ class SurveyScreen extends Component {
     // );
     const isPageOneFilled = (nationality !== 'default' && occupation !== 'default');
     const isInterestSelected = (
-      activities || restaurants || medical || services || shopping || volunteer
+      activities || restaurants || medical || services || shopping || volunteering
     );
 
     if (currentPosition === 0 && !isPageOneFilled) {
@@ -78,7 +78,25 @@ class SurveyScreen extends Component {
   };
 
   onDone = () => {
-    this.props.doneSurvey();
+    const {
+      token, interests, occupation, nationality,
+    } = this.props;
+    const {
+      activities, restaurants, medical, services, shopping, volunteering,
+    } = interests;
+    const payload = {
+      surveyed: true,
+      occupation,
+      nationality,
+      activities,
+      restaurants,
+      medical,
+      services,
+      shopping,
+      volunteering,
+    };
+
+    this.props.doneSurvey(token, payload);
     Actions.home();
   }
 
@@ -97,7 +115,7 @@ class SurveyScreen extends Component {
     return [
       { value: 'default', label: 'I work in...' },
       { value: 'student', label: 'Student' },
-      { value: 'parent', label: 'Artisan' },
+      { value: 'artisan', label: 'Artisan' },
       { value: 'concerned_citizen', label: 'Concerned Citizen' },
       { value: 'curious_bird', label: 'Curious Bird' },
       { value: 'businessman', label: 'Business Man' },
@@ -166,7 +184,7 @@ class SurveyScreen extends Component {
   }
 
   renderAboutYou() {
-    const { date } = this.props;
+    // const { date } = this.props;
 
     return (
       <View style={styles.aboutYou}>
@@ -212,7 +230,7 @@ class SurveyScreen extends Component {
           {this.renderCategory('medkit', 'Medical', 'medical', 'red')}
           {this.renderCategory('pricetags', 'Services', 'services', 'orange')}
           {this.renderCategory('cart', 'Shopping', 'shopping', 'blue')}
-          {this.renderCategory('hand', 'Volunteer/Donations', 'volunteer', 'green')}
+          {this.renderCategory('hand', 'Volunteer/Donations', 'volunteering', 'green')}
           <View style={styles.spacer} />
           <Button success rounded style={styles.nextButton} onPress={() => this.onPageChange(2)}>
             <Text>Done, next step</Text>
@@ -284,6 +302,7 @@ SurveyScreen.propTypes = {
   user: PropTypes.object,
   date: PropTypes.string,
   loading: PropTypes.bool,
+  token: PropTypes.string,
   gender: PropTypes.string,
   doneSurvey: PropTypes.func,
   interests: PropTypes.object,
@@ -297,6 +316,7 @@ const mapStateToProps = (state) => {
     date: state.app.date,
     user: state.auth.user,
     email: state.auth.email,
+    token: state.auth.token,
     gender: state.app.gender,
     loading: state.auth.loading,
     password: state.auth.password,

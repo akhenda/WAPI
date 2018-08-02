@@ -1,0 +1,128 @@
+patch-package
+--- a/node_modules/react-native-gifted-form/mixins/WidgetMixin.js
++++ b/node_modules/react-native-gifted-form/mixins/WidgetMixin.js
+@@ -1,6 +1,7 @@
+ import React from 'react';
+ import PropTypes from 'prop-types';
+ import { Image } from 'react-native';
++import ImageResizeMode from 'react-native/Libraries/Image/ImageResizeMode';
+ 
+ 
+ var GiftedFormManager = require('../GiftedFormManager');
+@@ -219,7 +220,7 @@ module.exports = {
+       return (
+         <Image
+           style={this.getStyle('rowImage')}
+-          resizeMode={Image.resizeMode.contain}
++          resizeMode={ImageResizeMode.contain}
+           source={imageSrc}
+         />
+       );
+@@ -231,7 +232,7 @@ module.exports = {
+       return (
+         <Image
+           style={this.getStyle('rowImage')}
+-          resizeMode={Image.resizeMode.contain}
++          resizeMode={ImageResizeMode.contain}
+           source={this.props.image}
+         />
+       );
+--- a/node_modules/react-native-gifted-form/widgets/ModalWidget.js
++++ b/node_modules/react-native-gifted-form/widgets/ModalWidget.js
+@@ -10,6 +10,7 @@ import {
+   TouchableOpacity,
+   PixelRatio,
+ } from 'react-native';
++import ImageResizeMode from 'react-native/Libraries/Image/ImageResizeMode';
+ 
+ var WidgetMixin = require('../mixins/WidgetMixin');
+ 
+@@ -54,7 +55,7 @@ module.exports = createReactClass({
+       return (
+         <Image
+           style={this.getStyle('disclosure')}
+-          resizeMode={Image.resizeMode.contain}
++          resizeMode={ImageResizeMode.contain}
+           source={require('../icons/disclosure.png')}
+         />
+       );
+@@ -114,7 +115,7 @@ module.exports = createReactClass({
+                   marginLeft: 10,
+                   tintColor: '#097881',
+                 }}
+-                resizeMode={Image.resizeMode.contain}
++                resizeMode={ImageResizeMode.contain}
+                 source={require('../icons/close.png')}
+               />
+             </TouchableOpacity>
+@@ -139,7 +140,7 @@ module.exports = createReactClass({
+                 marginRight: 10,
+                 tintColor: '#097881',
+               }}
+-              resizeMode={Image.resizeMode.contain}
++              resizeMode={ImageResizeMode.contain}
+               source={require('../icons/check.png')}
+             />
+           </TouchableOpacity>
+--- a/node_modules/react-native-gifted-form/widgets/OptionWidget.js
++++ b/node_modules/react-native-gifted-form/widgets/OptionWidget.js
+@@ -7,6 +7,7 @@ import {
+   Image,
+   PixelRatio
+ } from 'react-native';
++import ImageResizeMode from 'react-native/Libraries/Image/ImageResizeMode';
+ 
+ var WidgetMixin = require('../mixins/WidgetMixin.js');
+ 
+@@ -27,7 +28,7 @@ module.exports = createReactClass({
+       return (
+         <Image
+           style={this.getStyle('checkmark')}
+-          resizeMode={Image.resizeMode.contain}
++          resizeMode={ImageResizeMode.contain}
+           source={require('../icons/check.png')}
+         />
+       );
+@@ -103,4 +104,3 @@ module.exports = createReactClass({
+     },
+   },
+ });
+-
+--- a/node_modules/react-native-gifted-form/widgets/RowWidget.js
++++ b/node_modules/react-native-gifted-form/widgets/RowWidget.js
+@@ -7,6 +7,7 @@ import {
+   Image,
+   PixelRatio
+ } from 'react-native';
++import ImageResizeMode from 'react-native/Libraries/Image/ImageResizeMode';
+ 
+ var WidgetMixin = require('../mixins/WidgetMixin.js');
+ var TimerMixin = require('react-timer-mixin');
+@@ -28,7 +29,7 @@ module.exports = createReactClass({
+       return (
+         <Image
+           style={this.getStyle('disclosure')}
+-          resizeMode={Image.resizeMode.contain}
++          resizeMode={ImageResizeMode.contain}
+           source={require('../icons/disclosure.png')}
+         />
+       );
+--- a/node_modules/react-native-gifted-form/widgets/SelectCountryWidget.js
++++ b/node_modules/react-native-gifted-form/widgets/SelectCountryWidget.js
+@@ -3,6 +3,7 @@ import createReactClass from 'create-react-class';
+ import {
+   View, ListView, Text, TouchableHighlight, TextInput, Image, PixelRatio
+ } from 'react-native';
++import ImageResizeMode from 'react-native/Libraries/Image/ImageResizeMode';
+ 
+ var WidgetMixin = require('../mixins/WidgetMixin.js');
+ var OptionWidget = require('./OptionWidget.js');
+@@ -1857,7 +1858,7 @@ module.exports = createReactClass({
+           }}>
+             <Image
+               key={rowData.alpha2+'Image'}
+-              resizeMode={Image.resizeMode.contain}
++              resizeMode={ImageResizeMode.contain}
+               source={image}
+               style={{
+                 height: 30,

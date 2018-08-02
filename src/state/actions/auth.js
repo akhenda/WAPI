@@ -3,6 +3,8 @@ import {
   signInUser,
   signUpUser,
   signOutUser,
+  saveUserInfo,
+  saveUserMeta,
   fetchUserInfo,
   isUserAuthenticated,
 } from 'src/models/user';
@@ -37,6 +39,9 @@ export const registerUser = (data) => {
 };
 
 export const getUserInfo = token => dispatch => fetchUserInfo(dispatch, token);
+
+export const updateUserInfo = (token, values) => dispatch => saveUserInfo(dispatch, token, values);
+export const updateUserMeta = (token, values) => dispatch => saveUserMeta(dispatch, token, values);
 
 export const clearInputData = () => dispatch => dispatch({ type: CLEAR_INPUT_DATA });
 

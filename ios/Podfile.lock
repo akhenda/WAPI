@@ -85,7 +85,7 @@ PODS:
   - Sentry/Core (3.12.4)
   - Sentry/KSCrash (3.12.4):
     - KSCrash/Core (~> 1.15.12)
-  - SentryReactNative (0.38.2):
+  - SentryReactNative (0.38.3):
     - React
     - Sentry (~> 3.12.4)
     - Sentry/KSCrash (~> 3.12.4)
@@ -152,7 +152,7 @@ SPEC CHECKSUMS:
   RadarSDK: e73cfee062b9ab25ce540a42e2556a98cdc0276f
   RCTRestart: 2f9ddcfd9abb887f123b6580cec64d72fb6cccaa
   React: 1fe0eb13d90b625d94c3b117c274dcfd2e760e11
-  ReactNativeExceptionHandler: af388823d41395f59b2b9022e2a3c85af95252fe
+  ReactNativeExceptionHandler: 920172780c35c4899c84dc7e216e2152a21c3760
   RNFS: bbb1a64eb245763daf34aea86f97c97c4e85f74c
   RNVectorIcons: c0dbfbf6068fefa240c37b0f71bd03b45dddac44
   Sentry: 7d3ea7176e5184e9c35c12a5825905345807e8c1

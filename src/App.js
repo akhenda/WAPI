@@ -41,11 +41,11 @@ const errorHandler = (e, isFatal) => {
   }
 };
 
-setJSExceptionHandler(errorHandler, true);
+setJSExceptionHandler(errorHandler, false);
 
-setNativeExceptionHandler((errorString) => {
-  if (__DEV__) console.log(`setNativeExceptionHandler: ${errorString}`);
-});
+// setNativeExceptionHandler((errorString) => {
+//   if (__DEV__) console.log(`setNativeExceptionHandler: ${errorString}`);
+// });
 
 class App extends Component {
   onBeforeLift = () => {

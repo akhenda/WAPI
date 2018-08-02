@@ -59,6 +59,47 @@ const create = (baseURL = 'https://wapi-kenya.com/wp-json/') => {
     );
   };
   const getUserInfo = context => api.get(`wp/v2/users/me?context=${context}`);
+  const updateUserInfo = (context, data) => {
+    return api.patch(
+      `wp/v2/users/me?context=${context}`,
+      {
+        description: data.bio,
+        username: data.username,
+        last_name: data.lastName,
+        email: data.emailAddress,
+        first_name: data.firstName,
+        meta: {
+          nationality: data.nationality[0],
+          occupation: data.occupation[0],
+          interested_in_activities: data.activities === true || data.activities === 1 || data.activities === '1' ? 1 : 0,
+          interested_in_restaurants: data.restaurants === true || data.restaurants === 1 || data.restaurants === '1' ? 1 : 0,
+          interested_in_medical: data.medical === true || data.medical === 1 || data.medical === '1' ? 1 : 0,
+          interested_in_services: data.services === true || data.services === 1 || data.services === '1' ? 1 : 0,
+          interested_in_shopping: data.shopping === true || data.shopping === 1 || data.shopping === '1' ? 1 : 0,
+          interested_in_volunteering: data.volunteering === true || data.volunteering === 1 || data.volunteering === '1' ? 1 : 0,
+        },
+      },
+    );
+  };
+
+  const updateUserMeta = (context, data) => {
+    return api.patch(
+      `wp/v2/users/me?context=${context}`,
+      {
+        meta: {
+          surveyed: data.surveyed === true || data.surveyed === 1 || data.surveyed === '1' ? 1 : 0,
+          nationality: data.nationality,
+          occupation: data.occupation,
+          interested_in_activities: data.activities === true || data.activities === 1 || data.activities === '1' ? 1 : 0,
+          interested_in_restaurants: data.restaurants === true || data.restaurants === 1 || data.restaurants === '1' ? 1 : 0,
+          interested_in_medical: data.medical === true || data.medical === 1 || data.medical === '1' ? 1 : 0,
+          interested_in_services: data.services === true || data.services === 1 || data.services === '1' ? 1 : 0,
+          interested_in_shopping: data.shopping === true || data.shopping === 1 || data.shopping === '1' ? 1 : 0,
+          interested_in_volunteering: data.volunteering === true || data.volunteering === 1 || data.volunteering === '1' ? 1 : 0,
+        },
+      },
+    );
+  };
 
   const getCategories = () => api.get('wp/v2/listing-category');
   const getCategoryListings = (id, page) => api.get(`wp/v2/listing?listing-category=${id}&page=${page}`);
@@ -86,6 +127,8 @@ const create = (baseURL = 'https://wapi-kenya.com/wp-json/') => {
     loginUser,
     validateToken,
     getUserInfo,
+    updateUserInfo,
+    updateUserMeta,
     getCategories,
     getCategoryListings,
     searchListings,

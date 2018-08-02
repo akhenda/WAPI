@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    backgroundColor: colors.secondary.main,
+    backgroundColor: colors.primary.main,
   },
   headerTitle: {
     color: colors.primary.text,

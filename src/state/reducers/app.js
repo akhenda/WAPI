@@ -23,7 +23,7 @@ const INITIAL_STATE = {
     medical: false,
     services: false,
     shopping: false,
-    volunteer: false,
+    volunteering: false,
   },
   currentLocation: null,
   favourites: [],

@@ -7,6 +7,8 @@ import {
   REMOVE_FAVOURITE,
 } from 'src/state/types';
 
+import { saveUserMeta } from 'src/models/user';
+
 
 export const doneAppIntro = () => {
   return { type: DONE_APP_INTRO };
@@ -19,8 +21,11 @@ export const appFieldChanged = ({ prop, value }) => {
   };
 };
 
-export const doneSurvey = () => {
-  return { type: DONE_SURVEY };
+export const doneSurvey = (token, payload) => {
+  return (dispatch) => {
+    dispatch({ type: DONE_SURVEY });
+    saveUserMeta(dispatch, token, payload);
+  };
 };
 
 export const updateLocation = (location) => {

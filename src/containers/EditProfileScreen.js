@@ -1,24 +1,19 @@
 import React, { Component } from 'react';
-import moment from 'moment';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import CacheableImage from 'react-native-cacheable-image';
 import { GiftedForm, GiftedFormManager } from 'react-native-gifted-form';
-import {
-  View, Image, TouchableOpacity, ActivityIndicator,
-} from 'react-native';
-import {
-  Container, Content, Button, Text, Tab, Tabs, Icon,
-} from 'native-base';
 
-import { images } from 'src/theme';
-import { getUserListings, getFavouriteListings } from 'src/state/actions/listings';
+import { updateUserInfo } from 'src/state/actions/auth';
 import LoadingIndicator from 'src/components/LoadingIndicator';
-import styles from './styles/ProfileScreenStyles';
+import { getOccupationOptions } from 'src/utils/occupationOptions';
+import { getNationalityOptions } from 'src/utils/nationalityOptions';
 
+import { images, colors } from 'src/theme';
+// import styles from './styles/ProfileScreenStyles';
 
-/* eslint-disable react/no-deprecated */
+// eslint-disable react/no-deprecated
+/* eslint-disable camelcase */
 class EditProfileScreen extends Component {
   constructor(props) {
     super(props);
@@ -28,76 +23,77 @@ class EditProfileScreen extends Component {
     };
   }
 
-  componentDidMount() {
-    // this.fetchUserListings();
-  }
-
-  componentWillReceiveProps() {
-    // this.setState({ loading: false });
-  }
-
-  fetchUserListings = () => {
-    const { token, user } = this.props;
-
-    if (Object.keys(user).length > 0) {
-      // this.setState({ loading: true });
-      this.props.getUserListings(token, user.id);
-
-      const ids = this.props.favourites.reduce((args, id) => `${args}include[]=${id}&`, '').slice(0, -1);
-      this.props.getFavouriteListings(token, ids);
-    }
-  }
-
-  renderItem = (item) => {
-    return (
-      <TouchableOpacity
-        key={item.id}
-        style={styles.listingItemContainer}
-        onPress={() => Actions.listing({ id: item.id, onLeftButton: Actions.profile })}
-      >
-        <View style={styles.listingItemLoading}>
-          <ActivityIndicator size="small" />
-        </View>
-        <CacheableImage
-          resizeMode="cover"
-          style={styles.listingItem}
-          source={{ uri: item.featured_image_url[0] }}
-        />
-        <View style={styles.listingItemTextContainer}>
-          <Text style={styles.listingItemText}>{item.title.rendered}</Text>
-        </View>
-      </TouchableOpacity>
-    );
-  }
-
-  renderEmpty(message) {
-    return (
-      <View style={styles.empty}>
-        <Text style={styles.emptyText}>{message}</Text>
-      </View>
-    );
-  }
-
   render() {
     const { user } = this.props;
     if (this.state.loading) return <LoadingIndicator />;
 
+    const {
+      meta,
+      username,
+      description: bio,
+      last_name: lastName,
+      email: emailAddress,
+      first_name: firstName,
+    } = user;
+    const {
+      occupation,
+      nationality,
+      interested_in_medical: medical,
+      interested_in_services: services,
+      interested_in_shopping: shopping,
+      interested_in_activities: activities,
+      interested_in_volunteering: volunteering,
+      interested_in_restaurants: restaurants,
+    } = meta;
+
     return (
       <GiftedForm
-        formName='signupForm'
+        formName='profileForm'
         clearOnClose={false}
         defaults={{
-          /*
-          username: 'Farid',
-          'gender{M}': true,
-          password: 'abcdefg',
-          country: 'FR',
-          birthday: new Date(((new Date()).getFullYear() - 18)+''),
-          */
+          firstName,
+          lastName,
+          username,
+          bio,
+          emailAddress,
+          [`occupation{${occupation}}`]: true,
+          [`nationality{${nationality}}`]: true,
+          services: services || false,
+          medical: medical || false,
+          shopping: shopping || false,
+          activities: activities || false,
+          volunteering: volunteering || false,
+          restaurants: restaurants || false,
+        }}
+        openModal={(route) => {
+          Actions.formModal({
+            title: route.getTitle(),
+            renderScene: route.renderScene,
+
+            /*
+              Option 1: If you like the buttons react-native-gifted-form
+              gives you, then use this step:
+            */
+            // renderRightButton: route.renderRightButton.bind(route, Actions),
+
+            /*
+              Option 2: If you prefer your own right button (or text), then
+              use this step:
+            */
+            onRight: route.onClose.bind(null, null, Actions),
+          });
         }}
         validators={{
-          fullName: {
-            title: 'Full name',
+          firstName: {
+            title: 'First Name',
+            validate: [{
+              validator: 'isLength',
+              arguments: [1, 23],
+              message: '{TITLE} must be between {ARGS[0]} and {ARGS[1]} characters',
+            }],
+          },
+          lastName: {
+            title: 'Last Name',
             validate: [{
               validator: 'isLength',
               arguments: [1, 23],
@@ -108,7 +104,7 @@ class EditProfileScreen extends Component {
             title: 'Username',
             validate: [{
               validator: 'isLength',
-              arguments: [3, 16],
+              arguments: [3, 24],
               message: '{TITLE} must be between {ARGS[0]} and {ARGS[1]} characters',
             }, {
               validator: 'matches',
@@ -116,16 +112,8 @@ class EditProfileScreen extends Component {
               message: '{TITLE} can contains only alphanumeric characters',
             }],
           },
-          password: {
-            title: 'Password',
-            validate: [{
-              validator: 'isLength',
-              arguments: [6, 16],
-              message: '{TITLE} must be between {ARGS[0]} and {ARGS[1]} characters',
-            }],
-          },
           emailAddress: {
-            title: 'Email address',
+            title: 'Email Address',
             validate: [{
               validator: 'isLength',
               arguments: [6, 255],
@@ -141,8 +129,8 @@ class EditProfileScreen extends Component {
               message: '{TITLE} must be between {ARGS[0]} and {ARGS[1]} characters',
             }],
           },
-          gender: {
-            title: 'Gender',
+          occupation: {
+            title: 'Occupation',
             validate: [{
               validator: (...args) => {
                 if (args[0] === undefined) {
@@ -153,20 +141,8 @@ class EditProfileScreen extends Component {
               message: '{TITLE} is required',
             }],
           },
-          birthday: {
-            title: 'Birthday',
-            validate: [{
-              validator: 'isBefore',
-              arguments: [moment().utc().subtract(18, 'years').format('YYYY-MM-DD')],
-              message: 'You must be at least 18 years old',
-            }, {
-              validator: 'isAfter',
-              arguments: [moment().utc().subtract(100, 'years').format('YYYY-MM-DD')],
-              message: '{TITLE} is not valid',
-            }],
-          },
-          country: {
-            title: 'Country',
+          nationality: {
+            title: 'Nationality',
             validate: [{
               validator: 'isLength',
               arguments: [2],
@@ -178,22 +154,31 @@ class EditProfileScreen extends Component {
         <GiftedForm.SeparatorWidget />
 
         <GiftedForm.TextInputWidget
-          name='fullName' // mandatory
-          title='Full name'
-          image={require('../images/icons/color/user.png')}
-          placeholder='Marco Polo'
+          name='firstName'
+          title='First Name'
+          image={images.icons.user}
+          placeholder='Jane'
+          clearButtonMode='while-editing'
+        />
+
+        <GiftedForm.TextInputWidget
+          name='lastName'
+          title='Last Name'
+          image={images.icons.user}
+          placeholder='Doe'
           clearButtonMode='while-editing'
         />
 
         <GiftedForm.TextInputWidget
           name='username'
           title='Username'
-          image={require('../images/icons/color/contact_card.png')}
-          placeholder='MarcoPolo'
+          editable={false}
+          placeholder='JaneDoe'
           clearButtonMode='while-editing'
+          image={images.icons.contact_card}
           onTextInputFocus={(currentText = '') => {
             if (!currentText) {
-              const fullName = GiftedFormManager.getValue('signupForm', 'fullName');
+              const fullName = GiftedFormManager.getValue('profileForm', 'fullName');
               if (fullName) {
                 return fullName.replace(/[^a-zA-Z0-9-_]/g, '');
               }
@@ -203,73 +188,18 @@ class EditProfileScreen extends Component {
         />
 
         <GiftedForm.TextInputWidget
-          name='password' // mandatory
-          title='Password'
-          placeholder='******'
-          clearButtonMode='while-editing'
-          secureTextEntry={true}
-          image={require('../images/icons/color/lock.png')}
-        />
-
-        <GiftedForm.TextInputWidget
-          name='emailAddress' // mandatory
-          title='Email address'
-          placeholder='example@nomads.ly'
+          name='emailAddress'
+          title='Email'
+          placeholder='example@website.com'
           keyboardType='email-address'
           clearButtonMode='while-editing'
-          image={require('../images/icons/color/email.png')}
+          image={images.icons.email}
         />
-
-        <GiftedForm.SeparatorWidget />
-
-        <GiftedForm.ModalWidget
-          title='Gender'
-          displayValue='gender'
-          image={require('../images/icons/color/gender.png')}
-        >
-          <GiftedForm.SeparatorWidget />
-
-          <GiftedForm.SelectWidget name='gender' title='Gender' multiple={false}>
-            <GiftedForm.OptionWidget image={require('../images/icons/color/female.png')} title='Female' value='F'/>
-            <GiftedForm.OptionWidget image={require('../images/icons/color/male.png')} title='Male' value='M'/>
-          </GiftedForm.SelectWidget>
-        </GiftedForm.ModalWidget>
-
-        <GiftedForm.ModalWidget
-          title='Birthday'
-          displayValue='birthday'
-          image={require('../images/icons/color/birthday.png')}
-          scrollEnabled={false}
-        >
-          <GiftedForm.SeparatorWidget/>
-
-          <GiftedForm.DatePickerIOSWidget
-            name='birthday'
-            mode='date'
-            getDefaultDate={() => {
-              return new Date(`${(new Date()).getFullYear() - 18}`);
-            }}
-          />
-        </GiftedForm.ModalWidget>
-
-        <GiftedForm.ModalWidget
-          title='Country'
-          displayValue='country'
-          image={require('../images/icons/color/passport.png')}
-          scrollEnabled={false}
-        >
-          <GiftedForm.SelectCountryWidget
-            code='alpha2'
-            name='country'
-            title='Country'
-            autoFocus={true}
-          />
-        </GiftedForm.ModalWidget>
 
         <GiftedForm.ModalWidget
           title='Biography'
           displayValue='bio'
-          image={require('../images/icons/color/book.png')}
+          image={images.icons.book}
           scrollEnabled={true}
         >
           <GiftedForm.SeparatorWidget/>
@@ -281,38 +211,119 @@ class EditProfileScreen extends Component {
           />
         </GiftedForm.ModalWidget>
 
+        <GiftedForm.SeparatorWidget />
+
+        <GiftedForm.ModalWidget
+          title='Occupation'
+          displayValue='occupation'
+          image={images.icons.occupation}
+        >
+          <GiftedForm.SeparatorWidget />
+
+          <GiftedForm.SelectWidget name='occupation' title='Occupation' multiple={false}>
+            {getOccupationOptions().slice(1).map((job) => {
+              return (
+                <GiftedForm.OptionWidget
+                  key={job.value}
+                  title={job.label}
+                  value={job.value}
+                  image={images.icons[job.icon]}
+                />
+              );
+            })}
+          </GiftedForm.SelectWidget>
+        </GiftedForm.ModalWidget>
+
+        <GiftedForm.ModalWidget
+          title='Nationality'
+          displayValue='nationality'
+          image={images.icons.passport}
+          scrollEnabled={false}
+        >
+          <GiftedForm.SelectWidget name='nationality' title='Nationality' multiple={false}>
+            {getNationalityOptions().slice(1).map((val) => {
+              return (
+                <GiftedForm.OptionWidget
+                  key={val.value}
+                  title={val.label}
+                  value={val.value}
+                  image={images.icons[val.icon]}
+                />
+              );
+            })}
+          </GiftedForm.SelectWidget>
+        </GiftedForm.ModalWidget>
+
+        <GiftedForm.SeparatorWidget />
+        <GiftedForm.NoticeWidget title='Your Interests' />
+
+        <GiftedForm.SwitchWidget
+          name="activities"
+          title="Activities"
+          image={images.icons.activities}
+        />
+        <GiftedForm.SwitchWidget
+          name="medical"
+          title="Medical"
+          image={images.icons.medical}
+        />
+        <GiftedForm.SwitchWidget
+          name="restaurants"
+          title="Restaurants"
+          image={images.icons.restaurants}
+        />
+        <GiftedForm.SwitchWidget
+          name="services"
+          title="Services"
+          image={images.icons.services}
+        />
+        <GiftedForm.SwitchWidget
+          name="shopping"
+          title="Shopping"
+          image={images.icons.shopping}
+        />
+        <GiftedForm.SwitchWidget
+          name="volunteering"
+          title="Volunteering"
+          image={images.icons.volunteering}
+        />
+
+
         <GiftedForm.ErrorsWidget/>
 
         <GiftedForm.SubmitWidget
-          title='Sign up'
+          title='Save Profile'
           widgetStyles={{
             submitButton: {
-              backgroundColor: 'green',
+              backgroundColor: colors.primary.main,
             },
           }}
           onSubmit={
             (isValid, values) => {
               if (isValid === true) {
+                console.tron.display({
+                  name: '🔥 IGNITE 🔥',
+                  preview: 'You should totally expand this',
+                  value: {
+                    '💃': 'Welcome to the future!',
+                    values,
+                  },
+                });
+                this.props.updateUserInfo(this.props.token, values);
                 // prepare object
                 // values.gender = values.gender[0];
-                values.birthday = moment(values.birthday).format('YYYY-MM-DD');
+                // values.birthday = moment(values.birthday).format('YYYY-MM-DD');
 
                 /* Implement the request to your server using values variable
                 ** then you can do:
                 ** postSubmit();
                 ** postSubmit(['An error occurred, please try again']);
                 ** postSubmit(['Username already taken', 'Email already taken']);
-                ** GiftedFormManager.reset('signupForm');
+                ** GiftedFormManager.reset('profileForm');
                 */
               }
             }}
         />
-
-        <GiftedForm.NoticeWidget
-          title='By signing up, you agree to the Terms of Service and Privacy Policity.'
-        />
-
-        <GiftedForm.HiddenWidget name='tos' value={true} />
       </GiftedForm>
     );
   }
@@ -324,8 +335,7 @@ EditProfileScreen.propTypes = {
   token: PropTypes.string,
   favPlaces: PropTypes.array,
   favourites: PropTypes.array,
-  getUserListings: PropTypes.func,
-  getFavouriteListings: PropTypes.func,
+  updateUserInfo: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {
@@ -338,6 +348,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {
-  getUserListings, getFavouriteListings,
-})(EditProfileScreen);
+export default connect(mapStateToProps, { updateUserInfo })(EditProfileScreen);
