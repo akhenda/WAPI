@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, StatusBar } from 'react-native';
+import { View, StatusBar, Platform } from 'react-native';
 import { connect } from 'react-redux';
-import { Router, Scene, Drawer } from 'react-native-router-flux';
+import {
+  Scene,
+  Router,
+  Overlay,
+  Modal,
+  Drawer,
+  Stack,
+  Lightbox,
+} from 'react-native-router-flux';
 import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator';
 
 import WalkthroughScreen from 'src/containers/WalkthroughScreen';
@@ -23,6 +31,16 @@ import { isUserSignedIn } from 'src/state/actions/auth';
 import { colors, metrics } from 'src/theme';
 import styles from './styles/RootContainerStyles';
 
+
+const getSceneStyle = () => ({
+  backgroundColor: '#F5FCFF',
+  shadowOpacity: 1,
+  shadowRadius: 3,
+});
+
+// on Android, the URI prefix typically contains a host in addition to scheme
+const prefix = Platform.OS === 'android' ? 'wapi://wapi/' : 'wapi://';
+
 /* eslint-disable react/no-deprecated */
 class RootContainer extends Component {
   componentWillMount() {
@@ -42,55 +60,81 @@ class RootContainer extends Component {
     return (
       <View style={styles.container}>
         <StatusBar translucent backgroundColor={colors.statusBarTranslucent} />
-        <Router>
-          <Scene key="root" navigationBarStyle={styles.header}>
-            <Scene
-              key="auth"
+        <Router getSceneStyle={getSceneStyle} uriPrefix={prefix}>
+          <Overlay
+            key="overlay"
+            transitionConfig={
+              () => ({ screenInterpolator: CardStackStyleInterpolator.forHorizontal })
+            }
+          >
+            <Modal
+              key="modal"
               hideNavBar
-              initial={!authenticated}
               transitionConfig={
-                () => ({ screenInterpolator: CardStackStyleInterpolator.forHorizontal })
+                () => ({ screenInterpolator: CardStackStyleInterpolator.forFadeFromBottomAndroid })
               }
             >
-              <Scene key="login" title="Log In" component={LoginScreen} />
-              <Scene key="signup" title="Sign Up" component={SignUpScreen} />
-              <Scene initial={!introduced} key="intro" title="App Intro" component={WalkthroughScreen} />
-            </Scene>
-            <Drawer
-              hideNavBar
-              key="drawer"
-              drawerWidth={metrics.screenWidth * 0.7}
-              initial={authenticated}
-              contentComponent={DrawerContent}
-            >
-              <Scene key="home" hideNavBar title="Home" component={HomeScreen} />
-              <Scene key="listings" hideNavBar title="Listings" component={ListingsScreen} />
-              <Scene key="listing" hideNavBar title="Listing" component={ListingDetailsScreen} />
-              <Scene key="profile" hideNavBar title="Profile" component={ProfileScreen} />
-              <Scene key="survey" hideNavBar initial={!surveyed} title="Survey" component={SurveyScreen} />
+              <Lightbox key="lightbox">
+                <Stack hideNavBar key="root" titleStyle={{ alignSelf: 'center' }}>
+                  <Stack
+                    back
+                    backTitle="Back"
+                    key="auth"
+                    duration={0}
+                    navTransparent
+                    initial={!authenticated}
+
+                  >
+                    <Scene key="login" title="Log In" component={LoginScreen} />
+                    <Scene key="signup" title="Sign Up" component={SignUpScreen} />
+                    <Scene initial={!introduced} key="intro" title="App Intro" component={WalkthroughScreen} />
+                  </Stack>
+                  <Drawer
+                    hideNavBar
+                    key="drawer"
+                    drawerWidth={metrics.screenWidth * 0.7}
+                    initial={authenticated}
+                    contentComponent={DrawerContent}
+                  >
+                    {/*
+                      Wrapper Scene needed to fix a bug where the tabs would
+                      reload as a modal ontop of itself
+                    */}
+                    <Scene key="main" hideNavBar panHandlers={null}>
+                      <Stack key="mainStack">
+                        <Scene key="home" hideNavBar title="Home" component={HomeScreen} />
+                        <Scene key="listings" hideNavBar title="Listings" component={ListingsScreen} />
+                        <Scene key="listing" hideNavBar title="Listing" component={ListingDetailsScreen} />
+                        <Scene key="profile" hideNavBar title="Profile" component={ProfileScreen} />
+                        <Scene key="survey" hideNavBar initial={!surveyed} title="Survey" component={SurveyScreen} />
+                        <Scene
+                          back
+                          key="editProfile"
+                          title="Edit Profile"
+                          component={EditProfileScreen}
+                          titleStyle={styles.headerTitle}
+                          navigationBarStyle={styles.header}
+                          backButtonTintColor={colors.primary.text}
+                        />
+                      </Stack>
+                    </Scene>
+                  </Drawer>
+                </Stack>
+              </Lightbox>
               <Scene
                 back
                 modal
                 key='formModal'
                 rightTitle='Save'
+                hideNavBar={false}
                 component={FormModalScreen}
                 titleStyle={styles.headerTitle}
                 navigationBarStyle={styles.header}
                 backButtonTintColor={colors.primary.text}
                 rightButtonTextStyle={styles.headerTitle}
               />
-              <Scene
-                back
-                modal
-                key="editProfile"
-                title="Edit Profile"
-                component={EditProfileScreen}
-                titleStyle={styles.headerTitle}
-                navigationBarStyle={styles.header}
-                backButtonTintColor={colors.primary.text}
-              />
-            </Drawer>
-          </Scene>
+            </Modal>
+          </Overlay>
         </Router>
       </View>
     );

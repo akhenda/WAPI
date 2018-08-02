@@ -107,7 +107,7 @@ class ProfileScreen extends Component {
               rounded
               bordered
               style={styles.button}
-              onPress={Actions.editProfile}
+              onPress={() => Actions.push('editProfile', { type: 'reset' })}
             >
               <Text style={styles.buttonText}>Edit Profile</Text>
             </Button>

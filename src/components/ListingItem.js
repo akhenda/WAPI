@@ -35,7 +35,7 @@ const ListingItem = (props) => {
     return (
       <TouchableOpacity
         style={styles.large}
-        onPress={() => Actions.listing({ id, onLeftButton: Actions.listings })}
+        onPress={() => Actions.listing({ id, onLeftButton: Actions.pop })}
       >
         <CacheableImage
           resizeMode="cover"
@@ -80,7 +80,7 @@ const ListingItem = (props) => {
   return (
     <TouchableOpacity
       style={styles.compact}
-      onPress={() => Actions.listing({ id, onLeftButton: Actions.listings })}
+      onPress={() => Actions.listing({ id, onLeftButton: Actions.pop })}
     >
       <View style={styles.compactImageContainer}>
         <CacheableImage
