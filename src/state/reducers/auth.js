@@ -57,7 +57,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
     case FETCH_USER_FAILURE:
       return {
         ...state,
-        user: null,
+        user: {},
         loading: false,
         authenticated: false,
         error: action.payload.message ? { message: action.payload.message } : {},
