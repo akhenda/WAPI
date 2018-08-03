@@ -4,6 +4,7 @@ import { ActivityIndicator, Keyboard } from 'react-native';
 import {
   View, Text, Item, Input, Icon, Button,
 } from 'native-base';
+import { web } from 'react-native-communications';
 
 import { colors } from 'src/theme';
 import styles from './styles/FormStyles';
@@ -64,12 +65,17 @@ class Form extends Component {
     if (!fields.includes('fullName') && this.state.showFooter) {
       return (
         <View style={styles.footer}>
-          <Button transparent light style={styles.forgotButton} onPress={() => {}}>
+          <Button
+            light
+            transparent
+            style={styles.forgotButton}
+            onPress={() => web('https://wapi-kenya.com/my-account/lost-password/')}
+          >
             <Text style={styles.footerText}>Forgot Password?</Text>
           </Button>
-          <Button transparent block light onPress={() => {}}>
+          {/* <Button transparent block light onPress={() => {}}>
             <Text style={styles.footerText}>Skip</Text>
-          </Button>
+          </Button> */}
         </View>
       );
     }
