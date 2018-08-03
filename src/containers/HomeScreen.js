@@ -106,12 +106,11 @@ class HomeScreen extends Component {
 
   render() {
     const {
-      user,
-      loading,
-      catLoading,
-      categories,
+      user, loading, catLoading, categories, authenticated,
     } = this.props;
-    const firstName = user ? user.first_name : 'Stranger 😃';
+    const firstName = Object.keys(user).length > 0 ? user.first_name : 'Stranger 😃';
+
+    if (Object.keys(user).length === 0 && !authenticated) Actions.login();
 
     if (loading || catLoading) return <LoadingIndicator />;
 
@@ -138,6 +137,7 @@ HomeScreen.propTypes = {
   loading: PropTypes.bool,
   catLoading: PropTypes.bool,
   categories: PropTypes.array,
+  authenticated: PropTypes.bool,
   clearListings: PropTypes.func,
   getCategories: PropTypes.func,
   selectCategory: PropTypes.func,
@@ -151,6 +151,7 @@ const mapStateToProps = (state) => {
     loading: state.auth.loading,
     catLoading: state.listings.loading,
     categories: state.listings.categories,
+    authenticated: state.auth.authenticated,
   };
 };
 

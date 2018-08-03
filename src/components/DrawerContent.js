@@ -61,11 +61,11 @@ class DrawerContent extends Component {
   }
 
   render() {
-    const { user } = this.props;
+    const { user, authenticated } = this.props;
 
     // TODO: render the user details after we get the user object because
     // when the RootContainer loads at first the user object is null
-    if (!user) return <View />;
+    if (Object.keys(user).length === 0 || !authenticated) return <View />;
 
     return (
       <Content
@@ -102,6 +102,7 @@ DrawerContent.propTypes = {
   token: PropTypes.string,
   signOut: PropTypes.func,
   categories: PropTypes.array,
+  authenticated: PropTypes.bool,
   selectCategory: PropTypes.func,
 };
 
@@ -110,6 +111,7 @@ const mapStateToProps = (state) => {
     user: state.auth.user,
     token: state.auth.token,
     categories: state.listings.categories,
+    authenticated: state.auth.authenticated,
   };
 };
 
