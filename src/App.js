@@ -36,16 +36,16 @@ const errorHandler = (e, isFatal) => {
         },
       ],
     );
-  } else {
-    if (__DEV__) console.log(e); // So that we can see it in the ADB logs in case of Android if needed
+  } else if (__DEV__) {
+    console.log(e); // So that we can see it in the ADB logs in case of Android if needed
   }
 };
 
 setJSExceptionHandler(errorHandler, false);
 
-// setNativeExceptionHandler((errorString) => {
-//   if (__DEV__) console.log(`setNativeExceptionHandler: ${errorString}`);
-// });
+setNativeExceptionHandler((errorString) => {
+  if (__DEV__) console.log(`setNativeExceptionHandler: ${errorString}`);
+});
 
 class App extends Component {
   onBeforeLift = () => {
