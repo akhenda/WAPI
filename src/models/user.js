@@ -48,7 +48,7 @@ export const isUserAuthenticated = (dispatch, token) => {
       } else {
         const payload = {};
         dispatch({ type: FETCH_USER_FAILURE, payload });
-        Actions.auth({ type: 'reset' });
+        Actions.lightbox({ type: 'reset' });
       }
     });
 };
@@ -91,7 +91,7 @@ export const fetchUserInfo = (dispatch, token, navigate=false) => {
     .then((res) => {
       if (res.status === 200) {
         dispatch({ type: LOGIN_USER_SUCCESS, payload: { token, user: res.data } });
-        if (navigate) Actions.drawer({ type: 'reset' });
+        if (navigate) Actions.lightbox({ type: 'reset' });
       } else {
         responseFailure(dispatch, FETCH_USER_FAILURE, res);
       }
@@ -125,8 +125,7 @@ export const saveUserMeta = (dispatch, token, data) => {
 };
 
 export const signOutUser = (dispatch) => {
-  // delete the token
-
+  // delete the token and navigate to the login screen
   dispatch({ type: SIGNOUT_USER_SUCCESS });
-  Actions.auth({ type: 'reset' });
+  Actions.lightbox({ type: 'replace' });
 };

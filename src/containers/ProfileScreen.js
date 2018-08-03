@@ -52,7 +52,7 @@ class ProfileScreen extends Component {
       <TouchableOpacity
         key={item.id}
         style={styles.listingItemContainer}
-        onPress={() => Actions.listing({ id: item.id, onLeftButton: Actions.profile })}
+        onPress={() => Actions.listing({ id: item.id, onLeftButton: Actions.pop })}
       >
         <View style={styles.listingItemLoading}>
           <ActivityIndicator size="small" />

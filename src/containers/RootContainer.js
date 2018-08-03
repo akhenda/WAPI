@@ -33,7 +33,7 @@ import styles from './styles/RootContainerStyles';
 
 
 const getSceneStyle = () => ({
-  backgroundColor: '#F5FCFF',
+  backgroundColor: colors.primary.steel,
   shadowOpacity: 1,
   shadowRadius: 3,
 });
@@ -49,6 +49,7 @@ class RootContainer extends Component {
 
   render() {
     const {
+      user,
       loading,
       surveyed,
       introduced,
@@ -59,14 +60,9 @@ class RootContainer extends Component {
 
     return (
       <View style={styles.container}>
-        <StatusBar translucent backgroundColor={colors.statusBarTranslucent} />
+        <StatusBar translucent barStyle="light-content" backgroundColor={colors.statusBarTranslucent} />
         <Router getSceneStyle={getSceneStyle} uriPrefix={prefix}>
-          <Overlay
-            key="overlay"
-            transitionConfig={
-              () => ({ screenInterpolator: CardStackStyleInterpolator.forHorizontal })
-            }
-          >
+          <Overlay key="overlay">
             <Modal
               key="modal"
               hideNavBar
@@ -74,16 +70,16 @@ class RootContainer extends Component {
                 () => ({ screenInterpolator: CardStackStyleInterpolator.forFadeFromBottomAndroid })
               }
             >
-              <Lightbox key="lightbox">
+              <Lightbox hideNavBar key="lightbox">
                 <Stack hideNavBar key="root" titleStyle={{ alignSelf: 'center' }}>
                   <Stack
                     back
-                    backTitle="Back"
                     key="auth"
+                    hideNavBar
                     duration={0}
                     navTransparent
-                    initial={!authenticated}
-
+                    backTitle="Back"
+                    initial={!authenticated && Object.keys(user).length === 0}
                   >
                     <Scene key="login" title="Log In" component={LoginScreen} />
                     <Scene key="signup" title="Sign Up" component={SignUpScreen} />
@@ -92,32 +88,31 @@ class RootContainer extends Component {
                   <Drawer
                     hideNavBar
                     key="drawer"
-                    drawerWidth={metrics.screenWidth * 0.7}
-                    initial={authenticated}
+                    initial={authenticated && Object.keys(user).length > 0}
                     contentComponent={DrawerContent}
+                    drawerWidth={metrics.screenWidth * 0.7}
                   >
-                    {/*
-                      Wrapper Scene needed to fix a bug where the tabs would
-                      reload as a modal ontop of itself
-                    */}
-                    <Scene key="main" hideNavBar panHandlers={null}>
-                      <Stack key="mainStack">
-                        <Scene key="home" hideNavBar title="Home" component={HomeScreen} />
-                        <Scene key="listings" hideNavBar title="Listings" component={ListingsScreen} />
-                        <Scene key="listing" hideNavBar title="Listing" component={ListingDetailsScreen} />
-                        <Scene key="profile" hideNavBar title="Profile" component={ProfileScreen} />
-                        <Scene key="survey" hideNavBar initial={!surveyed} title="Survey" component={SurveyScreen} />
-                        <Scene
-                          back
-                          key="editProfile"
-                          title="Edit Profile"
-                          component={EditProfileScreen}
-                          titleStyle={styles.headerTitle}
-                          navigationBarStyle={styles.header}
-                          backButtonTintColor={colors.primary.text}
-                        />
-                      </Stack>
-                    </Scene>
+                    <Stack
+                      key="mainStack"
+                      transitionConfig={
+                        () => ({ screenInterpolator: CardStackStyleInterpolator.forHorizontal })
+                      }
+                    >
+                      <Scene key="home" hideNavBar title="Home" component={HomeScreen} />
+                      <Scene key="listings" hideNavBar title="Listings" component={ListingsScreen} />
+                      <Scene key="listing" hideNavBar title="Listing" component={ListingDetailsScreen} />
+                      <Scene key="profile" hideNavBar title="Profile" component={ProfileScreen} />
+                      <Scene key="survey" hideNavBar initial={!surveyed} title="Survey" component={SurveyScreen} />
+                      <Scene
+                        back
+                        key="editProfile"
+                        title="Edit Profile"
+                        component={EditProfileScreen}
+                        titleStyle={styles.headerTitle}
+                        navigationBarStyle={styles.header}
+                        backButtonTintColor={colors.primary.text}
+                      />
+                    </Stack>
                   </Drawer>
                 </Stack>
               </Lightbox>
