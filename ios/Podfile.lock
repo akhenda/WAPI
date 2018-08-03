@@ -132,7 +132,7 @@ EXTERNAL SOURCES:
   React:
     :path: ../node_modules/react-native
   ReactNativeExceptionHandler:
-    :path: ../node_modules/react-native-exception-handler/ios/ReactNativeExceptionHandler.podspec
+    :podspec: ../node_modules/react-native-exception-handler/ios/ReactNativeExceptionHandler.podspec
   RNFS:
     :path: ../node_modules/react-native-fs
   RNVectorIcons:
@@ -152,13 +152,13 @@ SPEC CHECKSUMS:
   RadarSDK: e73cfee062b9ab25ce540a42e2556a98cdc0276f
   RCTRestart: 2f9ddcfd9abb887f123b6580cec64d72fb6cccaa
   React: 1fe0eb13d90b625d94c3b117c274dcfd2e760e11
-  ReactNativeExceptionHandler: 920172780c35c4899c84dc7e216e2152a21c3760
+  ReactNativeExceptionHandler: 040b33d72849a0aa862d1dcb54008ccef77a935e
   RNFS: bbb1a64eb245763daf34aea86f97c97c4e85f74c
   RNVectorIcons: c0dbfbf6068fefa240c37b0f71bd03b45dddac44
   Sentry: 7d3ea7176e5184e9c35c12a5825905345807e8c1
   SentryReactNative: 787a08161d641dde91dd36d4c8e76f9b0ba4fc84
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: 997024acedbc0a5ad9eff03c0cda0162441ee5bf
+PODFILE CHECKSUM: ed7c5f98dffbb4b6381905a2c8bcc45b3cb6e870
 
 COCOAPODS: 1.4.0
