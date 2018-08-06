@@ -1,3 +1,24 @@
+# [1.1.0](https://github.com/akhenda/WAPI/compare/v1.0.0...v1.1.0) (2018-08-06)
+
+
+### Bug Fixes
+
+* **build:** correctly link the exception handler and update iOS icons ([052b2ab](https://github.com/akhenda/WAPI/commit/052b2ab))
+* **build:** downgrade RN to 0.55.4 and remove rogue console.log ([e4fa2a1](https://github.com/akhenda/WAPI/commit/e4fa2a1))
+* **build:** fix failing android build ([257bb2c](https://github.com/akhenda/WAPI/commit/257bb2c))
+* **navigation:** correctly handle unauthenticated user ([94fc480](https://github.com/akhenda/WAPI/commit/94fc480))
+* **redux:** wrong state mutation on FETCH_USER_FAILURE ([03e8b2d](https://github.com/akhenda/WAPI/commit/03e8b2d))
+
+
+### Features
+
+* **auth:** add on press handler for the forgot password link ([0a936c9](https://github.com/akhenda/WAPI/commit/0a936c9))
+
+
+### Performance Improvements
+
+* **images:** start using react-native-fast-image for images ([3ccb05b](https://github.com/akhenda/WAPI/commit/3ccb05b))
+
 # [1.0.0](https://github.com/akhenda/WAPI/compare/v0.6.3...v1.0.0) (2018-08-02)
 
 
