@@ -116,7 +116,11 @@ class HomeScreen extends Component {
 
     return (
       <Container style={styles.container}>
-        <AnimatedContentWrapper headerTitle="Discover" onLeftButton={Actions.drawerOpen}>
+        <AnimatedContentWrapper
+          headerTitle="Discover"
+          showToolbarRightButton={false}
+          onLeftButton={Actions.drawerOpen}
+        >
           <View style={styles.content}>
             <Salutation name={firstName} />
             <SearchBar onSearch={this.onSearch} />

@@ -3,13 +3,7 @@ import PropTypes from 'prop-types';
 import { View, StatusBar, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import {
-  Scene,
-  Router,
-  Overlay,
-  Modal,
-  Drawer,
-  Stack,
-  Lightbox,
+  Scene, Router, Overlay, Modal, Drawer, Stack, Lightbox,
 } from 'react-native-router-flux';
 import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator';
 

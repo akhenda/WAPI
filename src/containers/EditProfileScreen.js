@@ -304,14 +304,6 @@ class EditProfileScreen extends Component {
             onSubmit={
               (isValid, values) => {
                 if (isValid === true) {
-                  console.tron.display({
-                    name: '🔥 IGNITE 🔥',
-                    preview: 'You should totally expand this',
-                    value: {
-                      '💃': 'Welcome to the future!',
-                      values,
-                    },
-                  });
                   this.props.updateUserInfo(this.props.token, values);
                   // prepare object
                   // values.gender = values.gender[0];
