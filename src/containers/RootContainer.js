@@ -43,7 +43,6 @@ class RootContainer extends Component {
 
   render() {
     const {
-      user,
       loading,
       surveyed,
       introduced,
@@ -73,7 +72,7 @@ class RootContainer extends Component {
                     duration={0}
                     navTransparent
                     backTitle="Back"
-                    initial={!authenticated && Object.keys(user).length === 0}
+                    initial={!authenticated}
                   >
                     <Scene key="login" title="Log In" component={LoginScreen} />
                     <Scene key="signup" title="Sign Up" component={SignUpScreen} />
@@ -82,7 +81,7 @@ class RootContainer extends Component {
                   <Drawer
                     hideNavBar
                     key="drawer"
-                    initial={authenticated && Object.keys(user).length > 0}
+                    initial={authenticated}
                     contentComponent={DrawerContent}
                     drawerWidth={metrics.screenWidth * 0.7}
                   >

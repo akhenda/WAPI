@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import CacheableImage from 'react-native-cacheable-image';
+import FastImage from 'react-native-fast-image';
 import {
   View, Image, TouchableOpacity, ActivityIndicator,
 } from 'react-native';
@@ -57,11 +57,7 @@ class ProfileScreen extends Component {
         <View style={styles.listingItemLoading}>
           <ActivityIndicator size="small" />
         </View>
-        <CacheableImage
-          resizeMode="cover"
-          style={styles.listingItem}
-          source={{ uri: item.featured_image_url[0] }}
-        />
+        <FastImage style={styles.listingItem} source={{ uri: item.featured_image_url[0] }} />
         <View style={styles.listingItemTextContainer}>
           <Text style={styles.listingItemText}>{item.title.rendered}</Text>
         </View>

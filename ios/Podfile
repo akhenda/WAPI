@@ -38,6 +38,7 @@ target 'WAPI' do
   pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
   pod 'SentryReactNative', :path => '../node_modules/react-native-sentry/SentryReactNative.podspec'
   pod 'ReactNativeExceptionHandler', :podspec => '../node_modules/react-native-exception-handler/ios/ReactNativeExceptionHandler.podspec'
+  pod 'react-native-fast-image', :path => '../node_modules/react-native-fast-image'
 
   target 'WAPITests' do
     inherit! :search_paths

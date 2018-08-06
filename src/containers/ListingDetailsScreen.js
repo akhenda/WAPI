@@ -8,11 +8,12 @@ import ImageViewer from 'react-native-image-zoom-viewer';
 import GoogleStaticMap from 'react-native-google-static-map';
 import { web, phonecall, email } from 'react-native-communications';
 import {
-  View, FlatList, TouchableOpacity, ActivityIndicator, Modal, Image,
+  View, FlatList, TouchableOpacity, ActivityIndicator, Modal,
 } from 'react-native';
 import {
   Container, Text, Fab, Icon,
 } from 'native-base';
+import FastImage from 'react-native-fast-image';
 
 import { stripHTML } from 'src/utils/strip';
 import returnValidURL from 'src/utils/validURL';
@@ -178,11 +179,7 @@ class ListingDetailsScreen extends Component {
                   renderItem={({ item, index }) => {
                     return (
                       <TouchableOpacity onPress={() => this.toggleModal(index)}>
-                        <Image
-                          resizeMode="cover"
-                          source={{ uri: item[0] }}
-                          style={styles.galleryItem}
-                        />
+                        <FastImage style={styles.galleryItem} source={{ uri: item[0] }} />
                       </TouchableOpacity>
                     );
                   }}

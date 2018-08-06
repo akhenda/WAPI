@@ -2,22 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity } from 'react-native';
 import { View, Text } from 'native-base';
-import CacheableImage from 'react-native-cacheable-image';
+import FastImage from 'react-native-fast-image';
 
 import styles from './styles/CategoryStyles';
 
 
 const Category = ({
-  image, title, descritption, titleSize, fallbackImage, onSelectCategory,
+  image: uri, title, descritption, titleSize, onSelectCategory,
 }) => {
   return (
     <TouchableOpacity style={styles.category} onPress={onSelectCategory}>
       <View style={styles.categoryImageContainer}>
-        <CacheableImage
-          resizeMode="cover"
-          source={{ uri: image }}
+        <FastImage
           style={styles.categoryImage}
-          defaultSource={fallbackImage}
+          source={{ uri, priority: FastImage.priority.high }}
+          resizeMode={FastImage.resizeMode.cover}
         />
       </View>
       <View style={styles.textContainer}>

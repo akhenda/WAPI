@@ -147,7 +147,7 @@ class ListingsScreen extends Component {
             {empty
               ? <FlatList
                   data={places}
-                  keyExtractor={item => item.id}
+                  keyExtractor={item => `wapi-${item.id}`}
                   renderItem={({ item }) => {
                     return (
                       <ListingItem

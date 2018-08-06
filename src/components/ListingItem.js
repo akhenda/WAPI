@@ -5,7 +5,7 @@ import { View, Text, Icon } from 'native-base';
 import geodist from 'geodist';
 import StarRating from 'react-native-star-rating';
 import { Actions } from 'react-native-router-flux';
-import CacheableImage from 'react-native-cacheable-image';
+import FastImage from 'react-native-fast-image';
 
 import { openStatus } from 'src/utils/businessHours';
 
@@ -37,11 +37,7 @@ const ListingItem = (props) => {
         style={styles.large}
         onPress={() => Actions.listing({ id, onLeftButton: Actions.pop })}
       >
-        <CacheableImage
-          resizeMode="cover"
-          style={styles.largeImage}
-          source={{ uri: featured_image_url[0] }}
-        />
+        <FastImage style={styles.largeImage} source={{ uri: featured_image_url[0] }} />
         <View style={styles.largeImageMask} />
         <View style={styles.largeRating}>
           <Text style={styles.largeRatingValue}>{listing_rate}</Text>
@@ -83,11 +79,7 @@ const ListingItem = (props) => {
       onPress={() => Actions.listing({ id, onLeftButton: Actions.pop })}
     >
       <View style={styles.compactImageContainer}>
-        <CacheableImage
-          resizeMode="cover"
-          style={styles.compactImage}
-          source={{ uri: featured_image_url[0] }}
-        />
+        <FastImage style={styles.compactImage} source={{ uri: featured_image_url[0] }} />
       </View>
       <View style={styles.compactContent}>
         <Text style={styles.compactTitle} numberOfLines={1}>{title.rendered}</Text>

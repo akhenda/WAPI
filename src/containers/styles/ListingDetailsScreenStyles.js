@@ -90,12 +90,24 @@ const styles = StyleSheet.create({
   galleryItem: {
     width: 100,
     height: 100,
-    borderWidth: 6,
+    // borderWidth: 6,
     borderRadius: 5,
     marginVertical: 10,
     marginHorizontal: 5,
     // resizeMode: 'cover',
-    borderColor: colors.primary.text,
+    // borderColor: colors.primary.text,
+
+    // drop shadow for android
+    elevation: 3,
+
+    // drop shadow for iOS
+    shadowColor: '#000000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowRadius: 3,
+    shadowOpacity: 0.4,
   },
   moreInfo: {
     marginBottom: 20,

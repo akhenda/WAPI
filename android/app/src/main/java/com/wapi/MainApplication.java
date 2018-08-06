@@ -3,6 +3,7 @@ package com.wapi;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.dylanvann.fastimage.FastImageViewPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.avishayil.rnrestart.ReactNativeRestartPackage;
 import com.heanoria.library.reactnative.locationenabler.RNAndroidLocationEnablerPackage;
@@ -33,6 +34,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+          new FastImageViewPackage(),
           new VectorIconsPackage(),
           new RNAndroidLocationEnablerPackage(),
           new RNSentryPackage(),
