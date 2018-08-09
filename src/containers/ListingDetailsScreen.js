@@ -8,7 +8,7 @@ import ImageViewer from 'react-native-image-zoom-viewer';
 import GoogleStaticMap from 'react-native-google-static-map';
 import { web, phonecall, email } from 'react-native-communications';
 import {
-  View, FlatList, TouchableOpacity, ActivityIndicator, Modal, Platform, Share,
+  View, FlatList, TouchableOpacity, ActivityIndicator, Modal, Platform, Share, Linking, Alert,
 } from 'react-native';
 import {
   Container, Text, Fab, Icon,
@@ -87,6 +87,30 @@ class ListingDetailsScreen extends Component {
     );
   }
 
+  onNavigateTo = () => {
+    const { listingpro } = this.props.item;
+    const { latitude, longitude } = listingpro;
+    const toLatitude = latitude === '' ? '0.0' : latitude;
+    const toLongitude = longitude === '' ? '0.0' : longitude;
+    const { latitude: fromLatitude, longitude: fromLongitude } = this.props.currentLocation;
+    let url = 'https://www.google.com/maps/dir/?api=1&travelmode=driving&';
+    url += `origin=${fromLatitude},${fromLongitude}&`;
+    url += `destination=${toLatitude},${toLongitude}`;
+
+    Linking
+      .canOpenURL(url)
+      .then((supported) => {
+        if (!supported) {
+          Alert.alert('Install Google Maps to use our navigation feature');
+        } else {
+          return Linking.openURL(url);
+        }
+      })
+      .catch(() => {
+        // shhh!!!
+      });
+  }
+
   renderViewMore(onPress) {
     return (
       <Text onPress={onPress} style={styles.readMore}>Read more</Text>
@@ -154,7 +178,7 @@ class ListingDetailsScreen extends Component {
               {listingpro.gAddress
                 ? <TouchableOpacity
                     style={[styles.contactItem, styles.address]}
-                    onPress={() => {}}
+                    onPress={this.onNavigateTo}
                   >
                     <Text style={styles.addressText} numberOfLines={2}>{listingpro.gAddress}</Text>
                     <Icon name="pin" style={styles.addressIcon} />
@@ -249,19 +273,25 @@ class ListingDetailsScreen extends Component {
               </View>
             </View>
 
-            <View style={[styles.dropShadow, styles.mapContainer]}>
-              <View style={styles.mapLoading}>
-                <ActivityIndicator size="large" color={colors.secondary.light} />
-              </View>
-              <GoogleStaticMap
-                style={styles.map}
-                latitude={String(listingpro.latitude) || '0.0'}
-                longitude={String(listingpro.longitude) || '0.0'}
-                zoom={13}
-                size={{ width: metrics.screenWidth, height: 220 }}
-                apiKey={Config.GOOGLE_MAPS_API_KEY}
-              />
-            </View>
+            {listingpro.latitude !== ''
+              ? <TouchableOpacity
+                  activeOpacity={0.7}
+                  onPress={this.onNavigateTo}
+                  style={[styles.dropShadow, styles.mapContainer]}
+                >
+                  <View style={styles.mapLoading}>
+                    <ActivityIndicator size="large" color={colors.secondary.light} />
+                  </View>
+                  <GoogleStaticMap
+                    style={styles.map}
+                    latitude={String(listingpro.latitude) || '0.0'}
+                    longitude={String(listingpro.longitude) || '0.0'}
+                    zoom={13}
+                    size={{ width: metrics.screenWidth, height: 220 }}
+                    apiKey={Config.GOOGLE_MAPS_API_KEY}
+                  />
+                </TouchableOpacity>
+              : null}
 
             {listingpro.business_hours
               ? <View style={[styles.dropShadow, styles.businessHours]}>
@@ -321,6 +351,7 @@ ListingDetailsScreen.propTypes = {
   favourites: PropTypes.array,
   addFavourite: PropTypes.func,
   removeFavourite: PropTypes.func,
+  currentLocation: PropTypes.object,
   onLeftButton: PropTypes.func.isRequired,
 };
 
@@ -330,6 +361,7 @@ const mapStateToProps = (state) => {
     token: state.auth.token,
     favourites: state.app.favourites,
     item: state.listings.selectedListing,
+    currentLocation: state.app.currentLocation,
   };
 };
 
