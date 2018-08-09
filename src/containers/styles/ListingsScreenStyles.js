@@ -22,6 +22,9 @@ const styles = StyleSheet.create({
   empty: {
     textAlign: 'center',
   },
+  spacer: {
+    height: 15,
+  },
 });
 
 export default styles;

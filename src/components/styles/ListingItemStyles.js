@@ -5,10 +5,10 @@ import { colors } from 'src/theme';
 const styles = StyleSheet.create({
   compact: {
     marginHorizontal: 15,
-    elevation: 2,
+    elevation: 3,
+    // marginTop: 15,
+    marginBottom: 17,
     borderRadius: 5,
-    marginTop: 15,
-    overflow: 'hidden',
     flexDirection: 'row',
     backgroundColor: colors.primary.text,
 
@@ -24,12 +24,14 @@ const styles = StyleSheet.create({
   },
   compactImageContainer: {
     flex: 1.1,
+    overflow: 'hidden',
+    borderTopLeftRadius: 5,
+    borderBottomLeftRadius: 5,
   },
   compactImage: {
     flex: 1,
     width: null,
     height: null,
-    // resizeMode: 'cover',
   },
   compactContent: {
     flex: 1.9,
@@ -107,19 +109,36 @@ const styles = StyleSheet.create({
 
   large: {
     height: 200,
-    elevation: 2,
-    marginTop: 15,
+    elevation: 3,
+    // marginTop: 15,
+    marginBottom: 17,
     borderRadius: 5,
-    overflow: 'hidden',
     marginHorizontal: 15,
     justifyContent: 'flex-end',
     backgroundColor: colors.primary.text,
+
+    // iOS Drop Shadow
+    borderWidth: 0,
+    shadowColor: '#000000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowRadius: 3,
+    shadowOpacity: 0.4,
   },
-  largeImage: {
+  largeImageContainer: {
     position: 'absolute',
     width: '100%',
     height: '100%',
-    // resizeMode: 'cover',
+    borderRadius: 5,
+    overflow: 'hidden',
+  },
+  largeImage: {
+    borderRadius: 5,
+    overflow: 'hidden',
+    width: '100%',
+    height: '100%',
   },
   largeImageMask: {
     position: 'absolute',

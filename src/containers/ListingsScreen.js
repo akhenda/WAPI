@@ -163,10 +163,11 @@ class ListingsScreen extends Component {
                   }}
                   style={styles.listing}
                   refreshing={refreshing}
-                  ListFooterComponent={() => this.renderFooter()}
+                  onEndReachedThreshold={0.5}
                   onRefresh={this.handleRefresh}
                   onEndReached={() => this.handleLoadMore()}
-                  onEndReachedThreshold={0.5}
+                  ListFooterComponent={() => this.renderFooter()}
+                  ListHeaderComponent={() => <View style={styles.spacer}></View>}
                 />
               : <View style={styles.emptyContainer}>
                   <Text style={styles.empty}>

@@ -63,15 +63,15 @@ class HomeScreen extends Component {
           // success => {alreadyEnabled: true, enabled: true, status: 'enabled'}
           granted = await PermissionsAndroid
             .request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION, {
-              title: 'App needs to access your location',
-              message: 'App needs access to your location '
-              + 'so we can let our app be even more awesome.',
+              title: 'WAPI? App needs to access your location 📌',
+              message: 'We need to access to your location '
+              + 'so that we can personalize your experience. 🙂',
             });
-          if (granted && this.props.user !== null) locationSetup();
+          if (granted && Object.keys(this.props.user) > 0) locationSetup();
         }).catch(() => {});
     }
 
-    if (Platform.OS === 'ios' && this.props.user !== null) locationSetup();
+    if (Platform.OS === 'ios' && Object.keys(this.props.user) > 0) locationSetup();
 
     this.props.clearListings();
   }

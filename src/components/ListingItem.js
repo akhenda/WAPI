@@ -37,8 +37,10 @@ const ListingItem = (props) => {
         style={styles.large}
         onPress={() => Actions.listing({ id, onLeftButton: Actions.pop })}
       >
-        <FastImage style={styles.largeImage} source={{ uri: featured_image_url[0] }} />
-        <View style={styles.largeImageMask} />
+        <View style={styles.largeImageContainer}>
+          <FastImage style={styles.largeImage} source={{ uri: featured_image_url[0] }} />
+          <View style={styles.largeImageMask} />
+        </View>
         <View style={styles.largeRating}>
           <Text style={styles.largeRatingValue}>{listing_rate}</Text>
           <Icon name="ios-star" style={styles.largeRatingIcon} />
