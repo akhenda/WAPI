@@ -11,12 +11,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   headerBanner: {
-    height: metrics.screenHeight * 0.33,
+    height: metrics.screenHeight * 0.38,
     alignItems: 'center',
   },
   banner: {
     width: metrics.screenWidth,
-    height: metrics.screenHeight * 0.33,
+    height: metrics.screenHeight * 0.38,
     resizeMode: 'cover',
   },
   backgroundMask: {
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: colors.statusBarTranslucentDarker,
+    backgroundColor: colors.statusBarTranslucentLight,
   },
   avatar: {
     width: 80,

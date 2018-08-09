@@ -38,6 +38,7 @@ const colors = {
   statusBarTranslucentDark: 'rgba(0, 0, 0, 0.4)',
   statusBarTranslucentDarker: 'rgba(0, 0, 0, 0.6)',
   statusBarTranslucentDarkest: 'rgba(0, 0, 0, 0.8)',
+  statusBarTranslucentLight: 'rgba(0, 0, 0, 0.1)',
 };
 
 export default colors;
