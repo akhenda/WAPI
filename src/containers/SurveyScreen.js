@@ -225,12 +225,12 @@ class SurveyScreen extends Component {
           Choose the categories you are most interested in.
         </Text>
         <List>
-          {this.renderCategory('walk', 'Activities', 'activities', 'purple')}
-          {this.renderCategory('restaurant', 'Bars, Cafés & Restaurants', 'restaurants', 'black')}
-          {this.renderCategory('medkit', 'Medical', 'medical', 'red')}
-          {this.renderCategory('pricetags', 'Services', 'services', 'orange')}
-          {this.renderCategory('cart', 'Shopping', 'shopping', 'blue')}
-          {this.renderCategory('hand', 'Volunteer/Donations', 'volunteering', 'green')}
+          {this.renderCategory('walk', 'Activities', 'activities', 'rgb(221, 117, 58)')}
+          {this.renderCategory('restaurant', 'Bars, Cafés & Restaurants', 'restaurants', 'rgb(244, 196, 118)')}
+          {this.renderCategory('medkit', 'Medical', 'medical', 'rgb(64, 40, 120)')}
+          {this.renderCategory('pricetags', 'Services', 'services', 'rgb(216, 122, 53)')}
+          {this.renderCategory('cart', 'Shopping', 'shopping', 'rgb(202, 56, 47)')}
+          {this.renderCategory('hand', 'Volunteer/Donations', 'volunteering', 'rgb(159, 60, 77)')}
           <View style={styles.spacer} />
           <Button success rounded style={styles.nextButton} onPress={() => this.onPageChange(2)}>
             <Text>Done, next step</Text>
