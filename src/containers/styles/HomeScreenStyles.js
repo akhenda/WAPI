@@ -8,7 +8,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary.lightest,
   },
   content: {
-    padding: 15,
+    paddingTop: 15,
+    paddingHorizontal: 15,
     marginTop: metrics.headerMaxHeight - 130,
   },
 });

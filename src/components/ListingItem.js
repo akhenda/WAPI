@@ -34,6 +34,7 @@ const ListingItem = (props) => {
   if (type === 'large') {
     return (
       <TouchableOpacity
+        activeOpacity={0.8}
         style={styles.large}
         onPress={() => Actions.listing({ id, onLeftButton: Actions.pop })}
       >
@@ -77,6 +78,7 @@ const ListingItem = (props) => {
 
   return (
     <TouchableOpacity
+      activeOpacity={0.8}
       style={styles.compact}
       onPress={() => Actions.listing({ id, onLeftButton: Actions.pop })}
     >

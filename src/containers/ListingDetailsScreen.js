@@ -19,6 +19,7 @@ import { stripHTML } from 'src/utils/strip';
 import returnValidURL from 'src/utils/validURL';
 import { openStatus } from 'src/utils/businessHours';
 import shallowCompare, { shallowEqual } from 'src/utils/shallowCompare';
+import ActivitySpinner from 'src/components/ActivitySpinner';
 import LoadingIndicator from 'src/components/LoadingIndicator';
 import { getListing } from 'src/state/actions/listings';
 import { addFavourite, removeFavourite } from 'src/state/actions/app';
@@ -300,6 +301,9 @@ class ListingDetailsScreen extends Component {
             index={imageIndex}
             imageUrls={gallery}
             backgroundColor="rgba(0, 0, 0, 0.95)"
+            renderArrowLeft={() => <Icon name="ios-arrow-back" style={styles.arrow} />}
+            renderArrowRight={() => <Icon name="ios-arrow-forward" style={styles.arrow} />}
+            loadingRender={() => <ActivitySpinner color="white" size={40} style={styles.imageLoading} />}
           />
           <Text style={styles.modalClose} onPress={this.toggleModal}>Close</Text>
         </Modal>

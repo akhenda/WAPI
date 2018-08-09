@@ -11,7 +11,7 @@ const Category = ({
   image: uri, title, descritption, titleSize, onSelectCategory,
 }) => {
   return (
-    <TouchableOpacity style={styles.category} onPress={onSelectCategory}>
+    <TouchableOpacity activeOpacity={0.9} style={styles.category} onPress={onSelectCategory}>
       <View style={styles.categoryImageContainer}>
         <FastImage
           style={styles.categoryImage}

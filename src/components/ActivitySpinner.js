@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, Platform } from 'react-native';
 
 import { colors } from '../theme';
 import styles from './styles/ActivitySpinnerStyles';
@@ -12,15 +12,18 @@ const ActivitySpinner = (props) => {
   return (
     <ActivityIndicator
       animating
-      size={size}
       color={color || colors.primary.main}
       style={[styles.activityIndicator, style]}
+      size={Platform.OS === 'ios' ? 'large' : size}
     />
   );
 };
 
 ActivitySpinner.propTypes = {
-  size: PropTypes.number,
+  size: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   color: PropTypes.string,
   style: ActivityIndicator.propTypes.style,
 };

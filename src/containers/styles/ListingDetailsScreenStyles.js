@@ -240,6 +240,15 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 18,
   },
+
+  arrow: {
+    fontSize: 36,
+    padding: 15,
+    color: colors.primary.text,
+  },
+  imageLoading: {
+    marginTop: metrics.screenHeight / 2 - (Platform.OS === 'ios' ? 0 : 13),
+  },
 });
 
 export default styles;
