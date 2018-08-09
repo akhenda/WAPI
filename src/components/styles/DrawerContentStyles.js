@@ -6,7 +6,9 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.primary.text,
   },
-  contentContainer: {},
+  contentContainer: {
+    flex: 1,
+  },
   banner: {
     width: '100%',
     alignItems: 'flex-end',
@@ -75,6 +77,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0,
   },
   signOut: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
     padding: 20,
     marginTop: 30,
     paddingLeft: 30,
