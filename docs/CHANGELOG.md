@@ -1,3 +1,21 @@
+# [1.2.0](https://github.com/akhenda/WAPI/compare/v1.1.0...v1.2.0) (2018-08-09)
+
+
+### Bug Fixes
+
+* **home:** make all category titles bolder and same size as volunteering ([2cdb063](https://github.com/akhenda/WAPI/commit/2cdb063))
+* **listing:** phone call for multiple numbers on a listing ([093d13c](https://github.com/akhenda/WAPI/commit/093d13c))
+* **listings:** listings items drop shadow ([a7ded56](https://github.com/akhenda/WAPI/commit/a7ded56))
+* **navigation:** sign out menu position ([38ff6a9](https://github.com/akhenda/WAPI/commit/38ff6a9))
+
+
+### Features
+
+* change icon colors on drawer menu and survey screen ([223d426](https://github.com/akhenda/WAPI/commit/223d426))
+* **listing:** handle listings with no coordinates and handle navigation ([fa8d52b](https://github.com/akhenda/WAPI/commit/fa8d52b))
+* **loading:** change loading background to white and use official logo ([a318c74](https://github.com/akhenda/WAPI/commit/a318c74))
+* **share:** enable users to share listings ([5116a28](https://github.com/akhenda/WAPI/commit/5116a28))
+
 # [1.1.0](https://github.com/akhenda/WAPI/compare/v1.0.0...v1.1.0) (2018-08-06)
 
 
