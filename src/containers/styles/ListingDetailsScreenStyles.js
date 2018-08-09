@@ -1,4 +1,4 @@
-import { StyleSheet, Platform } from 'react-native';
+import { StyleSheet, Platform, StatusBar } from 'react-native';
 
 import { colors, metrics } from 'src/theme';
 
@@ -11,11 +11,18 @@ const styles = StyleSheet.create({
   content: {
     backgroundColor: colors.primary.text,
   },
-  fab: {
+  favouriteFab: {
     position: 'absolute',
-    top: metrics.headerMaxHeight,
+    top: metrics.headerMaxHeight + metrics.animatedHeaderPaddingTop + (Platform.OS === 'ios' ? 0 : 8),
+    right: 72,
     marginTop: 0,
     backgroundColor: colors.secondary.main,
+  },
+  shareFab: {
+    position: 'absolute',
+    top: metrics.headerMaxHeight + metrics.animatedHeaderPaddingTop + (Platform.OS === 'ios' ? 0 : 8),
+    marginTop: 0,
+    backgroundColor: colors.secondary.light,
   },
   dropShadow: {
     padding: 15,
@@ -33,15 +40,22 @@ const styles = StyleSheet.create({
 
     backgroundColor: colors.primary.text,
   },
+  titleContainer: {
+    height: metrics.headerMaxHeight + metrics.animatedHeaderHeight,
+  },
   title: {
-    fontSize: 26,
+    flex: 1,
+    fontSize: 24,
     marginLeft: 15,
     fontWeight: '800',
-    marginRight: '20%',
+    marginRight: '36%',
     marginBottom: 10,
+    // flexWrap: 'wrap',
     color: colors.primary.text,
     backgroundColor: 'transparent',
-    marginTop: metrics.headerMaxHeight,
+    // marginTop: metrics.headerMaxHeight,
+    position: 'absolute',
+    bottom: 0,
   },
   contacts: {},
   openStatus: {
@@ -87,6 +101,16 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: colors.primary.lightest,
   },
+  galleryItemContainer: {
+    // drop shadow for iOS
+    shadowColor: '#000000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowRadius: 3,
+    shadowOpacity: 0.4,
+  },
   galleryItem: {
     width: 100,
     height: 100,
@@ -99,15 +123,6 @@ const styles = StyleSheet.create({
 
     // drop shadow for android
     elevation: 3,
-
-    // drop shadow for iOS
-    shadowColor: '#000000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowRadius: 3,
-    shadowOpacity: 0.4,
   },
   moreInfo: {
     marginBottom: 20,

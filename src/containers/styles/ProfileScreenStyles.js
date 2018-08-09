@@ -11,12 +11,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   headerBanner: {
-    height: metrics.screenHeight * 0.38,
+    height: metrics.screenHeight * 0.35,
     alignItems: 'center',
   },
   banner: {
     width: metrics.screenWidth,
-    height: metrics.screenHeight * 0.38,
+    height: metrics.screenHeight * 0.35,
     resizeMode: 'cover',
   },
   backgroundMask: {

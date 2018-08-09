@@ -8,7 +8,7 @@ import ImageViewer from 'react-native-image-zoom-viewer';
 import GoogleStaticMap from 'react-native-google-static-map';
 import { web, phonecall, email } from 'react-native-communications';
 import {
-  View, FlatList, TouchableOpacity, ActivityIndicator, Modal,
+  View, FlatList, TouchableOpacity, ActivityIndicator, Modal, Platform, Share,
 } from 'react-native';
 import {
   Container, Text, Fab, Icon,
@@ -71,6 +71,21 @@ class ListingDetailsScreen extends Component {
     email([listingEmail], ['info@wapi-kenya.com'], null, 'Listing Enquiry', 'Hello,\n\n I would like to get more information about your establishment listed on WAPI? Kenya.');
   }
 
+  onShare = () => {
+    const { title, link, listingpro } = this.props.item;
+
+    return Share.share(
+      {
+        message: `Hey 😃! Check out ${title.rendered}.\n\n${listingpro.tagline_text}\n\n${link}`,
+        title: `Check out ${title.rendered} on WAPI? Kenya.`,
+        url: link,
+      }, {
+        subject: `Check out ${title.rendered} on WAPI? Kenya.`,
+        dialogTitle: `Check out ${title.rendered} on WAPI? Kenya.`,
+      },
+    );
+  }
+
   renderViewMore(onPress) {
     return (
       <Text onPress={onPress} style={styles.readMore}>Read more</Text>
@@ -121,7 +136,9 @@ class ListingDetailsScreen extends Component {
           showToolbarRightButton={false}
           bannerSource={featured_image_url[0]}
         >
-          <Text style={styles.title} numberOfLines={1}>{title.rendered}</Text>
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>{title.rendered}</Text>
+          </View>
           <View style={styles.content}>
             <View style={[styles.dropShadow, styles.contacts]}>
               <View
@@ -178,7 +195,10 @@ class ListingDetailsScreen extends Component {
                   keyExtractor={item => item[0]}
                   renderItem={({ item, index }) => {
                     return (
-                      <TouchableOpacity onPress={() => this.toggleModal(index)}>
+                      <TouchableOpacity
+                        onPress={() => this.toggleModal(index)}
+                        style={Platform.OS === 'ios' ? styles.galleryItemContainer : null}
+                      >
                         <FastImage style={styles.galleryItem} source={{ uri: item[0] }} />
                       </TouchableOpacity>
                     );
@@ -268,21 +288,18 @@ class ListingDetailsScreen extends Component {
                 </View>
               : null}
           </View>
-          <Fab
-            active
-            style={styles.fab}
-            position="topRight"
-            onPress={onFavourite}
-          >
+          <Fab active position="topRight" onPress={onFavourite} style={styles.favouriteFab}>
             <Icon name={isFavourite ? 'ios-heart' : 'ios-heart-outline'} />
+          </Fab>
+          <Fab active position="topRight" onPress={this.onShare} style={styles.shareFab}>
+            <Icon name="md-share" />
           </Fab>
         </AnimatedContentWrapper>
         <Modal visible={modalVisible} transparent={true} onRequestClose={this.toggleModal}>
           <ImageViewer
-            imageUrls={gallery}
             index={imageIndex}
+            imageUrls={gallery}
             backgroundColor="rgba(0, 0, 0, 0.95)"
-
           />
           <Text style={styles.modalClose} onPress={this.toggleModal}>Close</Text>
         </Modal>

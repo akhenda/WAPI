@@ -3,7 +3,7 @@ import { Dimensions, Platform, StatusBar } from 'react-native';
 const { width, height } = Dimensions.get('window');
 
 export const isiOS = Platform.OS === 'ios';
-export const isIphoneX = isiOS && height === 812 && width === 375;
+export const isIphoneX = isiOS && (height === 812 || width === 812);
 export const iOSHeaderTopPadding = isIphoneX ? 39 : 15;
 export const iOSHeaderHeight = isIphoneX ? 88 : 64;
 
