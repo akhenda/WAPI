@@ -85,9 +85,7 @@ class DrawerContent extends Component {
         </View>
         <Image source={{ uri: user.avatar_urls['96'] }} style={styles.avatar} />
         <View style={styles.menuItems}>
-          {this.renderMenuItem('home', Actions.home, 'Home', 'blue')}
           {this.renderCategories()}
-          {this.renderMenuItem('settings', Actions.home, 'Settings', 'black', styles.lastMenuItem)}
         </View>
         <TouchableOpacity style={styles.signOut} onPress={this.props.signOut}>
           <Text style={styles.signOutText}>Sign Out</Text>
