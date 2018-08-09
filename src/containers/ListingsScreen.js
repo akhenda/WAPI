@@ -126,6 +126,7 @@ class ListingsScreen extends Component {
     const empty = places.length > 0;
     if (selectedCategory !== null) {
       listingType = selectedCategory.name.indexOf('Restaurant') >= 0 ? 'large' : 'compact';
+      listingType = 'compact'; // force all listings to be consistent for now
     }
     const headerTitle = isSearch ? `Search: ${searchText}` : selectedCategory.name;
 
