@@ -11,7 +11,7 @@ const LoadingIndicator = () => {
     <View style={styles.container}>
       <StatusBar translucent backgroundColor={colors.statusBarTranslucent} />
       <Animatable.Image
-        source={images.logoWhite}
+        source={images.logo}
         style={styles.image}
         duration={2000}
         animation="pulse"

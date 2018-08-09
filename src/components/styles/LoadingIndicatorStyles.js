@@ -5,7 +5,7 @@ import { colors } from 'src/theme';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.primary.dark,
+    backgroundColor: colors.primary.text,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   },
   loadingText: {
     fontSize: 22,
-    color: colors.primary.text,
+    color: colors.secondary.dark,
   },
 });
 
