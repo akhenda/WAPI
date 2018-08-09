@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   title: {
-    fontWeight: '700',
+    fontWeight: '900',
     color: colors.primary.text,
     backgroundColor: 'transparent',
   },

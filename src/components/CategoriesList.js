@@ -10,10 +10,10 @@ import styles from './styles/CategoriesListStyles';
 
 const calculateTitleSize = (name) => {
   let size = 21;
-  
+
   if (name.toLowerCase().indexOf('restaurants') >= 0) size = 16;
   if (name.toLowerCase().indexOf('volunteering') >= 0) size = 14;
-  
+
   return size;
 };
 
@@ -22,7 +22,7 @@ const getFallbackImageName = (name) => {
 
   if (imageName.indexOf('restaurants') >= 0) imageName = 'restaurants';
   if (imageName.indexOf('volunteering') >= 0) imageName = 'volunteering';
-  
+
   return imageName;
 };
 
@@ -41,7 +41,7 @@ const CategoriesList = (props) => {
             descritption={description}
             image={category.banner_image_url[0]}
             fallbackImage={images[getFallbackImageName]}
-            titleSize={calculateTitleSize(name)}
+            titleSize={14}
             onSelectCategory={() => onSelectCategory(id, name)}
           />
         );
