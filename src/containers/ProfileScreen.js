@@ -117,13 +117,13 @@ class ProfileScreen extends Component {
                   </View>
                 : this.renderEmpty('You have not saved any listing ¯\\_(ツ)_/¯')}
             </Tab>
-            <Tab heading="My Listings">
+            {/* <Tab heading="My Listings">
               {Object.keys(this.props.places).length > 0
                 ? <View style={styles.listing}>
                     {this.props.places.map(item => this.renderItem(item))}
                   </View>
                 : this.renderEmpty('You do not have any listings on WAPI? ¯\\_(ツ)_/¯')}
-            </Tab>
+            </Tab> */}
             <Tab heading="My Reviews">
               {this.renderEmpty('Feature coming soon...')}
             </Tab>
