@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/akhenda/WAPI/compare/v1.2.0...v1.2.1) (2018-08-10)
+
+
+### Bug Fixes
+
+* **build:** iOS build failing in CI ([4d65d76](https://github.com/akhenda/WAPI/commit/4d65d76))
+
 # [1.2.0](https://github.com/akhenda/WAPI/compare/v1.1.0...v1.2.0) (2018-08-09)
 
 
