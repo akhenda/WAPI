@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		00BC077A20FE54E100A7C16F /* libPods-WAPI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00BC077920FE54E100A7C16F /* libPods-WAPI.a */; };
-		00BC07A120FE55C200A7C16F /* libPods-WAPI-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00BC07A020FE55C200A7C16F /* libPods-WAPI-tvOS.a */; };
-		00BC07A320FE55C800A7C16F /* libPods-WAPI-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00BC07A220FE55C800A7C16F /* libPods-WAPI-tvOSTests.a */; };
-		00BC07A520FE55CE00A7C16F /* libPods-WAPITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00BC07A420FE55CE00A7C16F /* libPods-WAPITests.a */; };
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
 		00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302C01ABCB91800DB3ED1 /* libRCTImage.a */; };
@@ -418,9 +415,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00BC07A520FE55CE00A7C16F /* libPods-WAPITests.a in Frameworks */,
-				00BC07A320FE55C800A7C16F /* libPods-WAPI-tvOSTests.a in Frameworks */,
-				00BC07A120FE55C200A7C16F /* libPods-WAPI-tvOS.a in Frameworks */,
 				00BC077A20FE54E100A7C16F /* libPods-WAPI.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
