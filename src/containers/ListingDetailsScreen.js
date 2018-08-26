@@ -187,7 +187,7 @@ class ListingDetailsScreen extends Component {
               {listingpro.phone
                 ? <TouchableOpacity
                     style={[styles.contactItem, styles.phone]}
-                    onPress={() => phonecall(listingpro.phone.replace(/[^\w+/()]/g, '').split('/')[0], true)}
+                    onPress={() => phonecall(listingpro.phone.replace(/[^\w+/()]/g, '').split(/[,/|]+/)[0], true)}
                   >
                     <Text style={styles.phoneText} numberOfLines={1}>{listingpro.phone}</Text>
                     <Icon name="call" style={styles.phoneIcon} />
