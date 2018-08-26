@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/akhenda/WAPI/compare/v1.2.2...v1.2.3) (2018-08-26)
+
+
+### Bug Fixes
+
+* **listing:** split phone string on different separators ([152246c](https://github.com/akhenda/WAPI/commit/152246c))
+
 ## [1.2.2](https://github.com/akhenda/WAPI/compare/v1.2.1...v1.2.2) (2018-08-26)
 
 
