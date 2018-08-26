@@ -25,7 +25,10 @@ const INITIAL_STATE = {
     shopping: false,
     volunteering: false,
   },
-  currentLocation: null,
+  currentLocation: {
+    latitude: 0,
+    longitude: 0,
+  },
   favourites: [],
 };
 
