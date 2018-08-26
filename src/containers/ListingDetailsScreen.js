@@ -331,8 +331,8 @@ class ListingDetailsScreen extends Component {
             index={imageIndex}
             imageUrls={gallery}
             backgroundColor="rgba(0, 0, 0, 0.95)"
-            renderArrowLeft={() => <Icon name="ios-arrow-back" style={styles.arrow} />}
-            renderArrowRight={() => <Icon name="ios-arrow-forward" style={styles.arrow} />}
+            // renderArrowLeft={() => <Icon name="ios-arrow-back" style={styles.arrow} />}
+            // renderArrowRight={() => <Icon name="ios-arrow-forward" style={styles.arrow} />}
             loadingRender={() => <ActivitySpinner color="white" size={40} style={styles.imageLoading} />}
           />
           <Text style={styles.modalClose} onPress={this.toggleModal}>Close</Text>
