@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/akhenda/WAPI/compare/v1.2.1...v1.2.2) (2018-08-26)
+
+
+### Bug Fixes
+
+* **geolocation:** fix location update bug ([61a6989](https://github.com/akhenda/WAPI/commit/61a6989))
+
 ## [1.2.1](https://github.com/akhenda/WAPI/compare/v1.2.0...v1.2.1) (2018-08-10)
 
 
