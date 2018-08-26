@@ -97,6 +97,18 @@ const styles = StyleSheet.create({
   websiteText: {
     width: '80%',
   },
+  addressIcon: {
+    color: colors.primary.dark,
+  },
+  phoneIcon: {
+    color: colors.primary.main,
+  },
+  emailIcon: {
+    color: colors.secondary.main,
+  },
+  websiteIcon: {
+    color: colors.primary.ligtest,
+  },
   gallery: {
     padding: 10,
     backgroundColor: colors.primary.lightest,
