@@ -4,6 +4,7 @@ import DebugConfig from 'src/config/debug';
 import FixtureAPI from 'src/services/fixtureApi';
 
 import {
+  DONE_SURVEY,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAILURE,
   FETCH_USER_FAILURE,
@@ -91,6 +92,8 @@ export const fetchUserInfo = (dispatch, token, navigate=false) => {
     .then((res) => {
       if (res.status === 200) {
         dispatch({ type: LOGIN_USER_SUCCESS, payload: { token, user: res.data } });
+
+        if (String(res.data.meta.surveyed) === 1) dispatch({ type: DONE_SURVEY });
         if (navigate) Actions.lightbox({ type: 'reset' });
       } else {
         responseFailure(dispatch, FETCH_USER_FAILURE, res);
