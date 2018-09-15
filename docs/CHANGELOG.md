@@ -1,3 +1,15 @@
+# [1.3.0](https://github.com/akhenda/WAPI/compare/v1.2.3...v1.3.0) (2018-09-15)
+
+
+### Bug Fixes
+
+* **listings:** handle html entities in toolbar title ([3ee6b91](https://github.com/akhenda/WAPI/commit/3ee6b91))
+
+
+### Features
+
+* **reviews:** create listing reviews screen ([4c90d30](https://github.com/akhenda/WAPI/commit/4c90d30))
+
 ## [1.2.3](https://github.com/akhenda/WAPI/compare/v1.2.2...v1.2.3) (2018-08-26)
 
 
