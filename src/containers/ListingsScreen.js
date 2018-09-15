@@ -7,6 +7,7 @@ import {
   View, FlatList, Text, ActivityIndicator,
 } from 'react-native';
 
+import { stripHTML } from 'src/utils/strip';
 import shallowCompare, { shallowEqual } from 'src/utils/shallowCompare';
 import { getCategoryListings, searchListings } from 'src/state/actions/listings';
 import { addFavourite, removeFavourite } from 'src/state/actions/app';
@@ -140,9 +141,9 @@ class ListingsScreen extends Component {
           menuRightIcon="md-map"
           WrapperComponent={View}
           menuLeftIcon="arrow-back"
-          headerTitle={headerTitle}
           onLeftButton={Actions.pop}
           showToolbarRightButton={false}
+          headerTitle={stripHTML(headerTitle)}
         >
           <View style={[styles.content, empty ? { height: emptyHeight } : null]}>
             {empty
