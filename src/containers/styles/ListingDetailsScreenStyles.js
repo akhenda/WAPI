@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
   stars: {
     width: '25%',
   },
-  totalRevies: {
+  totalReviews: {
     fontSize: 12,
     color: colors.lightestText,
   },

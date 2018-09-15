@@ -16,6 +16,7 @@ import ProfileScreen from 'src/containers/ProfileScreen';
 import ListingsScreen from 'src/containers/ListingsScreen';
 import EditProfileScreen from 'src/containers/EditProfileScreen';
 import ListingDetailsScreen from 'src/containers/ListingDetailsScreen';
+import ListingReviewsScreen from 'src/containers/ListingReviewsScreen';
 import FormModalScreen from 'src/containers/FormModalScreen';
 
 import DrawerContent from 'src/components/DrawerContent';
@@ -58,7 +59,10 @@ class RootContainer extends Component {
           <Overlay key="overlay">
             <Modal
               key="modal"
-              hideNavBar
+              titleStyle={styles.headerTitle}
+              navigationBarStyle={styles.header}
+              backButtonTintColor={colors.primary.text}
+              rightButtonTextStyle={styles.headerTitle}
               transitionConfig={
                 () => ({ screenInterpolator: CardStackStyleInterpolator.forFadeFromBottomAndroid })
               }
@@ -86,41 +90,31 @@ class RootContainer extends Component {
                     drawerWidth={metrics.screenWidth * 0.7}
                   >
                     <Stack
+                      hideNavBar
                       key="mainStack"
+                      titleStyle={styles.headerTitle}
                       transitionConfig={
                         () => ({ screenInterpolator: CardStackStyleInterpolator.forHorizontal })
                       }
                     >
-                      <Scene key="home" hideNavBar title="Home" component={HomeScreen} />
-                      <Scene key="listings" hideNavBar title="Listings" component={ListingsScreen} />
-                      <Scene key="listing" hideNavBar title="Listing" component={ListingDetailsScreen} />
-                      <Scene key="profile" hideNavBar title="Profile" component={ProfileScreen} />
-                      <Scene key="survey" hideNavBar initial={!surveyed} title="Survey" component={SurveyScreen} />
+                      <Scene key="home" title="Home" component={HomeScreen} />
+                      <Scene key="listings" title="Listings" component={ListingsScreen} />
+                      <Scene key="listing" title="Listing" component={ListingDetailsScreen} />
+                      <Scene key="profile" title="Profile" component={ProfileScreen} />
+                      <Scene key="survey" initial={!surveyed} title="Survey" component={SurveyScreen} />
                       <Scene
                         back
                         key="editProfile"
+                        hideNavBar={false}
                         title="Edit Profile"
                         component={EditProfileScreen}
-                        titleStyle={styles.headerTitle}
-                        navigationBarStyle={styles.header}
-                        backButtonTintColor={colors.primary.text}
                       />
                     </Stack>
                   </Drawer>
                 </Stack>
               </Lightbox>
-              <Scene
-                back
-                modal
-                key='formModal'
-                rightTitle='Save'
-                hideNavBar={false}
-                component={FormModalScreen}
-                titleStyle={styles.headerTitle}
-                navigationBarStyle={styles.header}
-                backButtonTintColor={colors.primary.text}
-                rightButtonTextStyle={styles.headerTitle}
-              />
+              <Scene back modal key="formModal" rightTitle="Save" component={FormModalScreen} />
+              <Scene back modal title="Reviews" key="reviewsModal" component={ListingReviewsScreen} />
             </Modal>
           </Overlay>
         </Router>

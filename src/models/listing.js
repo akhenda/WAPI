@@ -13,6 +13,10 @@ import {
   SEARCH_LISTINGS_FAILURE,
   FETCH_USER_LISTINGS_SUCCESS,
   FETCH_USER_LISTINGS_FAILURE,
+  POST_LISTING_REVIEW_SUCCESS,
+  POST_LISTING_REVIEW_FAILURE,
+  FETCH_LISTING_REVIEWS_SUCCESS,
+  FETCH_LISTING_REVIEWS_FAILURE,
   FETCH_FAVOURITE_LISTINGS_SUCCESS,
   FETCH_FAVOURITE_LISTINGS_FAILURE,
 } from 'src/state/types';
@@ -97,6 +101,33 @@ export const fetchFavouriteListings = (dispatch, token, ids) => {
         dispatch({ type: FETCH_FAVOURITE_LISTINGS_SUCCESS, payload: { places: res.data } });
       } else {
         dispatch({ type: FETCH_FAVOURITE_LISTINGS_FAILURE, payload: res.data });
+      }
+    });
+};
+
+export const fetchListingReviews = (dispatch, token, url) => {
+  api.setHeader('Authorization', `Bearer ${token}`);
+  api
+    .getListingReviews(url)
+    .then((res) => {
+      if (res.status === 200) {
+        dispatch({ type: FETCH_LISTING_REVIEWS_SUCCESS, payload: res.data });
+      } else {
+        dispatch({ type: FETCH_LISTING_REVIEWS_FAILURE, payload: res.data });
+      }
+    });
+};
+
+export const postListingReview = (dispatch, token, data) => {
+  api.setHeader('Authorization', `Bearer ${token}`);
+  api
+    .submitListingReview(data)
+    .then((res) => {
+      if (res.status === 201) {
+        dispatch({ type: POST_LISTING_REVIEW_SUCCESS });
+        fetchListing(dispatch, token, data.listing_id);
+      } else {
+        dispatch({ type: POST_LISTING_REVIEW_FAILURE });
       }
     });
 };

@@ -9,6 +9,8 @@ import {
   performSearch,
   fetchCategories,
   fetchUserListings,
+  postListingReview,
+  fetchListingReviews,
   fetchCategoryListings,
   fetchFavouriteListings,
 } from 'src/models/listing';
@@ -47,6 +49,14 @@ export const getUserListings = (token, id) => dispatch => fetchUserListings(disp
 
 export const getFavouriteListings = (token, ids) => {
   return dispatch => fetchFavouriteListings(dispatch, token, ids);
+};
+
+export const getListingReviews = (token, url) => {
+  return dispatch => fetchListingReviews(dispatch, token, url);
+};
+
+export const submitListingReview = (token, data) => {
+  return dispatch => postListingReview(dispatch, token, data);
 };
 
 export const clearListings = () => {

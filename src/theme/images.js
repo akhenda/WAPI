@@ -6,6 +6,7 @@ const images = {
   loading: require('src/images/loaders/loading.gif'),
   loading2: require('src/images/loaders/hands.gif'),
   noInternet: require('src/images/loaders/no-internet.gif'),
+  noReviews: require('src/images/loaders/no-reviews.gif'),
 
   discover: require('src/images/discover.png'),
   connect: require('src/images/connect.png'),

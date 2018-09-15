@@ -16,6 +16,8 @@ import {
   SEARCH_LISTINGS_FAILURE,
   FETCH_USER_LISTINGS_SUCCESS,
   FETCH_USER_LISTINGS_FAILURE,
+  FETCH_LISTING_REVIEWS_SUCCESS,
+  FETCH_LISTING_REVIEWS_FAILURE,
   FETCH_FAVOURITE_LISTINGS_SUCCESS,
   FETCH_FAVOURITE_LISTINGS_FAILURE,
 } from 'src/state/types';
@@ -28,6 +30,7 @@ const INITIAL_STATE = {
   selectedCategory: null,
   selectedListing: null,
   favourites: [],
+  reviews: [],
   loading: false,
 };
 
@@ -58,7 +61,12 @@ const authReducer = (state = INITIAL_STATE, action) => {
     case FETCH_LISTINGS_FAILURE:
       return { ...state, error: action.payload };
     case FETCH_LISTING_SUCCESS:
-      return { ...state, selectedListing: action.payload, error: {} };
+      return {
+        ...state,
+        error: {},
+        reviews: [], // let's also clear the reviews at this point
+        selectedListing: action.payload,
+      };
     case FETCH_LISTING_FAILURE:
       return { ...state, error: action.payload };
     case SEARCH_LISTINGS_SUCCESS:
@@ -86,6 +94,14 @@ const authReducer = (state = INITIAL_STATE, action) => {
       };
     case FETCH_FAVOURITE_LISTINGS_FAILURE:
       return { ...state, error: action.payload };
+    case FETCH_LISTING_REVIEWS_SUCCESS:
+      return {
+        ...state,
+        error: {},
+        reviews: action.payload,
+      };
+    case FETCH_LISTING_REVIEWS_FAILURE:
+      return { ...state, error: action.payload };
     case CLEAR_LISTINGS:
       return {
         ...state,
@@ -103,7 +119,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
 const persistConfig = {
   storage,
   key: 'listings',
-  blacklist: ['favourites'],
+  blacklist: ['favourites', 'reviews'],
 };
 
 export default persistReducer(persistConfig, authReducer);

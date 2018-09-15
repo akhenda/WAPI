@@ -1,3 +1,8 @@
+import { XmlEntities } from 'html-entities';
+
+
+const entities = new XmlEntities();
+
 export const stripHTML = (str) => {
-  return str.replace(/<\/?[^>]+(>|$)/g, '');
+  return entities.decode(str.replace(/<\/?[^>]+(>|$)/g, ''));
 };

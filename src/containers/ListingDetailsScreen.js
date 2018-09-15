@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Config from 'react-native-config';
 import StarRating from 'react-native-star-rating';
+import { Actions } from 'react-native-router-flux';
 import ViewMoreText from 'react-native-view-more-text';
 import ImageViewer from 'react-native-image-zoom-viewer';
 import GoogleStaticMap from 'react-native-google-static-map';
@@ -21,8 +22,8 @@ import { openStatus } from 'src/utils/businessHours';
 import shallowCompare, { shallowEqual } from 'src/utils/shallowCompare';
 import ActivitySpinner from 'src/components/ActivitySpinner';
 import LoadingIndicator from 'src/components/LoadingIndicator';
-import { getListing } from 'src/state/actions/listings';
 import { addFavourite, removeFavourite } from 'src/state/actions/app';
+import { getListing, getListingReviews } from 'src/state/actions/listings';
 import AnimatedContentWrapper from 'src/components/AnimatedContentWrapper';
 
 import { colors, metrics } from 'src/theme';
@@ -49,7 +50,12 @@ class ListingDetailsScreen extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (!shallowEqual(nextProps.item, this.props.item)) {
-      this.setState({ loading: false });
+      const { token } = nextProps;
+      const { reviews_url } = nextProps.item;
+
+      this.setState({ loading: false }, () => {
+        if (reviews_url) this.props.getListingReviews(token, reviews_url);
+      });
     }
   }
 
@@ -247,8 +253,16 @@ class ListingDetailsScreen extends Component {
               </ViewMoreText>
             </View>
 
-            <View style={[styles.dropShadow, styles.reviews]}>
-              <Text style={[styles.titles, styles.reviewsTitle]}>How others rate this place</Text>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              onPress={Actions.reviewsModal}
+              style={[styles.dropShadow, styles.reviews]}
+            >
+              <Text style={[styles.titles, styles.reviewsTitle]}>
+                {Number(listing_rate) === 0
+                  ? 'Be the first one to leave a review 🌟'
+                  : 'How others rate this place'}
+              </Text>
               <View style={styles.ratings}>
                 <View style={styles.ratingsValueContainer}>
                   <Text style={styles.ratingsValue}>{listing_rate || '0.0'}</Text>
@@ -257,21 +271,21 @@ class ListingDetailsScreen extends Component {
                   <View style={styles.stars}>
                     <StarRating
                       disabled
-                      emptyStar={'ios-star-outline'}
+                      maxStars={5}
+                      starSize={18}
+                      iconSet={'Ionicons'}
                       fullStar={'ios-star'}
                       halfStar={'ios-star-half'}
-                      iconSet={'Ionicons'}
-                      maxStars={5}
+                      emptyStar={'ios-star-outline'}
                       rating={Number(listing_rate) || 0}
-                      starSize={18}
-                      style={{ width: 50 }}
                       starColor={colors.secondary.light}
+                      fullStarColor={colors.primary.main}
                     />
                   </View>
-                <Text style={styles.totalRevies}>{listing_reviewed || 0} Reviews</Text>
+                <Text style={styles.totalReviews}>{listing_reviewed || 0} Reviews</Text>
                 </View>
               </View>
-            </View>
+            </TouchableOpacity>
 
             {listingpro.latitude !== ''
               ? <TouchableOpacity
@@ -352,6 +366,7 @@ ListingDetailsScreen.propTypes = {
   addFavourite: PropTypes.func,
   removeFavourite: PropTypes.func,
   currentLocation: PropTypes.object,
+  getListingReviews: PropTypes.func,
   onLeftButton: PropTypes.func.isRequired,
 };
 
@@ -366,5 +381,5 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  addFavourite, removeFavourite, getListing,
+  addFavourite, removeFavourite, getListing, getListingReviews,
 })(ListingDetailsScreen);

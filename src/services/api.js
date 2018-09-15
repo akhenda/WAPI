@@ -108,6 +108,22 @@ const create = (baseURL = 'https://wapi-kenya.com/wp-json/') => {
   const getUserListings = id => api.get(`wp/v2/listing?context=embed&author=${id}`);
   const getFavouriteListings = ids => api.get(`wp/v2/listing?${ids}`); // e.g. include[]=1367&include[]=1065
 
+  const getListingReviews = url => api.get(url);
+  const submitListingReview = (data) => {
+    return api.post(
+      'wp/v2/lp-reviews',
+      {
+        title: data.title,
+        content: data.description,
+        status: 'publish',
+        listingpro: {
+          rating: data.rating,
+          listing_id: data.listing_id,
+        },
+      },
+    );
+  };
+
   // ------
   // STEP 3
   // ------
@@ -135,6 +151,8 @@ const create = (baseURL = 'https://wapi-kenya.com/wp-json/') => {
     getListing,
     getUserListings,
     getFavouriteListings,
+    getListingReviews,
+    submitListingReview,
   };
 };
 
