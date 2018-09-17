@@ -2,6 +2,9 @@
 import apisauce from 'apisauce';
 import Config from 'react-native-config';
 
+
+const rax = require('retry-axios');
+
 // our "constructor"
 const create = (baseURL = 'https://wapi-kenya.com/wp-json/') => {
   // ------
@@ -21,6 +24,8 @@ const create = (baseURL = 'https://wapi-kenya.com/wp-json/') => {
     timeout: 10000,
   });
 
+  /* eslint-disable no-unused-vars */
+  const interceptorId = rax.attach(api.axiosInstance);
   const setHeader = (header, value) => api.setHeader(header, value);
 
   // ------
