@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View } from 'react-native';
+import { View, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
 import FastImage from 'react-native-fast-image';
@@ -304,6 +304,7 @@ class ListingReviewsScreen extends Component {
 
     return (
       <Container style={styles.container}>
+        <StatusBar translucent={false} barStyle="light-content" backgroundColor={colors.primary.dark} />
         <Content bounces={false}>
           {this.renderBanner(item)}
           {reviews.length > 0
