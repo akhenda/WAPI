@@ -1,3 +1,15 @@
+# [1.4.0](https://github.com/akhenda/WAPI/compare/v1.3.0...v1.4.0) (2018-09-17)
+
+
+### Bug Fixes
+
+* **review:** android transluscent statusbar fix ([f9b6a02](https://github.com/akhenda/WAPI/commit/f9b6a02))
+
+
+### Features
+
+* **api:** add retry capability to the API service ([1b8c671](https://github.com/akhenda/WAPI/commit/1b8c671))
+
 # [1.3.0](https://github.com/akhenda/WAPI/compare/v1.2.3...v1.3.0) (2018-09-15)
 
 
